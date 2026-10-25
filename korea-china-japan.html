@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Korea, China & Japan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as Korea Field Notes. A whale-and-shrimp hero, then a vertical era timeline where each card carries "who was involved" chips (KR / CN / JP / MN) and a "See it on our trip" note, then today's issues, a mission and a quiz. */
+:root{
+  --bg:#eef1f6; --card:#ffffff; --ink:#14161c; --muted:#555b68; --line:#14161c; --soft:#e2e7f0;
+  --kr:#1f5fbf; --cn:#c0392b; --jp:#6b4fa8; --mn:#2a8a57; --gold:#f2b705; --sea:#2c6fa8;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12141a; --card:#1c1f27; --ink:#f1f3f7; --muted:#a9b0bd; --line:#f1f3f7; --soft:#272b35;
+  --kr:#6fa3ff; --cn:#ff7a6b; --jp:#b29cf0; --mn:#5fd08f; --gold:#ffcc3d; --sea:#6aa6dd; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12141a; --card:#1c1f27; --ink:#f1f3f7; --muted:#a9b0bd; --line:#f1f3f7; --soft:#272b35;
+  --kr:#6fa3ff; --cn:#ff7a6b; --jp:#b29cf0; --mn:#5fd08f; --gold:#ffcc3d; --sea:#6aa6dd; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.4rem,10.5vw,4.2rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--cn);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;font-size:13px;font-weight:600;color:var(--muted)}
+.chip{display:inline-block;font-weight:800;font-size:11px;letter-spacing:.06em;padding:2px 8px;border-radius:999px;color:#fff;vertical-align:middle}
+.kr{background:var(--kr)} .cn{background:var(--cn)} .jp{background:var(--jp)} .mn{background:var(--mn)}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.proverb{background:var(--gold);color:#14161c;border-color:#14161c;box-shadow:5px 5px 0 #14161c}
+.proverb .ko{font-size:1.25rem;font-weight:800}
+.tl{display:grid;gap:18px;margin-top:16px;border-left:3px solid var(--line);margin-left:10px;padding-left:22px}
+.ev{position:relative}
+.ev::before{content:"";position:absolute;left:-33px;top:20px;width:14px;height:14px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.yr{font-family:var(--display);font-size:1.05rem;color:var(--muted);margin-right:4px}
+.trip{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.trip b{font-weight:800}
+.heroes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+.heroes .card h3{font-size:1.25rem}
+.small{font-size:14.5px}
+.today{display:grid;gap:14px;margin-top:16px}
+.mission{background:var(--gold);color:#14161c;border-color:#14161c;box-shadow:5px 5px 0 #14161c;margin-top:16px}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tagm{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#14161c;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--mn);color:#fff;border-color:var(--mn)}
+.opts button.wrong{background:var(--cn);color:#fff;border-color:var(--cn)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--kr)}
+button:focus-visible{outline:3px solid var(--kr);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of two large whales facing each other with a small shrimp between them">
+    <rect x="0" y="0" width="700" height="220" style="fill:var(--sea)"/>
+    <path d="M0 40 Q175 26 350 40 T700 40" fill="none" style="stroke:#ffffff" stroke-width="3" opacity=".35"/>
+    <path d="M40 120 Q60 70 160 72 Q250 74 290 118 Q250 160 160 162 Q80 164 60 140 L20 168 L30 120 L18 76 Z" style="fill:var(--cn)"/>
+    <circle cx="250" cy="106" r="5" style="fill:#ffffff"/>
+    <path d="M660 120 Q640 70 540 72 Q450 74 410 118 Q450 160 540 162 Q620 164 640 140 L680 168 L670 120 L682 76 Z" style="fill:var(--jp)"/>
+    <circle cx="450" cy="106" r="5" style="fill:#ffffff"/>
+    <path d="M338 128 Q350 108 366 116 Q372 124 364 132 Q356 138 346 136 Z" style="fill:var(--gold)"/>
+    <path d="M364 116 l12 -10 M366 118 l14 -4" style="stroke:var(--gold)" stroke-width="2" fill="none"/>
+    <path d="M150 64 q4 -18 -4 -30 M160 64 q8 -16 6 -30 M550 64 q-4 -18 4 -30 M540 64 q-8 -16 -6 -30" style="stroke:#ffffff" stroke-width="3" fill="none" opacity=".6"/>
+  </svg>
+  <span class="kicker">Field Notes · history special</span>
+  <h1>Korea, China &amp; Japan<span class="ko">한국 · 중국 · 일본</span></h1>
+  <p>Korea sits right between two giants. For 2,000 years the three neighbours traded, taught each other, fought wars and made peace. Here are the big moments, and the places on our trip where you can still see them.</p>
+  <div class="legend"><span><span class="chip kr">KR</span> Korea</span><span><span class="chip cn">CN</span> China</span><span><span class="chip jp">JP</span> Japan</span><span><span class="chip mn">MN</span> Mongols &amp; Manchus</span></div>
+</header>
+
+<div class="sh"><span class="num">Part 1</span><h2>The shrimp between whales</h2></div>
+<div class="card proverb" style="margin-top:16px">
+  <span class="ko">고래 싸움에 새우 등 터진다</span>
+  <p><b>"When whales fight, the shrimp's back breaks."</b> Koreans often use this proverb to describe their country's history. A small peninsula next to huge powers often got caught in their fights, and many of the wars below were really about the bigger countries reaching each other through Korea.</p>
+</div>
+
+<div class="sh"><span class="num">Part 2</span><h2>2,000 years in 14 moments</h2></div>
+<div class="tl">
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">108 BCE</span><span class="chip kr">KR</span><span class="chip cn">CN</span></div>
+    <h3>China's Han empire moves in</h3>
+    <p>China's Han dynasty conquered the early Korean kingdom of Gojoseon and set up military districts in the north of the peninsula. Along with soldiers came Chinese writing, iron tools and new ideas.</p>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">612</span><span class="chip kr">KR</span><span class="chip cn">CN</span></div>
+    <h3>The great ambush at the Salsu River</h3>
+    <p>China's Sui dynasty sent one of the biggest armies the world had seen to conquer the Korean kingdom of Goguryeo. General Eulji Mundeok lured it deep into Korea, then trapped it at the Salsu River. Old records say only a few thousand of the hundreds of thousands of soldiers made it home. The defeat helped bring down the Sui dynasty.</p>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">660–676</span><span class="chip kr">KR</span><span class="chip cn">CN</span><span class="chip jp">JP</span></div>
+    <h3>Allies, then enemies</h3>
+    <p>The Korean kingdom of Silla teamed up with China's Tang dynasty to defeat its rivals Baekje and Goguryeo. Japan sent a fleet to help its ally Baekje, and lost at the Battle of Baekgang in 663. Then Tang tried to take over the whole peninsula, so Silla turned on its former ally and drove the Tang armies out by 676.</p>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">500s–700s</span><span class="chip kr">KR</span><span class="chip cn">CN</span><span class="chip jp">JP</span></div>
+    <h3>Not just wars: a bridge for ideas</h3>
+    <p>Buddhism, Chinese characters and Confucian ideas travelled from China through Korea to Japan. Scholars, monks, builders and artists from the Korean kingdom of Baekje helped shape early Japanese temples, writing and art.</p>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1231–1273</span><span class="chip kr">KR</span><span class="chip mn">MN</span></div>
+    <h3>The Mongols, and Jeju's last stand</h3>
+    <p>The Mongol Empire invaded Goryeo Korea again and again for decades. A group of Korean soldiers called the Sambyeolcho refused to surrender and made their final stand on Jeju, where they were defeated in 1273. The Mongols then used Jeju as a horse ranch.</p>
+    <div class="trip"><b>See it on our trip:</b> Jeju's small horses descend from those Mongol herds.</div>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1274 &amp; 1281</span><span class="chip mn">MN</span><span class="chip kr">KR</span><span class="chip jp">JP</span></div>
+    <h3>The "divine wind"</h3>
+    <p>The Mongols forced Korea to build ships and send soldiers to invade Japan, twice. Both times, storms wrecked much of the fleet. The Japanese called the storms <i>kamikaze</i>, "divine wind," the same word used much later for suicide pilots in World War II.</p>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1392–1800s</span><span class="chip kr">KR</span><span class="chip cn">CN</span></div>
+    <h3>The "big brother" system</h3>
+    <p>Joseon Korea sent regular missions with gifts to China's emperors and accepted China as the senior partner. In return, Korea ran its own affairs, traded and got protection. It was more like a ceremony of respect between neighbours than China ruling Korea.</p>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1592–1598</span><span class="chip jp">JP</span><span class="chip kr">KR</span><span class="chip cn">CN</span></div>
+    <h3>The Imjin War</h3>
+    <p>Japan's ruler Toyotomi Hideyoshi invaded Korea, planning to march on through to conquer China. Seoul fell within weeks and the king fled. Korea fought back with Admiral Yi Sun-sin's navy, volunteer "righteous armies" and even warrior monks, and China's Ming dynasty sent armies to help. After six years and terrible destruction, Japan withdrew when Hideyoshi died.</p>
+    <p class="small">Japanese forces also carried off thousands of Korean craftspeople. Captured potters started Japan's famous porcelain industry.</p>
+    <div class="trip"><b>See it on our trip:</b> Gyeongbokgung Palace burned during this war and lay in ruins for about 270 years (Mon 2 Nov). Admiral Yi's statue stands on Gwanghwamun Square.</div>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1607–1811</span><span class="chip kr">KR</span><span class="chip jp">JP</span></div>
+    <h3>Making peace</h3>
+    <p>After the war, Joseon sent 12 large goodwill missions to Japan. Crowds lined the streets to see the Korean envoys, and Japanese scholars and artists swapped poems and paintings with them. For about 200 years, the two countries were at peace.</p>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1636–1637</span><span class="chip mn">MN</span><span class="chip kr">KR</span></div>
+    <h3>The king who had to bow</h3>
+    <p>The Manchus, who were about to conquer China and found the Qing dynasty, invaded Korea. King Injo held out in a mountain fortress through a freezing winter, then surrendered. He had to kneel three times and touch his head to the ground nine times before the Manchu emperor at a place called Samjeondo. Koreans remember it as one of their most humiliating moments.</p>
+    <div class="trip"><b>See it on our trip:</b> the Samjeondo stone monument stands at Seokchon Lake, right next to Lotte World (Thu 5 Nov).</div>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1876–1895</span><span class="chip jp">JP</span><span class="chip cn">CN</span><span class="chip kr">KR</span></div>
+    <h3>Two empires fight over Korea</h3>
+    <p>Japan, newly modernised, forced Korea to open its ports in 1876. In 1894–95, China and Japan fought the First Sino-Japanese War, largely over who would control Korea. Japan won. In 1895, Japanese agents broke into Gyeongbokgung and killed Queen Min, who had been working against Japanese influence.</p>
+    <div class="trip"><b>See it on our trip:</b> the queen was killed in the palace grounds at Gyeongbokgung.</div>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1910–1945</span><span class="chip jp">JP</span><span class="chip kr">KR</span></div>
+    <h3>Japanese rule</h3>
+    <p>Japan made Korea a colony in 1910. Over 35 years, Koreans lost control of their country. Later in the period, schools banned the Korean language, Koreans were pressured to take Japanese names, and many were forced to work in mines and factories or fight in Japan's army. Women and girls were forced into sexual slavery for Japanese soldiers; they are known as "comfort women." On 1 March 1919, millions of Koreans joined peaceful protests for independence, and a Korean government-in-exile was set up in Shanghai, China.</p>
+    <div class="trip"><b>See it on our trip:</b> 15 August, the day Japan surrendered in 1945, is Korea's Liberation Day, <i>Gwangbokjeol</i>, "the day the light returned."</div>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1950–1953</span><span class="chip kr">KR</span><span class="chip cn">CN</span></div>
+    <h3>The Korean War</h3>
+    <p>After 1945 Korea was split in two. In 1950 North Korea invaded the South. A UN force led by the United States came to help the South, and when it pushed close to China's border, China sent hundreds of thousands of soldiers to fight for the North. The war ended in 1953 with a ceasefire, not a peace treaty. South Korea and China didn't set up normal relations until 1992.</p>
+    <div class="trip"><b>See it on our trip:</b> the DMZ, the border that still divides the peninsula (Thu 5 Nov, if you go).</div>
+  </div></div>
+
+  <div class="ev"><div class="card">
+    <div class="meta"><span class="yr">1965 → today</span><span class="chip kr">KR</span><span class="chip cn">CN</span><span class="chip jp">JP</span></div>
+    <h3>Rivals and partners</h3>
+    <p>South Korea and Japan restored diplomatic ties in 1965, and South Korea and China in 1992. Today the three are some of each other's biggest trading partners, and young people in all three countries watch each other's dramas, anime, K-pop and films.</p>
+  </div></div>
+</div>
+
+<div class="sh"><span class="num">Part 3</span><h2>Heroes Koreans remember</h2></div>
+<div class="heroes">
+  <div class="card"><h3>Eulji Mundeok</h3><p class="small">The Goguryeo general who trapped the Sui army in 612. Euljiro, the street you'll visit on Mon 2 Nov, is named after him.</p></div>
+  <div class="card"><h3>Admiral Yi Sun-sin</h3><p class="small">Never lost a sea battle. At Myeongnyang in 1597 he beat a Japanese fleet of over 130 ships with just 13. He was killed in the war's final battle in 1598 and told his men to keep his death secret until they won.</p></div>
+  <div class="card"><h3>Yu Gwan-sun</h3><p class="small">A 17-year-old student who helped lead the 1919 independence protests. She was imprisoned and died in prison in 1920 at 17, and is remembered as a symbol of courage.</p></div>
+</div>
+
+<div class="sh"><span class="num">Part 4</span><h2>Why it still matters</h2>
+  <p>History is still a live topic between the three countries. People in each country often see these issues differently, so it's worth hearing more than one side.</p></div>
+<div class="today">
+  <div class="card"><h3>Apologies and memory</h3><p>Japanese leaders have apologised for the colonial era several times. Many Koreans feel the apologies haven't gone far enough, especially for the "comfort women" and forced labourers, while many in Japan feel the issue has been settled by past agreements and payments.</p></div>
+  <div class="card"><h3>Islands and maps</h3><p>South Korea controls a small group of rocky islets in the sea between Korea and Japan, which Korea calls Dokdo and Japan calls Takeshima. Both countries claim them.</p></div>
+  <div class="card"><h3>Whose history?</h3><p>Chinese and Korean historians have argued over how to describe ancient kingdoms like Goguryeo, which covered parts of today's China and Korea. Each side tends to tell the story as part of its own national history.</p></div>
+</div>
+
+<div class="card mission"><span class="tagm">Mission</span><h3>History hunters in Seoul</h3>
+  <ol>
+    <li>Find Admiral Yi's statue on Gwanghwamun Square. What's in front of it? (Hint: a model of his famous ship.)</li>
+    <li>At Gyeongbokgung, find out which buildings are original and which were rebuilt.</li>
+    <li>If you go to Lotte World, look for the Samjeondo monument at Seokchon Lake next door.</li>
+    <li>On the DMZ tour, ask the guide how many tunnels from the North have been found.</li>
+  </ol>
+  <p class="small"><b>If you have time in Seoul:</b> the War Memorial of Korea in Yongsan (tanks, planes and ships outside) and Seodaemun Prison History Hall, where independence fighters were jailed.</p>
+</div>
+
+<div class="sh" id="quiz"><span class="num">Part 5</span><h2>Quiz</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[
+ {q:"What does the proverb \"When whales fight, the shrimp's back breaks\" describe?",o:["Korea's fishing industry","Korea getting caught between bigger powers","A famous sea battle","Jeju's haenyeo"],a:1,w:"Korea often got caught in its giant neighbours' conflicts."},
+ {q:"Which general trapped China's Sui army at the Salsu River in 612?",o:["Yi Sun-sin","Eulji Mundeok","Nam I","King Sejong"],a:1,w:"The defeat helped bring down the Sui dynasty."},
+ {q:"Silla allied with China's Tang dynasty, then...",o:["Became part of China","Drove the Tang armies out of Korea","Invaded Japan together","Moved its capital to China"],a:1,w:"By 676, Silla had pushed the Tang out."},
+ {q:"Where did the Sambyeolcho make their last stand against the Mongols?",o:["Seoul","Jeju","Busan","Nami Island"],a:1,w:"They were defeated on Jeju in 1273."},
+ {q:"What does kamikaze mean?",o:["Brave soldier","Divine wind","Sea dragon","Iron ship"],a:1,w:"Storms that wrecked the Mongol fleets invading Japan."},
+ {q:"Who invaded Korea in 1592, planning to go on to conquer China?",o:["Kublai Khan","Toyotomi Hideyoshi","The Qing emperor","The Tang emperor"],a:1,w:"The Imjin War lasted until 1598."},
+ {q:"At Myeongnyang, Admiral Yi beat a fleet of over 130 ships with how many?",o:["13","30","100","300"],a:0,w:"Just 13 ships."},
+ {q:"Which country sent armies to help Korea during the Imjin War?",o:["Mongolia","Ming China","Russia","The Netherlands"],a:1,w:"Ming China sent armies to fight the Japanese invasion."},
+ {q:"What does Gwangbokjeol, Korea's Liberation Day, mean?",o:["Day of the king","The day the light returned","Victory at sea","New Year"],a:1,w:"It marks Japan's surrender on 15 August 1945."},
+ {q:"Which country sent soldiers to fight for North Korea in the Korean War?",o:["Japan","China","Mongolia","Vietnam"],a:1,w:"China entered the war in 1950."}
+];
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?"Perfect score. You could teach this.":score>=7?"Great job. You know your history.":"Read the timeline again and have another go.";
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
