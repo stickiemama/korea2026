@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Seongsan Ilchulbong</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as Korea Field Notes, tuned to the peak itself: sunrise orange, crater-grass green and sea blue. Hero with a drawn crater silhouette, a fact strip with real numbers, bite-sized cards, then a one-question-at-a-time quiz. */
+:root{
+  --bg:#f1efec; --card:#ffffff; --ink:#191a1c; --muted:#5a5e63; --line:#191a1c; --soft:#e9e6e1;
+  --sun:#e8641e; --glow:#f5a623; --grass:#4f8a3c; --sea:#2364a8; --rock:#4a4744;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151413; --card:#211f1d; --ink:#f2efeb; --muted:#aaa59f; --line:#f2efeb; --soft:#2c2926;
+  --sun:#ff8a4c; --glow:#ffc15a; --grass:#7fc46a; --sea:#7aaeff; --rock:#bdb7b0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151413; --card:#211f1d; --ink:#f2efeb; --muted:#aaa59f; --line:#f2efeb; --soft:#2c2926;
+  --sun:#ff8a4c; --glow:#ffc15a; --grass:#7fc46a; --sea:#7aaeff; --rock:#bdb7b0; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);background:var(--card)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.4rem,10.5vw,4.2rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--sun);margin-top:6px}
+.hero p{margin:0;max-width:54ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1.1;color:var(--sun);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.45rem}
+.card p{margin:0}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t-nature{background:var(--grass)} .t-weird{background:var(--sun)} .t-history{background:var(--rock);color:var(--bg)} .t-sea{background:var(--sea)} .t-gold{background:var(--glow);color:#191a1c}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--glow);color:#191a1c;border-color:#191a1c;box-shadow:5px 5px 0 #191a1c}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#191a1c;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.35rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--grass);color:#fff;border-color:var(--grass)}
+.opts button.wrong{background:var(--sun);color:#fff;border-color:var(--sun)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--sun)}
+button:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 240" role="img" aria-label="Drawing of Seongsan Ilchulbong, a crater rising from the sea with the sun behind it">
+    <rect x="0" y="0" width="700" height="240" style="fill:var(--card)"/>
+    <circle cx="470" cy="118" r="62" style="fill:var(--glow)"/>
+    <circle cx="470" cy="118" r="42" style="fill:var(--sun)"/>
+    <path d="M60 196 L150 120 Q170 82 200 92 L220 76 L238 90 L256 70 L276 88 L296 72 L316 90 L336 74 L356 92 L378 80 Q404 86 420 118 L520 196 Z" style="fill:var(--rock)"/>
+    <path d="M206 100 Q290 128 372 96" fill="none" stroke-width="10" stroke-linecap="round" style="stroke:var(--grass)"/>
+    <rect x="0" y="194" width="700" height="46" style="fill:var(--sea)"/>
+    <path d="M0 210 Q30 204 60 210 T120 210 T180 210 T240 210 T300 210 T360 210 T420 210 T480 210 T540 210 T600 210 T660 210 T720 210" fill="none" stroke-width="3" opacity=".6" style="stroke:var(--card)"/>
+    <path d="M520 196 Q600 190 700 196" fill="none" stroke-width="6" style="stroke:var(--glow)"/>
+  </svg>
+  <span class="kicker">Jeju · east coast · UNESCO World Natural Heritage</span>
+  <h1>Seongsan Ilchulbong<span class="ko">성산일출봉 · Sunrise Peak</span></h1>
+  <p>A volcano that erupted out of the sea, a crown of rock, secret wartime caves and Jeju's most famous sunrise. Read the cards, then take the quiz.</p>
+</header>
+
+<div class="stats" aria-label="Seongsan Ilchulbong in numbers">
+  <div class="stat"><b>182 m</b><span>tall</span></div>
+  <div class="stat"><b>~600 m</b><span>across the crater</span></div>
+  <div class="stat"><b>~6,000</b><span>years old, give or take</span></div>
+  <div class="stat"><b>~30 min</b><span>to climb to the rim</span></div>
+</div>
+
+<div class="sh"><span class="num">Part 1</span><h2>The cards</h2></div>
+<div class="cards">
+  <div class="card"><span class="tag t-nature">Born in the sea</span><h3>A volcano that erupted underwater</h3><p>Several thousand years ago, magma rose under shallow sea. When red-hot magma hits cold seawater, it explodes into steam and shatters into ash. The wet ash piled up around the vent and built this cone, called a "tuff cone."</p><div class="look"><b>Look for:</b> stripes in the cliffs. Each layer of ash is a record of one burst of the eruption.</div></div>
+
+  <div class="card"><span class="tag t-weird">Weird but true</span><h3>It used to be an island</h3><p>When it formed, Seongsan Ilchulbong stood alone in the sea. Over time, sand and sediment piled up and joined it to Jeju. The village of Seongsan now sits on that strip of land.</p></div>
+
+  <div class="card"><span class="tag t-history">Name</span><h3>Fortress Mountain, Sunrise Peak</h3><p><i>Seongsan</i> means "fortress mountain," because the jagged rocks around the crater rim look like castle walls. <i>Ilchulbong</i> means "sunrise peak," because it faces east and is one of the first places in Korea to catch the morning sun.</p><div class="look"><b>Look for:</b> the ring of rocky spikes along the rim. People say there are 99 of them, like a crown.</div></div>
+
+  <div class="card"><span class="tag t-nature">Inside the crater</span><h3>A giant grassy bowl</h3><p>The crater is about 600 m wide, roughly the length of six football fields. It's carpeted in grass and shrubs. People used to grow crops, gather grass and graze horses inside it, until it became protected.</p><div class="look"><b>Try:</b> from the viewing deck, work out where farmers would have walked down into the bowl.</div></div>
+
+  <div class="card"><span class="tag t-gold">Famous</span><h3>World Heritage, with company</h3><p>In 2007, UNESCO listed Seongsan Ilchulbong as World Natural Heritage, together with Hallasan and the lava tubes, including Manjanggul where you were this morning. All three belong to the same volcanic story.</p></div>
+
+  <div class="card"><span class="tag t-history">Hidden history</span><h3>Secret caves for suicide boats</h3><p>Near the end of World War II, the Japanese navy dug about 18 caves into the base of the peak. They planned to hide small boats packed with explosives there and ram them into Allied ships if an invasion came. The war ended before they were used.</p><div class="look"><b>Look for:</b> dark openings at the foot of the cliffs near the shore.</div></div>
+
+  <div class="card"><span class="tag t-sea">Sea</span><h3>The haenyeo's home beach</h3><p>The rocky shore at the foot of the peak is where Seongsan's haenyeo divers work. They sometimes give diving demonstrations and sell fresh seafood they've just caught. Listen for the whistle they make when they surface.</p></div>
+
+  <div class="card"><span class="tag t-sea">View</span><h3>Spot the cow island</h3><p>From the top, look north-east for Udo, a low, flat island. Its name means "cow island," because people thought its shape looks like a lying-down cow. Ferries leave from Seongsan port.</p></div>
+
+  <div class="card"><span class="tag t-weird">Festival</span><h3>The biggest sunrise party in Korea</h3><p>Every New Year, thousands of people climb in the dark for the first sunrise of the year during the Seongsan Sunrise Festival. There are fireworks and music, and fishing boats light up and sound their horns as the sun appears.</p></div>
+
+  <div class="card mission"><span class="tag">Mission</span><h3>Your Seongsan challenge</h3>
+    <ol>
+      <li>Count the rest stops on the way up.</li>
+      <li>Find the stripes of ash layers in a cliff.</li>
+      <li>Spot Udo, the cow island, from the top.</li>
+      <li>Take a photo of the crater that shows how big it is (put a person in it for scale).</li>
+    </ol></div>
+</div>
+
+<div class="sh" id="quiz"><span class="num">Part 2</span><h2>Quiz</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[
+ {q:"What does \"Ilchulbong\" mean?",o:["Fortress peak","Sunrise peak","Cow island","Black dragon"],a:1,w:"It faces east and catches the first morning sun."},
+ {q:"Why is it called \"Seongsan,\" fortress mountain?",o:["A king built a castle on top","The rocky rim looks like castle walls","Soldiers guarded it","It was used as a prison"],a:1,w:"The jagged rocks around the crater look like a fortress wall."},
+ {q:"How did Seongsan Ilchulbong form?",o:["A meteor crash","Magma exploding as it hit seawater","Glaciers carving it","Humans piling up rocks"],a:1,w:"An underwater eruption built a tuff cone out of wet ash."},
+ {q:"What used to separate it from the rest of Jeju?",o:["A river","The sea","A wall","A forest"],a:1,w:"It was an island until sand and sediment joined it to Jeju."},
+ {q:"How tall is Seongsan Ilchulbong?",o:["82 m","182 m","1,947 m","500 m"],a:1,w:"182 m. 1,947 m is Hallasan."},
+ {q:"What did the Japanese navy dig into the base during World War II?",o:["Gold mines","About 18 caves to hide explosive boats","A railway tunnel","A water reservoir"],a:1,w:"They were never used because the war ended."},
+ {q:"Which island can you spot from the top, named after an animal?",o:["Udo, cow island","Mado, horse island","Gaedo, dog island","Dakdo, chicken island"],a:0,w:"People thought it looks like a cow lying down."},
+ {q:"Which other places share its UNESCO listing?",o:["Gyeongbokgung and Bukchon","Hallasan and the lava tubes","Nami Island and Namsan","The DMZ and Seoul Forest"],a:1,w:"Listed together in 2007 as Jeju Volcanic Island and Lava Tubes."}
+];
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?"Perfect score. You could lead the tour.":score>=5?"Great job. You know your volcano.":"Read the cards again and have another go.";
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
