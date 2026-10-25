@@ -140,6 +140,7 @@ var Q=[
  {q:"What do haenyeo dive without?",o:["Swimsuits","Oxygen tanks","Goggles","Baskets"],a:1,w:"They hold their breath, often for a minute or two."},
  {q:"What happened to the whale shark that survived at Aqua Planet?",o:["It moved to Seoul","It was tagged and released into the sea","It still lives in the main tank","It went to a zoo in Japan"],a:1,w:"It was released after public debate about keeping such big animals."}
 ];
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
 var qi=0,score=0,box=document.getElementById("quizbox");
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function show(){

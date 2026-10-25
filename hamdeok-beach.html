@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Hamdeok Beach</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to the beach: turquoise shallows, pale shell sand, black basalt, Seoubong green. */
+
+:root{
+  --bg:#edf3f2; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e0ebe9;
+  --acc:#0f8f8a; --t1:#0f8f8a; --t2:#33363b; --t3:#4c8a3f; --t4:#e8c35a; --mis:#e8c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#4fd0c8; --t1:#2aa8a1; --t2:#5c6068; --t3:#6fbf62; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#4fd0c8; --t1:#2aa8a1; --t2:#5c6068; --t3:#6fbf62; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of Hamdeok Beach: turquoise shallow water, pale sand, black rocks and the green hill Seoubong">
+    <rect x="0" y="0" width="700" height="220" style="fill:#9cc7d8"/>
+    <path d="M0 70 Q90 60 180 74 L700 74 L700 0 L0 0 Z" style="fill:#b9d9e5"/>
+    <path d="M470 80 Q520 30 590 34 Q650 38 700 76 L700 96 L470 96 Z" style="fill:#4c8a3f"/>
+    <path d="M520 58 q10 -10 20 0 M570 50 q10 -10 20 0 M620 56 q10 -10 20 0" style="stroke:#e8e2c6" stroke-width="3" fill="none" opacity=".8"/>
+    <rect x="0" y="86" width="700" height="52" style="fill:#1f8aa8"/>
+    <path d="M0 132 Q175 118 350 130 T700 126 L700 160 L0 160 Z" style="fill:#3cc2bb"/>
+    <path d="M0 152 Q175 142 350 152 T700 150 L700 220 L0 220 Z" style="fill:#efe7d4"/>
+    <path d="M0 154 Q60 148 120 156 T240 154" style="stroke:#ffffff" stroke-width="4" fill="none" opacity=".8"/>
+    <path d="M20 168 q18 -16 40 -4 q16 10 -4 18 q-24 8 -36 -14 Z M590 160 q22 -18 50 -4 q18 12 -6 20 q-30 6 -44 -16 Z M640 182 q14 -10 28 0 q8 10 -8 12 q-16 2 -20 -12 Z" style="fill:#2b2c30"/>
+  </svg>
+  <span class="kicker">Jeju · north-east coast · Day 2, in the rain</span>
+  <h1>Hamdeok Beach<span class="ko">함덕해수욕장</span></h1>
+  <p>We saw it grey and rainy, but on a sunny day this is one of Jeju's most colourful beaches. Here's what we would have seen, and what to look for next time.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Turquoise</b><span>on a sunny day</span></div><div class="stat"><b>Waist-deep</b><span>a long way out</span></div><div class="stat"><b>~15 min</b><span>up Seoubong</span></div><div class="stat"><b>Olle 19</b><span>walking route</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>The cards</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Science</span><h3>Why the water glows turquoise</h3><p>Hamdeok's sand is pale and partly made of crushed shells. Sunlight passes through the shallow water, bounces off the light sand and comes back up as bright turquoise and emerald. Over deeper water or dark sand, the sea looks navy instead.</p><div class="look"><b>Compare:</b> the colour of the sea here versus a black-rock beach.</div></div>
+<div class="card"><span class="tag t1">Family beach</span><h3>Shallow for a long way</h3><p>The seabed slopes very gently, so you can wade a long way out and still be only waist-deep. That's why it's one of Jeju's most popular family swimming beaches in summer.</p></div>
+<div class="card"><span class="tag t2">Volcanic</span><h3>White sand, black rock</h3><p>Black basalt rocks from Jeju's old lava flows frame both ends of the beach. The white-sand, black-rock, turquoise-water combination is the classic Jeju beach look.</p><div class="look"><b>Look for:</b> rock pools at low tide, with tiny crabs and shellfish.</div></div>
+<div class="card"><span class="tag t3">Oreum</span><h3>Seoubong, the hill at the end</h3><p>The grassy hill at the eastern end is Seoubong, one of Jeju's roughly 360 oreums (small volcanic cones). A short trail of about 15 minutes leads to views along the coast. It's yellow with canola flowers in spring and covered in silver grass in autumn.</p></div>
+<div class="card"><span class="tag t3">Walking</span><h3>On the Olle trail</h3><p>Jeju Olle Route 19, one of the island's long-distance coastal walking routes, passes along this coast. Olle routes are named after the winding stone lanes that once led to Jeju homes, just like the one on our stone house page.</p></div>
+<div class="card"><span class="tag t4">Rainy-day tip</span><h3>Beach cafés</h3><p>Hamdeok is lined with sea-view cafés, some with huge windows facing the water. On a grey day they're the best way to watch the waves stay warm and dry.</p></div>
+<div class="card ours"><span class="tag t2">Our visit</span><h3>Hamdeok in a typhoon</h3><p>We visited on Sun 25 Oct while Typhoon Champi passed south of Jeju, bringing heavy rain, wind and big waves. Not the turquoise postcard, but a much wilder sea than most visitors get to see.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Hamdeok, take two</h3><ol><li>If we drive past on a sunny day, take a photo from the same spot to compare it with the rainy one.</li><li>Find the darkest and the palest patch of sea and work out why they differ.</li><li>Climb Seoubong and spot Hamdeok village from the top.</li><li>Write one sentence for the journal: what was the sea like in the storm?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "Why does the water at Hamdeok look turquoise on a sunny day?", "o": ["Dye from the cafés", "Light bouncing off pale sand through shallow water", "Seaweed growing on the bottom", "Volcanic minerals in the water"], "a": 1, "w": "Pale shell sand reflects sunlight up through the shallow water."}, {"q": "What is the grassy hill at the eastern end called?", "o": ["Hallasan", "Seoubong", "Sanbangsan", "Yongnuni"], "a": 1, "w": "Seoubong is one of Jeju’s oreums."}, {"q": "What is an oreum?", "o": ["A small volcanic cone", "A type of seaweed", "A Jeju café", "A stone wall"], "a": 0, "w": "Jeju has around 360 of them."}, {"q": "Why is Hamdeok good for families?", "o": ["It has a theme park", "The water stays shallow a long way out", "There are no waves ever", "It is indoors"], "a": 1, "w": "You can wade far out and stay waist-deep."}, {"q": "What were the black rocks at each end made from?", "o": ["Concrete", "Lava (basalt)", "Coal", "Coral"], "a": 1, "w": "They are basalt from Jeju’s old lava flows."}, {"q": "Which typhoon brought the rain on our visit?", "o": ["Typhoon Champi", "Typhoon Hallabong", "Typhoon Kimchi", "Typhoon Olle"], "a": 0, "w": "It passed south of Jeju on 25–26 October."}];
+var END=["Perfect score. Beach expert.", "Nice work. Come back on a sunny day to see it for real.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

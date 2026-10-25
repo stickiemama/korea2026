@@ -236,6 +236,7 @@ var Q=[
  {q:"What does Gwangbokjeol, Korea's Liberation Day, mean?",o:["Day of the king","The day the light returned","Victory at sea","New Year"],a:1,w:"It marks Japan's surrender on 15 August 1945."},
  {q:"Which country sent soldiers to fight for North Korea in the Korean War?",o:["Japan","China","Mongolia","Vietnam"],a:1,w:"China entered the war in 1950."}
 ];
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
 var qi=0,score=0,box=document.getElementById("quizbox");
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function show(){

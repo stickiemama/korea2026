@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Watch & Talk</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Culture Notes no. 1, tuned to a family screen night: screen-glow violet, dancheong red, Jeju tangerine, Han River blue. No quiz; each card ends with a talk question. */
+
+:root{
+  --bg:#f0eff4; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e6e4ee;
+  --acc:#6a4fc0; --t1:#6a4fc0; --t2:#d0661a; --t3:#c0392b; --t4:#e9b949; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#a68cf5; --t1:#8a6fe0; --t2:#f08a3a; --t3:#e85a4a; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#a68cf5; --t1:#8a6fe0; --t2:#f08a3a; --t3:#e85a4a; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a TV screen showing Seoul's tower, a hillside and a crescent moon, with a bowl of popcorn in front">
+    <rect x="0" y="0" width="700" height="220" style="fill:#2a2540"/>
+    <rect x="120" y="20" width="460" height="160" rx="14" style="fill:#16141f"/>
+    <rect x="134" y="32" width="432" height="136" rx="6" style="fill:#3b3170"/>
+    <circle cx="500" cy="62" r="16" style="fill:#f2cd6b"/><circle cx="508" cy="56" r="14" style="fill:#3b3170"/>
+    <path d="M134 168 Q240 110 330 130 Q420 150 566 118 L566 168 Z" style="fill:#4e8a3d"/>
+    <path d="M344 136 L350 70 L356 136 Z" style="fill:#e8e4f5"/><circle cx="350" cy="78" r="9" style="fill:#e8e4f5"/><path d="M350 50 L350 68" style="stroke:#e8e4f5" stroke-width="3"/>
+    <rect x="300" y="180" width="100" height="10" style="fill:#16141f"/>
+    <path d="M40 210 L60 150 L120 150 L140 210 Z" style="fill:#c0392b"/>
+    <g style="fill:#f8f1dc"><circle cx="70" cy="146" r="12"/><circle cx="90" cy="138" r="13"/><circle cx="110" cy="146" r="12"/><circle cx="80" cy="130" r="10"/><circle cx="100" cy="128" r="10"/></g>
+    <path d="M70 150 L76 208 M100 150 L98 208" style="stroke:#ffffff" stroke-width="5" opacity=".6"/>
+  </svg>
+  <span class="kicker">Culture Notes · no. 1</span>
+  <h1>Watch &amp; Talk<span class="ko">보고 이야기하기</span></h1>
+  <p>Films and shows that open up a conversation about Korea, starting with the one we began watching on Day 1. Each card links to somewhere on our trip and ends with a question to talk about afterwards. Streaming services listed are where we know of them; what is available can differ by country.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>11</b><span>picks</span></div><div class="stat"><b>3</b><span>set on Jeju</span></div><div class="stat"><b>4</b><span>based on real events</span></div><div class="stat"><b>1</b><span>monster in the Han River</span></div></div>
+
+<div class="sh"><span class="num">Start here</span><h2>The one we started</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Film · Netflix · 2025</span><h3>Good News</h3><p>A dark comedy about the real 1970 hijacking of a Japanese plane by young radicals who wanted to fly to North Korea, and the South Korean officials who disguised Gimpo Airport as Pyongyang to trick them. Satire, so the officials are exaggerated, but the hijacking and the fake-Pyongyang trick really happened.</p><div class="look"><b>Talk about:</b> why would South Korea go to such lengths to stop a plane reaching the North in 1970? And we went through Gimpo on Day 1.</div></div></div>
+<div class="sh"><span class="num">Part 1</span><h2>Set on Jeju</h2></div>
+<div class="cards"><div class="card"><span class="tag t2">Series · Netflix · 2025</span><h3>When Life Gives You Tangerines</h3><p>A family saga set on Jeju from the 1950s onwards. The heroine's mother is a haenyeo, and the story follows how island life changes over decades. Moving and funny, and full of places like the ones we're seeing.</p><div class="look"><b>Talk about:</b> what has changed most on Jeju since the 1950s, judging by what we see now?</div></div>
+<div class="card"><span class="tag t2">Series · Netflix · 2022</span><h3>Our Blues</h3><p>Linked stories about people in a Jeju fishing town: market vendors, a truck seller, divers and old friends. A good picture of everyday island life. Some storylines deal with grown-up themes, so check a few episodes first.</p><div class="look"><b>Talk about:</b> which character would run a stall at Olle Market?</div></div>
+<div class="card"><span class="tag t2">Documentary · Apple TV+ · 2024</span><h3>The Last of the Sea Women</h3><p>A documentary about Jeju's haenyeo divers, many in their 70s and 80s, and their fight to protect their seas and their way of life.</p><div class="look"><b>Talk about:</b> would you want to keep a tradition alive if it meant such hard, dangerous work?</div></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>History on screen</h2><p>These link to the Korea, China &amp; Japan page. Some have battle or protest violence, so check the ratings.</p></div>
+<div class="cards"><div class="card"><span class="tag t3">Film · 2014</span><h3>The Admiral: Roaring Currents</h3><p>Admiral Yi Sun-sin's famous battle at Myeongnyang in 1597, when he faced a Japanese fleet of over 130 ships with just 13. A huge hit in Korea. Its follow-up, <i>Hansan: Rising Dragon</i> (2022), shows an earlier battle.</p><div class="look"><b>Talk about:</b> we'll see his statue on Gwanghwamun Square. Why is he still Korea's greatest hero?</div></div>
+<div class="card"><span class="tag t3">Series · Netflix · 2018</span><h3>Mr. Sunshine</h3><p>Set in the early 1900s as Japan tightens its grip on Korea. A Korean-born American officer returns to Joseon and gets caught up with independence fighters. Beautiful costumes and old Seoul settings.</p><div class="look"><b>Talk about:</b> how would you have felt living through those years, before Japan took over in 1910?</div></div>
+<div class="card"><span class="tag t3">Film · 2021</span><h3>Escape from Mogadishu</h3><p>Based on a true story: in 1991, North and South Korean diplomats trapped in Somalia's civil war had to work together to escape, even though their countries were enemies.</p><div class="look"><b>Talk about:</b> what does this story say about the people of North and South, compared with their governments?</div></div>
+<div class="card"><span class="tag t3">Film · 2017</span><h3>A Taxi Driver</h3><p>Based on real events: a Seoul taxi driver drives a German journalist to the city of Gwangju in 1980, where the military government was violently crushing pro-democracy protests. The footage the journalist smuggled out showed the world what happened.</p><div class="look"><b>Talk about:</b> South Korea only became a full democracy in 1987. How does that change how you see modern Seoul?</div></div></div>
+<div class="sh"><span class="num">Part 3</span><h2>Fun picks</h2></div>
+<div class="cards"><div class="card"><span class="tag t4">Animated film · Netflix · 2025</span><h3>KPop Demon Hunters</h3><p>A K-pop girl group who secretly fight demons. Look out for Seoul landmarks like N Seoul Tower and Bukchon's rooftops, and a tiger and magpie straight out of traditional Korean folk paintings.</p><div class="look"><b>Talk about:</b> spot the Seoul places we'll visit, and look for the tiger and magpie in museum paintings.</div></div>
+<div class="card"><span class="tag t4">Documentary series · Netflix · 2019</span><h3>Street Food: Asia, "Seoul"</h3><p>One episode of this food series is all about Gwangjang Market, where we're planning our last Seoul dinner, and the women who have run its stalls for decades.</p><div class="look"><b>Talk about:</b> which stall from the episode do we want to find?</div></div>
+<div class="card"><span class="tag t4">Film · 2006</span><h3>The Host</h3><p>A monster bursts out of the Han River and grabs a girl from the riverbank, and her chaotic family set out to rescue her. Scary in places, funny in others, by the director of <i>Parasite</i>.</p><div class="look"><b>Talk about:</b> we're cycling along the Han on Wed 4 Nov. Keep an eye on the water.</div></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Family film nights</span><h3>Make it a series</h3><ol><li>Finish Good News tonight or tomorrow and talk about the ending.</li><li>Pick one Jeju show to start while we are still on the island.</li><li>Before Gwanghwamun, watch a trailer for The Admiral.</li><li>Rate each one out of 10 in the journal and keep a family top three.</li></ol></div></div>
+
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+
+</body>
+</html>

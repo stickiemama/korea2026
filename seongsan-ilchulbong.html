@@ -135,6 +135,7 @@ var Q=[
  {q:"Which island can you spot from the top, named after an animal?",o:["Udo, cow island","Mado, horse island","Gaedo, dog island","Dakdo, chicken island"],a:0,w:"People thought it looks like a cow lying down."},
  {q:"Which other places share its UNESCO listing?",o:["Gyeongbokgung and Bukchon","Hallasan and the lava tubes","Nami Island and Namsan","The DMZ and Seoul Forest"],a:1,w:"Listed together in 2007 as Jeju Volcanic Island and Lava Tubes."}
 ];
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
 var qi=0,score=0,box=document.getElementById("quizbox");
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function show(){

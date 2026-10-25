@@ -160,6 +160,7 @@ var Q=[
  {q:"Who explored the cave in 1946?",o:["A team of soldiers","A schoolteacher and his students","A famous scientist from Seoul","A haenyeo diver"],a:1,w:"Bu Jong-hyu led his students in with torches."},
  {q:"Turtle Rock is said to be shaped like...",o:["A turtle and Jeju Island","A dragon","Hallasan","A bat"],a:0,w:"A turtle from the side, and Jeju Island from above."}
 ];
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
 var qi=0,score=0,box=document.getElementById("quizbox");
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function show(){

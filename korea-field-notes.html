@@ -229,6 +229,7 @@ var Q=[
  {q:"What did Seoul tear down in 2005 to bring back Cheonggyecheon stream?",o:["A palace","A shopping mall","An elevated highway","A stadium"],a:2,w:"The stream had been buried under a road and highway for decades."},
  {q:"Why are the haenyeo famous?",o:["They farm tangerines","They free-dive without oxygen tanks","They guard Hallasan","They carve stone grandpas"],a:1,w:"Many dive into their 70s and 80s, and whistle when they surface."}
 ];
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
 var qi=0,score=0,box=document.getElementById("quizbox");
 function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
 function show(){

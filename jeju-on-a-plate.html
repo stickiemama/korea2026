@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Jeju on a Plate</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Food Notes no. 2, tuned to Jeju dinners: charcoal grill black, hairtail silver, tangerine orange, sea green. */
+
+:root{
+  --bg:#eff0f0; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e3e5e6;
+  --acc:#e0701f; --t1:#2b2c30; --t2:#e0701f; --t3:#4a7fa8; --t4:#e9b949; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff9a4d; --t1:#5c6068; --t2:#f08a3a; --t3:#78aee0; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff9a4d; --t1:#5c6068; --t2:#f08a3a; --t3:#78aee0; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a charcoal grill with thick slices of black pork on the left, and a long silver hairtail fish on a plate on the right">
+    <rect x="0" y="0" width="700" height="220" style="fill:#33302d"/>
+    <circle cx="170" cy="110" r="92" style="fill:#1b1b1d"/>
+    <path d="M90 70 L250 70 M82 94 L258 94 M80 118 L260 118 M84 142 L256 142 M94 166 L246 166" style="stroke:#7a7a80" stroke-width="3"/>
+    <g style="fill:#c98c6a"><rect x="108" y="76" width="56" height="26" rx="6"/><rect x="176" y="80" width="56" height="26" rx="6"/><rect x="120" y="120" width="56" height="26" rx="6"/></g>
+    <g style="fill:#2b2220"><rect x="108" y="76" width="56" height="6" rx="3"/><rect x="176" y="80" width="56" height="6" rx="3"/><rect x="120" y="120" width="56" height="6" rx="3"/></g>
+    <circle cx="214" cy="146" r="18" style="fill:#8a6a3a"/><circle cx="214" cy="146" r="11" style="fill:#c9a35a"/>
+    <rect x="300" y="60" width="380" height="100" rx="50" style="fill:#f3f1ea"/>
+    <path d="M330 110 Q360 92 420 96 L640 104 Q660 106 668 110 Q660 114 640 116 L420 124 Q360 128 330 110 Z" style="fill:#cfd6dc"/>
+    <path d="M340 106 L640 108" style="stroke:#ffffff" stroke-width="3"/>
+    <circle cx="352" cy="106" r="3.5" style="fill:#16171a"/>
+    <circle cx="610" cy="150" r="14" style="fill:#e0701f"/><path d="M610 136 l4 -6" style="stroke:#4e8a3d" stroke-width="3"/>
+  </svg>
+  <span class="kicker">Food Notes · no. 2</span>
+  <h1>Jeju on a Plate<span class="ko">제주 음식</span></h1>
+  <p>Jeju's food grew out of a windy volcanic island with little rice, lots of sea and plenty of pigs. Here are the dishes we've eaten so far, and the ones still to try.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Black</b><span>Jeju’s famous pork</span></div><div class="stat"><b>~1 m</b><span>long hairtail fish</span></div><div class="stat"><b>Hallabong</b><span>Jeju’s big citrus</span></div><div class="stat"><b>Buckwheat</b><span>and millet, not rice</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>What we've eaten</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Day 1 dinner</span><h3>Black pork BBQ</h3><p>Jeju's native black pig, <i>heukdwaeji</i>, has black hair and firmer, more flavourful meat. It's grilled in thick slices over charcoal, often with the skin on. Locals dip it in <i>meljeot</i>, a salty anchovy sauce warmed in a little dish right on the grill.</p><div class="look"><b>Remember:</b> these pigs once lived under the outhouse. See the stone house page.</div></div>
+<div class="card"><span class="tag t1">Heritage</span><h3>A protected pig</h3><p>The pure native Jeju black pig is so rare that the original breed has been named a Natural Monument of Korea, alongside things like ancient trees and rare birds. Most restaurant black pork comes from black pigs bred from it.</p></div>
+<div class="card ours"><span class="tag t3">Day 2 lunch</span><h3>Galchi, the hairtail fish</h3><p>The long silver fish you had at lunch is <i>galchi</i>, called hairtail in English because its body narrows to a thin, hair-like tip at the end. Jeju's version, <i>eun-galchi</i> ("silver hairtail"), is caught one by one on fishing lines, so its shiny silver skin stays perfect. It's served grilled (<i>galchi-gui</i>), braised in a spicy sauce with radish (<i>galchi-jorim</i>), or in a clear soup with pumpkin (<i>galchi-guk</i>).</p><div class="look"><b>Why they deboned it:</b> galchi has rows of fine bones along both sides of the backbone, so staff often lift the whole spine out for you.</div></div>
+<div class="card"><span class="tag t3">Weird but true</span><h3>A fish that stands up</h3><p>Hairtail often hover upright in the water, head up and tail down, like silver ribbons. They have sharp fang-like teeth. At night, fishing boats hang bright lamps to attract them, and from the shore you can see rows of lights out at sea.</p><div class="look"><b>Look for:</b> bright boat lights on the horizon at night.</div></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>Still to try in Jeju</h2><p>Jeju had little flat land for rice, so people relied on buckwheat, millet, seafood and pork.</p></div>
+<div class="cards"><div class="card"><span class="tag t2">Noodles</span><h3>Gogi-guksu</h3><p>Thick noodles in a rich pork-bone broth, topped with slices of boiled pork. Originally a dish for celebrations, it's now an everyday Jeju favourite.</p></div>
+<div class="card"><span class="tag t3">From the haenyeo</span><h3>Jeonbok-juk</h3><p>Abalone porridge, made with rice cooked slowly with abalone and its green innards, which give it a pale green colour. It's a classic Jeju breakfast near the coast.</p></div>
+<div class="card"><span class="tag t1">Island soup</span><h3>Momguk</h3><p>Pork broth thickened with <i>mojaban</i>, a local seaweed. Families traditionally cooked it for village feasts, weddings and funerals, so everyone could share.</p></div>
+<div class="card"><span class="tag t2">Snack</span><h3>Bingtteok</h3><p>A thin buckwheat crepe rolled around seasoned radish. Simple and a bit chewy. Look for it at Dongmun Market or Olle Market.</p></div>
+<div class="card"><span class="tag t4">Sweet</span><h3>Hallabong everything</h3><p>Hallabong, the citrus with a bump on top shaped like Hallasan, turns up as juice, chocolate, ice cream, jam and even beer. Tangerine season is just starting.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Jeju food challenge</h3><ol><li>Try at least two dishes from "Still to try" before we leave Jeju on Sat 31.</li><li>Find out how long the next galchi is. Longer than your arm?</li><li>Look out for boat lights out at sea one evening.</li><li>Rate every Jeju meal out of 10 in the journal. Which won?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What is the Korean name for Jeju black pork?", "o": ["Bulgogi", "Heukdwaeji", "Samgyeopsal", "Galbi"], "a": 1, "w": "Heuk means black and dwaeji means pig."}, {"q": "What do locals dip black pork in?", "o": ["Ketchup", "Warm anchovy sauce (meljeot)", "Honey", "Tangerine juice"], "a": 1, "w": "It bubbles in a little dish right on the grill."}, {"q": "Why is galchi called \"hairtail\" in English?", "o": ["It has hairy fins", "Its body narrows to a hair-thin tip", "It lives near hair-like seaweed", "Its scales look like hair"], "a": 1, "w": "The tail ends in a thin, hair-like point."}, {"q": "Why is Jeju’s eun-galchi so shiny?", "o": ["It is painted", "It is caught one by one on lines, not in nets", "It is a different species", "It is polished at the market"], "a": 1, "w": "Line fishing keeps the silver skin perfect."}, {"q": "How do hairtail often hover in the water?", "o": ["Upside down", "Upright, head up", "Curled in a circle", "Flat on the sea floor"], "a": 1, "w": "Like silver ribbons standing up."}, {"q": "Why did Jeju people eat more buckwheat and millet than rice?", "o": ["They didn’t like rice", "Little flat land for rice paddies", "Rice was banned", "Rice is too expensive"], "a": 1, "w": "The volcanic island has little land for paddies."}, {"q": "What makes jeonbok-juk pale green?", "o": ["Green tea", "Abalone innards", "Seaweed", "Spinach"], "a": 1, "w": "The abalone innards colour the porridge."}];
+var END=["Perfect score. Jeju food expert.", "Great job. Hungry yet?", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
