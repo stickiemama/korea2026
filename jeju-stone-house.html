@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Our Jeju Stone House</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as Korea Field Notes, re-tuned to basalt: dark stone grey ink, thatch yellow and ondol red as accents. One column of bite-sized cards, then a 3-question check. */
+:root{
+  --bg:#eceeee; --card:#ffffff; --ink:#1a1c1d; --muted:#565c5f; --line:#1a1c1d; --soft:#e3e6e6;
+  --stone:#3b4043; --thatch:#e2b13c; --ember:#c8442f; --moss:#3d7a52; --sea:#2a63a8;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131516; --card:#1d2022; --ink:#eef0f0; --muted:#a8afb2; --line:#eef0f0; --soft:#282c2e;
+  --stone:#c9cfd2; --thatch:#f0c55a; --ember:#ff7a63; --moss:#6fcf93; --sea:#79a9ff; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131516; --card:#1d2022; --ink:#eef0f0; --muted:#a8afb2; --line:#eef0f0; --soft:#282c2e;
+  --stone:#c9cfd2; --thatch:#f0c55a; --ember:#ff7a63; --moss:#6fcf93; --sea:#79a9ff; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.wall{display:flex;gap:4px;flex-wrap:wrap;max-width:240px}
+.wall i{display:block;height:14px;border-radius:7px 9px 6px 8px;background:var(--stone)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.5rem,10.5vw,4.3rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--ember);margin-top:6px}
+.hero p{margin:0;max-width:52ch;font-size:16px}
+.cards{display:grid;gap:16px;margin-top:32px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.45rem}
+.card p{margin:0}
+.n{font-family:var(--display);font-size:1rem;color:var(--muted)}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t-nature{background:var(--moss)} .t-weird{background:var(--ember)} .t-history{background:var(--stone);color:var(--bg)} .t-gold{background:var(--thatch);color:#1a1c1d} .t-life{background:var(--sea)}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.detective{background:var(--thatch);color:#1a1c1d;border-color:#1a1c1d;box-shadow:5px 5px 0 #1a1c1d}
+.detective .look{background:rgba(255,255,255,.55);color:#1a1c1d}
+.detective .t-history{background:#1a1c1d;color:#fff}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.checks div{background:rgba(255,255,255,.55);border-radius:8px;padding:8px 10px;font-size:14px}
+.checks b{display:block;font-weight:800;margin-bottom:2px}
+.quiz{margin-top:40px;display:grid;gap:14px}
+.quiz h2{font-size:2rem}
+.q{display:grid;gap:8px}
+.q h3{font-size:1.2rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--moss);color:#fff;border-color:var(--moss)}
+.opts button.wrong{background:var(--ember);color:#fff;border-color:var(--ember)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+button:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <div class="wall" aria-hidden="true"><i style="width:38px"></i><i style="width:24px"></i><i style="width:46px"></i><i style="width:30px"></i><i style="width:28px"></i><i style="width:42px"></i><i style="width:20px"></i><i style="width:36px"></i><i style="width:26px"></i></div>
+  <span class="kicker">Jeju · Seongsan</span>
+  <h1>Our Jeju Stone House<span class="ko">제주 돌집</span></h1>
+  <p>Jeju's traditional houses are called <i>dol-chip</i> (stone house) or <i>chogajip</i> (thatched house). Here's what makes the one we're sleeping in special.</p>
+</header>
+
+<div class="cards">
+  <div class="card"><span class="n">01</span><span class="tag t-nature">Built from volcanoes</span><h3>Walls with holes on purpose</h3><p>Jeju is covered in black volcanic rock, so that's what people built with. The stones are stacked with no cement. The gaps let Jeju's strong wind blow through, so the wall doesn't get pushed over.</p><div class="look"><b>Try:</b> hold your hand near a gap in the garden wall and feel the air come through.</div></div>
+
+  <div class="card"><span class="n">02</span><span class="tag t-weird">Weird but true</span><h3>The black dragon wall</h3><p>The same stacked walls surround Jeju's fields. Add them all up and they stretch over 20,000 km, about half the way around the Earth. Locals call them the "black dragon wall."</p></div>
+
+  <div class="card"><span class="n">03</span><span class="tag t-history">History</span><h3>Roofs tied down with rope nets</h3><p>Old Jeju houses had low, rounded roofs of thatched grass. Ropes were tied over them in a grid, like a net, so typhoons couldn't rip them off. The houses were built low to hide from the wind too.</p><div class="look"><b>Look for:</b> roofs with a rope grid at Seongeup Folk Village.</div></div>
+
+  <div class="card detective"><span class="n">04</span><span class="tag t-history">Detective challenge</span><h3>Are our beams really old?</h3><p>In old houses, the kitchen fire had no chimney. Smoke drifted up through the beams for decades and turned them black, which also kept bugs and rot away. Today some owners keep those old sooty beams, and some paint new wood black to look the same. Investigate:</p>
+    <div class="checks">
+      <div><b>Probably old</b>Wobbly, uneven logs. Axe marks. Every beam a different thickness. Joints that slot together with no metal.</div>
+      <div><b>Probably new</b>Smooth beams all the same size. Perfect paint. Screws or metal brackets.</div>
+    </div>
+    <p>Make your guess, then ask the host who was right.</p></div>
+
+  <div class="card"><span class="n">05</span><span class="tag t-history">History</span><h3>The walk to the front door</h3><p>Houses sat at the end of a winding lane between stone walls, called an <i>olle</i>. The twists slowed the wind and stopped passers-by from seeing in. Jeju's famous Olle hiking trails are named after these lanes.</p></div>
+
+  <div class="card"><span class="n">06</span><span class="tag t-weird">Weird but true</span><h3>Doors? Poles.</h3><p>No gates and no locks. Families laid wooden poles called <i>jeongnang</i> across the entrance instead. No poles meant "come in." One meant "back soon." Three meant "away for a long time."</p></div>
+
+  <div class="card"><span class="n">07</span><span class="tag t-life">Family life</span><h3>Grandparents across the yard</h3><p>A Jeju home was often two houses facing each other across a yard. When a son married, his parents moved into the outer house. Both families lived a few steps apart but cooked and ate separately. That was unusual in Korea and shows how independent Jeju families were.</p></div>
+
+  <div class="card"><span class="n">08</span><span class="tag t-life">Inside</span><h3>Floors that heat up</h3><p>Bedrooms had <i>ondol</i>: a fire under the floor sent hot smoke through channels beneath the stones, warming the room from below. That's why Koreans traditionally sat and slept on the floor. Many homes still have underfloor heating today.</p><div class="look"><b>Check:</b> is our floor warm?</div></div>
+
+  <div class="card"><span class="n">09</span><span class="tag t-weird">Gross but true</span><h3>The pig toilet</h3><p>The outhouse, called a <i>dottongsi</i>, sat over a stone pen where the family pigs lived and ate what dropped down. That's where Jeju's black pork story comes from. Don't worry, our bathroom is modern.</p></div>
+
+  <div class="card"><span class="n">10</span><span class="tag t-history">History</span><h3>Why so few are left</h3><p>In the 1970s, a national campaign to modernise villages swapped most thatched roofs for slate or tin. Many villages had also been burned during the violence of 1948–49. Seongeup Folk Village, about 25 minutes from Seongsan, still has whole streets of thatched stone houses where people live.</p></div>
+</div>
+
+<section class="quiz">
+  <h2>Quick check</h2>
+  <div class="card q" data-a="1"><h3>Why do Jeju stone walls have gaps between the stones?</h3><div class="opts"><button type="button">The builders ran out of stones</button><button type="button">To let the wind blow through</button><button type="button">To keep the pigs in</button></div><p class="why">Wind passes through the gaps instead of pushing the wall over.</p></div>
+  <div class="card q" data-a="2"><h3>Three jeongnang poles across the entrance meant:</h3><div class="opts"><button type="button">Come in</button><button type="button">Back soon</button><button type="button">Away for a long time</button></div><p class="why">No poles meant come in, and one meant back soon.</p></div>
+  <div class="card q" data-a="0"><h3>Why were old beams often black?</h3><div class="opts"><button type="button">Smoke from the kitchen fire</button><button type="button">Black paint was fashionable</button><button type="button">Volcanic ash</button></div><p class="why">There was no chimney, so smoke drifted up through the rafters for decades.</p></div>
+</section>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+document.querySelectorAll(".q").forEach(function(q){
+  var why=q.querySelector(".why"), txt=why.textContent; why.textContent="";
+  var bs=q.querySelectorAll(".opts button"), a=+q.dataset.a;
+  bs.forEach(function(b,i){b.addEventListener("click",function(){
+    bs.forEach(function(x){x.disabled=true}); bs[a].classList.add("right");
+    if(i!==a)b.classList.add("wrong");
+    why.textContent=(i===a?"Correct. ":"Not quite. ")+txt;
+  })});
+});
+</script>
+
+</body>
+</html>

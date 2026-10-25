@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Jeju & Seoul 2026</title>
+<meta name="description" content="Field notes and guides from our family trip to Jeju and Seoul, October–November 2026.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+:root{
+  --bg:#eef1f6; --card:#ffffff; --ink:#14161c; --muted:#555b68; --line:#14161c;
+  --blue:#1f5fbf; --red:#d6303a; --yellow:#f2b705; --stone:#3b4043;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#12141a; --card:#1c1f27; --ink:#f1f3f7; --muted:#a9b0bd; --line:#f1f3f7;
+  --blue:#6fa3ff; --red:#ff6b72; --yellow:#ffcc3d; --stone:#c9cfd2; color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px}
+.bars{display:flex;height:8px;border-radius:4px;overflow:hidden;max-width:220px}
+.bars i{flex:1}
+.kicker{display:block;margin-top:14px;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1,h2{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+h1{font-size:clamp(2.6rem,11vw,4.4rem);margin-top:8px}
+h1 .ko{display:block;font-size:.48em;color:var(--red);margin-top:6px}
+.intro{margin:12px 0 0;max-width:50ch;font-size:16px}
+.list{display:grid;gap:16px;margin-top:32px}
+a.card{display:grid;gap:8px;text-decoration:none;color:var(--ink);background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:18px 20px;transition:transform .12s,box-shadow .12s}
+a.card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--line)}
+a.card:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--line)}
+a.card:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--blue)} .t2{background:var(--stone);color:var(--bg)}
+a.card h2{font-size:1.7rem}
+a.card p{margin:0;color:var(--muted)}
+.go{font-weight:800;font-size:14px}
+footer{margin-top:44px;color:var(--muted);font-size:13px;text-align:center}
+@media (prefers-reduced-motion:reduce){a.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bars" aria-hidden="true"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--card);border:1px solid var(--line)"></i><i style="background:var(--ink)"></i></div>
+  <span class="kicker">Family trip · 24 Oct – 6 Nov 2026</span>
+  <h1>Jeju &amp; Seoul 2026<span class="ko">제주 &amp; 서울</span></h1>
+  <p class="intro">Guides we made to read along the way: legends, history and strange facts about the places we visited.</p>
+
+  <nav class="list" aria-label="Trip pages">
+    <a class="card" href="korea-field-notes.html">
+      <span class="tag t1">Guide</span>
+      <h2>Korea Field Notes</h2>
+      <p>Korea in 60 seconds, read Hangul in 5 minutes, customs, a card for every stop in Jeju and Seoul, and a quiz.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="jeju-stone-house.html">
+      <span class="tag t2">Jeju</span>
+      <h2>Our Jeju Stone House</h2>
+      <p>Why the walls have holes, roofs tied down with rope nets, heated floors, the pig toilet, and a beam detective challenge.</p>
+      <span class="go">Open →</span>
+    </a>
+  </nav>
+
+  <footer>More pages to come as the trip goes on.</footer>
+</div>
+</body>
+</html>

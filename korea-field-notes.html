@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Korea Field Notes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: phone-first stack of chunky "field cards" with thick ink borders and offset shadows; obangsaek (Korea's five traditional colours) tag the card types. Sections: 60-second history, Hangul decoder, customs, Jeju cards, Seoul cards, quiz. */
+:root{
+  --bg:#eef1f6; --card:#ffffff; --ink:#14161c; --muted:#555b68; --line:#14161c;
+  --blue:#1f5fbf; --red:#d6303a; --yellow:#f2b705; --green:#2a8a57; --soft:#e2e7f0;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12141a; --card:#1c1f27; --ink:#f1f3f7; --muted:#a9b0bd; --line:#f1f3f7;
+  --blue:#6fa3ff; --red:#ff6b72; --yellow:#ffcc3d; --green:#5fd08f; --soft:#272b35; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12141a; --card:#1c1f27; --ink:#f1f3f7; --muted:#a9b0bd; --line:#f1f3f7;
+  --blue:#6fa3ff; --red:#ff6b72; --yellow:#ffcc3d; --green:#5fd08f; --soft:#272b35; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.01em;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.hero .kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.6rem,11vw,4.6rem)}
+.hero h1 .ko{display:block;font-size:.5em;color:var(--red);margin-top:6px}
+.hero p{margin:0;max-width:52ch;font-size:16px}
+.bars{display:flex;height:8px;border-radius:4px;overflow:hidden;max-width:220px}
+.bars i{flex:1}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.toc a{font-weight:800;font-size:13px;color:var(--ink);text-decoration:none;border:2px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--card)}
+section{margin-top:48px;display:grid;gap:16px;scroll-margin-top:16px}
+.sh{display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2.1rem}
+.sh p{margin:0;color:var(--muted)}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.45rem}
+.card p{margin:0}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t-legend{background:var(--blue)} .t-weird{background:var(--red)} .t-nature{background:var(--green)} .t-history{background:var(--ink);color:var(--bg)} .t-gold{background:var(--yellow);color:#14161c}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.where{font-size:12.5px;font-weight:800;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+
+/* bear story */
+.bear{background:var(--yellow);color:#14161c;border-color:#14161c;box-shadow:5px 5px 0 #14161c}
+.bear h3{font-size:1.7rem}
+
+/* timeline */
+.tl{display:grid;gap:0;border-left:3px solid var(--line);margin-left:6px}
+.tl div{position:relative;padding:0 0 16px 20px}
+.tl div::before{content:"";position:absolute;left:-9px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.tl div:nth-child(4n+1)::before{background:var(--blue)} .tl div:nth-child(4n+2)::before{background:var(--red)} .tl div:nth-child(4n+3)::before{background:var(--yellow)} .tl div:nth-child(4n)::before{background:var(--green)}
+.tl b{display:block;font-family:var(--display);font-weight:400;font-size:1.15rem}
+.tl span{color:var(--muted);font-size:14.5px}
+
+/* hangul */
+.letters{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px}
+.letters div{border:2px solid var(--line);border-radius:10px;text-align:center;padding:6px 0;background:var(--card)}
+.letters strong{display:block;font-size:1.7rem;font-weight:800;line-height:1.2}
+.letters small{color:var(--muted);font-weight:600}
+.decode{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.decode details{border:2.5px solid var(--line);border-radius:12px;background:var(--card);box-shadow:3px 3px 0 var(--line);text-align:center}
+.decode summary{list-style:none;cursor:pointer;padding:12px 8px 4px;display:grid;gap:2px;-webkit-tap-highlight-color:transparent}
+.decode summary::-webkit-details-marker{display:none}
+.decode summary strong{font-size:1.9rem;font-weight:800;line-height:1.2}
+.decode summary span{font-size:13px;font-weight:800;color:var(--muted)}
+.decode details[open]{background:var(--soft)}
+.decode details[open] summary span{display:none}
+.decode .ans{font-size:14px;font-weight:800;color:var(--blue);padding:0 8px 12px}
+.decode summary:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.letters div{cursor:default}
+
+/* customs */
+.dd{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.dd ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.do h3{color:var(--green)} .dont h3{color:var(--red)}
+
+/* tabs */
+.places{display:grid;gap:16px}
+
+/* quiz */
+.q{display:grid;gap:10px}
+.q .qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.35rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--green);color:#fff;border-color:var(--green)}
+.opts button.wrong{background:var(--red);color:#fff;border-color:var(--red)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted)}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:1.4rem}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+footer{margin-top:48px;text-align:center;color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:no-preference){.decode button span,.why{transition:color .2s}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <div class="bars" aria-hidden="true"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--card);border:1px solid var(--line)"></i><i style="background:var(--ink)"></i></div>
+  <span class="kicker">For the trip · 24 Oct – 6 Nov 2026</span>
+  <h1>Korea Field Notes<span class="ko">한국 탐험 노트</span></h1>
+  <p>Legends, strange facts and history for every place we visit. Read a card before each stop, then test yourself with the quiz at the end.</p>
+  <nav class="toc" aria-label="Sections">
+    <a href="#basics">Korea in 60 seconds</a><a href="#hangul">Read Korean</a><a href="#customs">Don't be that tourist</a><a href="#jeju">Jeju</a><a href="#seoul">Seoul</a><a href="#quiz">Quiz</a>
+  </nav>
+</header>
+
+<section id="basics">
+  <div class="sh"><span class="num">Part 1</span><h2>Korea in 60 seconds</h2></div>
+  <div class="card bear">
+    <span class="tag t-history">Origin story</span>
+    <h3>Korea was founded by a bear. Sort of.</h3>
+    <p>A bear and a tiger wanted to become human. The rule: stay in a dark cave for 100 days eating nothing but mugwort and garlic. The tiger quit. The bear stuck it out and became a woman, and her son Dangun founded the first Korean kingdom in 2333 BCE (according to legend).</p>
+  </div>
+  <div class="tl">
+    <div><b>Three Kingdoms</b><span>Goguryeo, Baekje and Silla fight for control of the peninsula.</span></div>
+    <div><b>668 · Unified Silla</b><span>Silla wins and rules most of it.</span></div>
+    <div><b>918 · Goryeo</b><span>The dynasty that gives "Korea" its English name.</span></div>
+    <div><b>1392 · Joseon</b><span>500+ years of kings. Built the palaces we'll visit in Seoul.</span></div>
+    <div><b>1446 · Hangul</b><span>King Sejong invents an alphabet anyone can learn.</span></div>
+    <div><b>1910–1945 · Japanese rule</b><span>Korea is a Japanese colony until the end of World War II.</span></div>
+    <div><b>1950–1953 · Korean War</b><span>It ended with a ceasefire, not a peace treaty. North and South are technically still at war.</span></div>
+    <div><b>Today</b><span>From one of the world's poorest countries to K-pop, phones and cars in about 60 years.</span></div>
+  </div>
+</section>
+
+<section id="hangul">
+  <div class="sh"><span class="num">Part 2</span><h2>Read Korean in 5 minutes</h2>
+    <p>King Sejong designed Hangul so that ordinary people could learn it fast. Some consonants are drawn in the shape your mouth makes when you say them. Letters stack into syllable blocks.</p></div>
+  <div class="letters" aria-label="Some Hangul letters">
+    <div><strong>ㄱ</strong><small>g/k</small></div><div><strong>ㄴ</strong><small>n</small></div><div><strong>ㄷ</strong><small>d/t</small></div><div><strong>ㄹ</strong><small>r/l</small></div>
+    <div><strong>ㅁ</strong><small>m</small></div><div><strong>ㅂ</strong><small>b/p</small></div><div><strong>ㅅ</strong><small>s</small></div><div><strong>ㅇ</strong><small>silent / ng</small></div>
+    <div><strong>ㅈ</strong><small>j</small></div><div><strong>ㅎ</strong><small>h</small></div><div><strong>ㅏ</strong><small>a</small></div><div><strong>ㅓ</strong><small>eo</small></div>
+    <div><strong>ㅗ</strong><small>o</small></div><div><strong>ㅜ</strong><small>u</small></div><div><strong>ㅡ</strong><small>eu</small></div><div><strong>ㅣ</strong><small>i</small></div>
+  </div>
+  <p style="margin:0;font-weight:800">Use the letters above to try reading these words, then tap a word to check your answer.</p>
+  <div class="decode" id="decode">
+    <details><summary><strong>서울</strong><span>Tap to reveal</span></summary><div class="ans">Seoul</div></details>
+    <details><summary><strong>제주</strong><span>Tap to reveal</span></summary><div class="ans">Jeju</div></details>
+    <details><summary><strong>김치</strong><span>Tap to reveal</span></summary><div class="ans">Kimchi</div></details>
+    <details><summary><strong>한라산</strong><span>Tap to reveal</span></summary><div class="ans">Hallasan</div></details>
+    <details><summary><strong>비빔밥</strong><span>Tap to reveal</span></summary><div class="ans">Bibimbap</div></details>
+    <details><summary><strong>안녕하세요</strong><span>Tap to reveal</span></summary><div class="ans">Annyeonghaseyo (hello)</div></details>
+  </div>
+</section>
+
+<section id="customs">
+  <div class="sh"><span class="num">Part 3</span><h2>Don't be that tourist</h2></div>
+  <div class="dd">
+    <div class="card do"><h3>Do</h3><ul>
+      <li>Give and take things with both hands, especially from older people.</li>
+      <li>Let elders start eating first.</li>
+      <li>Ask for more banchan (side dishes). Refills are free.</li>
+      <li>Say <b>kamsahamnida</b> (thank you). People notice.</li>
+    </ul></div>
+    <div class="card dont"><h3>Don't</h3><ul>
+      <li>Stick chopsticks upright in your rice. It looks like an offering at a funeral.</li>
+      <li>Tip. It isn't expected and can confuse people.</li>
+      <li>Panic when the lift has no 4th floor. 4 sounds like "death," so it's often labelled F.</li>
+      <li>Sit in the pink or priority seats on the subway.</li>
+    </ul></div>
+  </div>
+</section>
+
+<section id="jeju">
+  <div class="sh"><span class="num">Part 4</span><h2>Jeju 제주</h2>
+    <p>A volcanic island that used to be its own country, the kingdom of Tamna, until Korea absorbed it in the 12th century.</p></div>
+  <div class="places">
+    <div class="card"><span class="tag t-legend">Legend</span><h3>Three guys climbed out of the ground</h3><p>Jeju's founding myth says its first three people rose up out of holes in the earth. The holes are still there, at Samseonghyeol in Jeju City.</p><div class="where">Jeju City · near Dongmun Market</div></div>
+    <div class="card"><span class="tag t-weird">Weird but true</span><h3>No thieves, no beggars, no gates</h3><p>Jeju has "three plenties" (wind, stones and women) and "three nothings" (thieves, beggars and gates). Instead of locking up, families laid wooden poles across the entrance. The number of poles told visitors how long they'd be away.</p><div class="look"><b>Look for:</b> stone walls with three poles across the gap. That's a <i>jeongnang</i>.</div></div>
+    <div class="card"><span class="tag t-history">History</span><h3>Stone grandpas everywhere</h3><p>Dol hareubang means "stone grandfather." These basalt guardians with bulging eyes and hands on their bellies protected villages. Try counting how many you spot this week.</p></div>
+    <div class="card"><span class="tag t-gold">Superpower</span><h3>Grandmas who free-dive</h3><p>The haenyeo dive for shellfish and octopus with no oxygen tanks, often in their 60s, 70s and 80s. When they surface they let out a high whistle called <i>sumbisori</i>. Their way of life is on UNESCO's heritage list.</p><div class="where">Seongsan Ilchulbong · Sun 25</div></div>
+    <div class="card"><span class="tag t-nature">Nature</span><h3>Seongsan Ilchulbong: born from the sea</h3><p>About 5,000 years ago a volcano erupted underwater and built this crater. It was an island until sand filled the gap and joined it to Jeju.</p><div class="where">Sun 25</div></div>
+    <div class="card"><span class="tag t-weird">Weird but true</span><h3>Black pork had a gross past</h3><p>Jeju pigs used to live under the outhouse and eat what fell through. The pigs eat normal food now, and the BBQ is famous.</p></div>
+    <div class="card"><span class="tag t-nature">Nature</span><h3>Walking through a lava tunnel</h3><p>Manjanggul formed when the outside of a lava river cooled and hardened while hot lava kept flowing inside. It's about 7.4 km long, and the lava column at the end is one of the biggest known.</p><div class="look"><b>Look for:</b> "lava shelves" on the walls, which mark where the lava level used to be.</div><div class="where">Mon 26</div></div>
+    <div class="card"><span class="tag t-nature">Nature</span><h3>A forest older than Joseon</h3><p>Bijarim has about 2,800 nutmeg yew trees, many 500 to 800 years old. Some were already old when King Sejong invented Hangul.</p><div class="where">Mon 26</div></div>
+    <div class="card"><span class="tag t-history">History</span><h3>Tangerines fit for a king</h3><p>In Joseon times, Jeju's tangerines were sent to the king as tribute. The hallabong is named after Hallasan because the bump on top looks like the mountain.</p><div class="where">Tue 27</div></div>
+    <div class="card"><span class="tag t-legend">Legend</span><h3>The mountain that lost its top</h3><p>Hallasan is South Korea's highest mountain at 1,947 m. A hunter accidentally poked the sky god with his bow. The furious god ripped off the mountain's peak and threw it, and it landed as Sanbangsan. The hole it left is the crater lake Baengnokdam.</p><div class="where">Wed 28 · see Sanbangsan on Thu 29</div></div>
+    <div class="card"><span class="tag t-legend">Legend</span><h3>Bath time for heavenly nymphs</h3><p>Cheonjeyeon means "Pond of the Emperor of Heaven." Seven nymphs were said to come down at night to bathe in the falls.</p><div class="look"><b>Look for:</b> the seven nymphs carved on the Seonimgyo Bridge.</div><div class="where">Wed 28</div></div>
+    <div class="card"><span class="tag t-history">History</span><h3>Shipwrecked for 13 years</h3><p>In 1653 a Dutch trading ship wrecked near Yongmeori. The sailors weren't allowed to leave Korea. One of them, Hendrick Hamel, escaped 13 years later and wrote the first detailed European book about Korea.</p><div class="look"><b>Look for:</b> the replica of his ship near the coast.</div><div class="where">Thu 29</div></div>
+    <div class="card"><span class="tag t-legend">Legend</span><h3>The quest for immortality</h3><p>China's first emperor sent a man named Xu Fu to find the elixir of eternal life. Legend says he passed Jeongbang Falls and carved a message on the cliff. Seogwipo's name is said to mean the place where Xu "went back west."</p><div class="where">Fri 30</div></div>
+    <div class="card"><span class="tag t-nature">Nature</span><h3>Did someone build these?</h3><p>No. The perfect hexagonal columns at Jusangjeolli formed when lava hit the sea and cracked into shapes as it cooled, like mud cracking in the sun.</p><div class="where">Fri 30</div></div>
+    <div class="card"><span class="tag t-legend">Legend</span><h3>A dragon frozen mid-escape</h3><p>A dragon stole a magic jade bead from Hallasan. The mountain god shot it with an arrow as it flew to the sea, and it turned to stone. That's Yongduam, "Dragon Head Rock."</p><div class="where">Sat 31</div></div>
+  </div>
+</section>
+
+
+<section id="seoul">
+  <div class="sh"><span class="num">Part 5</span><h2>Seoul 서울</h2>
+    <p>The capital since 1394: palaces, markets, mountains and 10 million people.</p></div>
+  <div class="places">
+    <div class="card"><span class="tag t-history">History</span><h3>The palace that refused to stay down</h3><p>Gyeongbokgung was built in 1395, burned in 1592 during a Japanese invasion, and left in ruins for about 270 years. It was rebuilt in 1867, then mostly torn down during Japanese rule, and it's still being restored today. Queen Min was assassinated here in 1895.</p><div class="look"><b>Look for:</b> the statues of King Sejong and Admiral Yi Sun-sin, who beat Japanese fleets with armoured "turtle ships," outside on Gwanghwamun Square.</div><div class="where">Mon 2</div></div>
+    <div class="card"><span class="tag t-history">History</span><h3>The rich neighbourhood</h3><p>Bukchon means "north village." Joseon officials and nobles lived here, between the two main palaces. People still live in these houses, so keep your voices down.</p><div class="where">Mon 2</div></div>
+    <div class="card"><span class="tag t-weird">Weird but true</span><h3>They dug up a highway to free a stream</h3><p>Cheonggyecheon was buried under a road and an elevated highway for decades. In 2005 Seoul tore down the highway and brought the stream back. Now people dip their feet in it.</p><div class="where">Mon 2</div></div>
+    <div class="card"><span class="tag t-history">History</span><h3>Joseon's text message</h3><p>Before phones, beacon fires on Namsan's summit passed signals across the kingdom: one fire meant all clear, more fires meant danger. A message could cross Korea in about half a day.</p><div class="where">Wed 4</div></div>
+    <div class="card"><span class="tag t-weird">Weird but true</span><h3>An island that calls itself a country</h3><p>Nami Island only became an island in 1944, when a dam raised the river. It's named after General Nam I of the 1400s, and it calls itself the "Naminara Republic." A 2002 K-drama, <i>Winter Sonata</i>, made it famous across Asia.</p><div class="where">Tue 3</div></div>
+    <div class="card"><span class="tag t-history">History</span><h3>A mountain fortress in the city</h3><p>Bukhansan has a fortress wall from 1711, built so the king had somewhere to retreat to. It's one of the most visited national parks in the world.</p><div class="where">Sun 1</div></div>
+    <div class="card"><span class="tag t-nature">Nature</span><h3>The DMZ is a secret nature reserve</h3><p>The strip between North and South is about 250 km long and 4 km wide. Almost no one has entered it for 70 years, so rare cranes and other wildlife thrive there. North Korea dug tunnels underneath; the third one was found in 1978, and you can walk inside it.</p><div class="where">Thu 5 (if you go)</div></div>
+    <div class="card"><span class="tag t-gold">Food</span><h3>Gwangjang Market, since 1905</h3><p>One of Korea's oldest markets. Order bindaetteok (crispy mung bean pancakes) and mayak gimbap. "Mayak" means "drug," because people say they're addictive.</p><div class="where">Thu 5</div></div>
+    <div class="card"><span class="tag t-history">History</span><h3>The spaceship at Dongdaemun</h3><p>DDP was designed by the architect Zaha Hadid and opened in 2014 on the site of an old stadium. Excavations uncovered pieces of the Joseon city wall, which you can still see beside it.</p><div class="where">Thu 5</div></div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="sh"><span class="num">Part 6</span><h2>Quiz</h2><p>How much did you actually read?</p></div>
+  <div class="card q" id="quizbox"></div>
+</section>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[
+ {q:"In the legend, which animal became the mother of Korea's founder?",o:["Tiger","Bear","Crane","Dragon"],a:1,w:"The bear lasted 100 days on mugwort and garlic. The tiger quit."},
+ {q:"Who invented Hangul?",o:["Admiral Yi Sun-sin","Queen Min","King Sejong","General Nam I"],a:2,w:"King Sejong announced it in 1446. He's on the 10,000 won note."},
+ {q:"What were Jeju's \"three nothings\"?",o:["Thieves, beggars, gates","Cars, shops, roads","Snakes, rats, mosquitoes","Rain, snow, fog"],a:0,w:"Families laid poles across the entrance instead of locking a gate."},
+ {q:"How did the hexagonal columns at Jusangjeolli form?",o:["Ancient builders","Lava cooling and cracking","Ocean waves carving them","An earthquake"],a:1,w:"Lava met the sea and cracked into columns as it cooled."},
+ {q:"Why is the 4th floor often labelled F?",o:["F is for Floor","4 sounds like \"death\"","It's always the food court","It's unlucky in Jeju only"],a:1,w:"사 (sa) means both four and death."},
+ {q:"Who wrote the first detailed European book about Korea after being shipwrecked?",o:["Marco Polo","Hendrick Hamel","Xu Fu","Zaha Hadid"],a:1,w:"His ship wrecked near Yongmeori in 1653. He escaped 13 years later."},
+ {q:"What did Seoul tear down in 2005 to bring back Cheonggyecheon stream?",o:["A palace","A shopping mall","An elevated highway","A stadium"],a:2,w:"The stream had been buried under a road and highway for decades."},
+ {q:"Why are the haenyeo famous?",o:["They farm tangerines","They free-dive without oxygen tanks","They guard Hallasan","They carve stone grandpas"],a:1,w:"Many dive into their 70s and 80s, and whistle when they surface."}
+];
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?"Perfect. You're the family tour guide now.":score>=5?"Nice work. You were paying attention.":"Read a few more cards and try again.";
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p>'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
