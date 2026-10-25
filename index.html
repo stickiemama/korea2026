@@ -4,37 +4,54 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Jeju & Seoul 2026</title>
-<meta name="description" content="Field notes and guides from our family trip to Jeju and Seoul, October–November 2026.">
+<meta name="description" content="Field notes and guides from our family trip to Jeju and Seoul, October–November 2026, day by day.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
 <style>
+/* Layout: a day-by-day trail. Each day is a row: a date block on a vertical line, then the attraction cards for that day. A "Start here" guide first, "coming up" days dashed. */
 :root{
-  --bg:#eef1f6; --card:#ffffff; --ink:#14161c; --muted:#555b68; --line:#14161c;
-  --blue:#1f5fbf; --red:#d6303a; --yellow:#f2b705; --stone:#3b4043;
+  --bg:#eef1f6; --card:#ffffff; --ink:#14161c; --muted:#555b68; --line:#14161c; --soft:#e2e7f0;
+  --blue:#1f5fbf; --red:#d6303a; --yellow:#f2b705; --stone:#3b4043; --jeju:#d0661a; --teal:#0e8a8a; --lava:#c23f18; --sun:#e8641e;
   --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
   padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){:root{
-  --bg:#12141a; --card:#1c1f27; --ink:#f1f3f7; --muted:#a9b0bd; --line:#f1f3f7;
-  --blue:#6fa3ff; --red:#ff6b72; --yellow:#ffcc3d; --stone:#c9cfd2; color-scheme:dark}}
+  --bg:#12141a; --card:#1c1f27; --ink:#f1f3f7; --muted:#a9b0bd; --line:#f1f3f7; --soft:#272b35;
+  --blue:#6fa3ff; --red:#ff6b72; --yellow:#ffcc3d; --stone:#c9cfd2; --jeju:#f39a52; --teal:#3cc3c0; --lava:#ff6a3d; --sun:#ff8a4c; color-scheme:dark}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
-.wrap{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px}
 .bars{display:flex;height:8px;border-radius:4px;overflow:hidden;max-width:220px}
 .bars i{flex:1}
 .kicker{display:block;margin-top:14px;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-h1,h2{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
 h1{font-size:clamp(2.6rem,11vw,4.4rem);margin-top:8px}
 h1 .ko{display:block;font-size:.48em;color:var(--red);margin-top:6px}
-.intro{margin:12px 0 0;max-width:50ch;font-size:16px}
-.list{display:grid;gap:16px;margin-top:32px}
-a.card{display:grid;gap:8px;text-decoration:none;color:var(--ink);background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:18px 20px;transition:transform .12s,box-shadow .12s}
+.intro{margin:12px 0 0;max-width:52ch;font-size:16px}
+
+.chapter{margin-top:40px;display:flex;align-items:baseline;gap:10px}
+.chapter h2{font-size:2rem;color:var(--jeju)}
+.chapter span{font-family:var(--display);font-size:1.2rem;color:var(--muted)}
+
+.trail{margin-top:16px;display:grid;gap:22px;border-left:3px solid var(--line);margin-left:22px;padding-left:24px}
+.day{position:relative;display:grid;gap:12px}
+.day::before{content:"";position:absolute;left:-35px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
+.day.done::before{background:var(--jeju)}
+.dlabel{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.dlabel b{font-family:var(--display);font-weight:400;font-size:1.35rem}
+.dlabel span{font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+
+a.card{display:grid;gap:6px;text-decoration:none;color:var(--ink);background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;transition:transform .12s,box-shadow .12s;align-content:start}
 a.card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--line)}
 a.card:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--line)}
 a.card:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+a.card h3{font-size:1.45rem}
+a.card p{margin:0;color:var(--muted);font-size:14.5px}
 .tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
-.t1{background:var(--blue)} .t2{background:var(--stone);color:var(--bg)} .t3{background:#e8641e} .t4{background:#c23f18}
-a.card h2{font-size:1.7rem}
-a.card p{margin:0;color:var(--muted)}
 .go{font-weight:800;font-size:14px}
+.soon{border:2.5px dashed var(--muted);border-radius:14px;padding:14px 16px;color:var(--muted);display:grid;gap:4px}
+.soon h3{font-size:1.25rem;color:var(--ink)}
+.soon p{margin:0;font-size:14px}
+.start{margin-top:28px}
 footer{margin-top:44px;color:var(--muted);font-size:13px;text-align:center}
 @media (prefers-reduced-motion:reduce){a.card{transition:none}}
 </style>
@@ -44,36 +61,68 @@ footer{margin-top:44px;color:var(--muted);font-size:13px;text-align:center}
   <div class="bars" aria-hidden="true"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--card);border:1px solid var(--line)"></i><i style="background:var(--ink)"></i></div>
   <span class="kicker">Family trip · 24 Oct – 6 Nov 2026</span>
   <h1>Jeju &amp; Seoul 2026<span class="ko">제주 &amp; 서울</span></h1>
-  <p class="intro">Guides we made to read along the way: legends, history and strange facts about the places we visited.</p>
+  <p class="intro">A page for each place we visit, with bite-sized cards, a mission and a quiz. Follow along day by day.</p>
 
-  <nav class="list" aria-label="Trip pages">
+  <div class="start grid">
     <a class="card" href="korea-field-notes.html">
-      <span class="tag t1">Guide</span>
-      <h2>Korea Field Notes</h2>
-      <p>Korea in 60 seconds, read Hangul in 5 minutes, customs, a card for every stop in Jeju and Seoul, and a quiz.</p>
+      <span class="tag" style="background:var(--blue)">Start here</span>
+      <h3>Korea Field Notes</h3>
+      <p>Korea in 60 seconds, read Hangul in 5 minutes, customs, a card for every stop, and a quiz.</p>
       <span class="go">Open →</span>
     </a>
-    <a class="card" href="jeju-stone-house.html">
-      <span class="tag t2">Jeju</span>
-      <h2>Our Jeju Stone House</h2>
-      <p>Why the walls have holes, roofs tied down with rope nets, heated floors, the pig toilet, and a beam detective challenge.</p>
-      <span class="go">Open →</span>
-    </a>
-    <a class="card" href="seongsan-ilchulbong.html">
-      <span class="tag t3">Jeju</span>
-      <h2>Seongsan Ilchulbong</h2>
-      <p>A volcano born in the sea, a crown of 99 rocks, secret wartime caves, Jeju's most famous sunrise, and a quiz.</p>
-      <span class="go">Open →</span>
-    </a>
-    <a class="card" href="manjanggul-lava-tube.html">
-      <span class="tag t4">Jeju</span>
-      <h2>Manjanggul Lava Tube</h2>
-      <p>How a river of lava carved a tunnel, Turtle Rock, the 7.6 m lava column, 30,000 hidden bats, and a quiz.</p>
-      <span class="go">Open →</span>
-    </a>
-  </nav>
+  </div>
 
-  <footer>More pages to come as the trip goes on.</footer>
+  <div class="chapter"><h2>Jeju</h2><span>제주</span></div>
+  <div class="trail">
+    <section class="day done" aria-label="Day 1">
+      <div class="dlabel"><b>Day 1 · Sat 24 Oct</b><span>Arrival, a rainy afternoon</span></div>
+      <div class="grid">
+        <a class="card" href="aqua-planet-jeju.html">
+          <span class="tag" style="background:var(--teal)">Aquarium</span>
+          <h3>Aqua Planet Jeju</h3>
+          <p>Sharks with crooked teeth, a fish that breathes air, haenyeo in the tank, and the whale shark debate.</p>
+          <span class="go">Open →</span>
+        </a>
+        <a class="card" href="jeju-stone-house.html">
+          <span class="tag" style="background:var(--stone);color:var(--bg)">Where we stayed</span>
+          <h3>Our Jeju Stone House</h3>
+          <p>Walls with holes on purpose, roofs tied down with rope, heated floors, and a beam detective challenge.</p>
+          <span class="go">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="day done" aria-label="Day 2">
+      <div class="dlabel"><b>Day 2 · Sun 25 Oct</b><span>Rain plan, underground</span></div>
+      <div class="grid">
+        <a class="card" href="manjanggul-lava-tube.html">
+          <span class="tag" style="background:var(--lava)">Lava tube</span>
+          <h3>Manjanggul Lava Tube</h3>
+          <p>How a river of lava carved a tunnel, Turtle Rock, the 7.6 m lava column, and 30,000 hidden bats.</p>
+          <span class="go">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="day" aria-label="Next dry day">
+      <div class="dlabel"><b>Next dry day</b><span>Saved for better weather</span></div>
+      <div class="grid">
+        <a class="card" href="seongsan-ilchulbong.html">
+          <span class="tag" style="background:var(--sun)">Volcano</span>
+          <h3>Seongsan Ilchulbong</h3>
+          <p>A volcano born in the sea, a crown of 99 rocks, secret wartime caves, and Jeju's most famous sunrise.</p>
+          <span class="go">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="day" aria-label="Coming up">
+      <div class="dlabel"><b>Coming up</b><span>More pages as we go</span></div>
+      <div class="soon"><h3>Forests, oreums, tangerines and Hallasan</h3><p>New pages will appear here after each day of the trip, followed by Seoul.</p></div>
+    </section>
+  </div>
+
+  <footer>Made on the road, 2026.</footer>
 </div>
 </body>
 </html>

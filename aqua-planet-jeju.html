@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Aqua Planet Jeju</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages, tuned to the aquarium: deep-tank navy, Jeju-sea teal, coral and bubble white. Hero drawing of the main tank window with a shark passing, a numbers strip, cards, a look-back mission, then the quiz. */
+:root{
+  --bg:#ecf1f3; --card:#ffffff; --ink:#14191d; --muted:#556068; --line:#14191d; --soft:#e2eaee;
+  --deep:#0f3b5c; --teal:#0e8a8a; --coral:#e8574a; --sand:#e9b949; --kelp:#3e8a4f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10161a; --card:#1a2328; --ink:#eef3f5; --muted:#a3b0b7; --line:#eef3f5; --soft:#243036;
+  --deep:#1f5f8f; --teal:#3cc3c0; --coral:#ff7d70; --sand:#ffd06a; --kelp:#6fcb83; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10161a; --card:#1a2328; --ink:#eef3f5; --muted:#a3b0b7; --line:#eef3f5; --soft:#243036;
+  --deep:#1f5f8f; --teal:#3cc3c0; --coral:#ff7d70; --sand:#ffd06a; --kelp:#6fcb83; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.4rem,10.5vw,4.2rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--teal);margin-top:6px}
+.hero p{margin:0;max-width:54ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1.1;color:var(--teal);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.45rem}
+.card p{margin:0}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t-teal{background:var(--teal)} .t-coral{background:var(--coral)} .t-deep{background:var(--deep)} .t-sand{background:var(--sand);color:#14191d} .t-kelp{background:var(--kelp)}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--sand);color:#14191d;border-color:#14191d;box-shadow:5px 5px 0 #14191d}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#14191d;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.35rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--kelp);color:#fff;border-color:var(--kelp)}
+.opts button.wrong{background:var(--coral);color:#fff;border-color:var(--coral)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--teal)}
+button:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 240" role="img" aria-label="Drawing of a huge aquarium window with a shark, a ray and fish swimming past">
+    <rect x="0" y="0" width="700" height="240" style="fill:var(--deep)"/>
+    <path d="M0 0 L700 0 L700 60 Q350 30 0 60 Z" style="fill:var(--teal)" opacity=".55"/>
+    <path d="M90 0 L160 240 M300 0 L330 240 M520 0 L480 240" style="stroke:#ffffff" stroke-width="18" opacity=".05"/>
+    <path d="M150 112 Q230 84 330 104 L370 82 L366 108 Q400 114 420 124 Q400 132 366 136 L372 160 L332 140 Q230 156 150 132 L118 152 L126 122 L116 92 Z" style="fill:#c7d3da"/>
+    <circle cx="352" cy="114" r="3.5" style="fill:#14191d"/>
+    <path d="M340 128 l4 4 l4 -4 l4 4 l4 -4" style="stroke:#14191d" stroke-width="1.6" fill="none"/>
+    <path d="M520 168 Q560 140 600 168 Q560 176 520 168 Z M600 168 L650 162" style="fill:var(--sand);stroke:var(--sand)" stroke-width="2"/>
+    <g style="fill:var(--coral)"><path d="M470 70 l16 -7 v14 Z"/><circle cx="462" cy="70" r="8"/><path d="M520 90 l14 -6 v12 Z"/><circle cx="513" cy="90" r="7"/><path d="M560 64 l12 -5 v10 Z"/><circle cx="554" cy="64" r="6"/></g>
+    <g style="fill:#ffffff" opacity=".7"><circle cx="80" cy="190" r="5"/><circle cx="92" cy="166" r="3.5"/><circle cx="84" cy="142" r="2.5"/><circle cx="640" cy="110" r="4"/><circle cx="650" cy="88" r="2.5"/></g>
+    <path d="M0 220 Q60 200 120 218 T240 216 T360 220 T480 214 T600 218 T700 214 L700 240 L0 240 Z" style="fill:var(--sand)" opacity=".75"/>
+    <path d="M40 222 Q34 190 46 170 Q40 196 52 222 M620 222 Q630 186 618 160 Q636 190 632 222" style="stroke:var(--kelp)" stroke-width="5" fill="none" stroke-linecap="round"/>
+  </svg>
+  <span class="kicker">Jeju · Seongsan · our rainy first afternoon</span>
+  <h1>Aqua Planet Jeju<span class="ko">아쿠아플라넷 제주</span></h1>
+  <p>Korea's biggest aquarium, where sharks with crooked teeth, an air-breathing giant fish and Jeju's haenyeo divers all share the water. Read the cards, then take the quiz.</p>
+</header>
+
+<div class="stats" aria-label="Aqua Planet Jeju in numbers">
+  <div class="stat"><b>~48,000</b><span>animals</span></div>
+  <div class="stat"><b>~500</b><span>species</span></div>
+  <div class="stat"><b>5.3 million L</b><span>in the main tank</span></div>
+  <div class="stat"><b>2012</b><span>year it opened</span></div>
+</div>
+
+<div class="sh"><span class="num">Part 1</span><h2>The cards</h2></div>
+<div class="cards">
+  <div class="card"><span class="tag t-teal">Record</span><h3>The biggest tank in Korea</h3><p>The main tank, "The Sea of Jeju," holds about 5.3 million litres of water, roughly two Olympic swimming pools. The whole aquarium holds about twice that. It's the largest aquarium in South Korea.</p></div>
+
+  <div class="card"><span class="tag t-coral">Scary but gentle</span><h3>Sand tiger sharks</h3><p>Those sharks with jagged teeth sticking out look terrifying, but sand tiger sharks are usually calm and slow. They have a strange trick: they gulp air at the surface and hold it in their stomach so they can hover in the water without sinking.</p></div>
+
+  <div class="card"><span class="tag t-coral">Gross but true</span><h3>Sharks that eat their siblings</h3><p>Sand tiger shark babies grow inside their mother, and the biggest, strongest embryos eat their smaller brothers and sisters before they're born. Usually only one or two survive to be born, already big and tough.</p></div>
+
+  <div class="card"><span class="tag t-deep">Giant</span><h3>A fish that has to breathe air</h3><p>The arapaima from the Amazon is one of the largest freshwater fish in the world and can grow about 3 m long. It breathes air and has to come to the surface every 10 to 20 minutes, or it drowns. Its scales are so tough that piranhas struggle to bite through them.</p></div>
+
+  <div class="card"><span class="tag t-teal">Trick question</span><h3>Shark or ray?</h3><p>The giant guitarfish has a shark-like tail and fins, but it's actually a ray. Look for its gills: rays have them underneath their body, while sharks have them on the sides of the head.</p></div>
+
+  <div class="card"><span class="tag t-kelp">Weird but true</span><h3>Fish that switch</h3><p>Many groupers start life as females and can change into males later on. The biggest kinds of grouper can grow over 2 m long and swallow their prey whole.</p></div>
+
+  <div class="card"><span class="tag t-sand">Look closer</span><h3>Seal or sea lion?</h3><p>Sea lions have little ear flaps and can turn their back flippers forward to "walk" on land. Seals have just a hole for an ear and wriggle along on their bellies like a caterpillar. Sea lions are also much louder.</p></div>
+
+  <div class="card"><span class="tag t-deep">Jeju</span><h3>Haenyeo in the tank</h3><p>Aqua Planet holds demonstrations of Jeju's haenyeo, the women divers, inside the main tank. Real haenyeo dive with no oxygen tank, holding their breath for a minute or two and diving 10 m or deeper for shellfish, octopus and seaweed.</p></div>
+
+  <div class="card"><span class="tag t-kelp">Behind the scenes</span><h3>A hospital for sea animals</h3><p>Aqua Planet has South Korea's first medical centre just for marine animals. Some of the sharks and rays in the tanks were also bred there rather than caught in the wild.</p></div>
+
+  <div class="card"><span class="tag t-coral">Big debate</span><h3>Where is the whale shark?</h3><p>The main tank once held whale sharks, the biggest fish on Earth. One whale shark and a manta ray died, and many people argued that animals that size should not be kept in tanks. The surviving whale shark was tagged and released into the sea. What do you think aquariums should keep?</p></div>
+
+  <div class="card mission"><span class="tag">Look-back mission</span><h3>What do you remember?</h3>
+    <ol>
+      <li>Name three animals you saw that live in Jeju's own waters.</li>
+      <li>Did you see a seal, a sea lion, or both? How could you tell?</li>
+      <li>Which animal would you choose to be, and why?</li>
+      <li>Write one sentence about the aquarium for today's journal entry.</li>
+    </ol></div>
+</div>
+
+<div class="sh" id="quiz"><span class="num">Part 2</span><h2>Quiz</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[
+ {q:"What is the main tank called?",o:["The Sea of Jeju","Hallasan Lagoon","Ocean Arena","The Blue Hole"],a:0,w:"It holds about 5.3 million litres, the biggest tank in Korea."},
+ {q:"How do sand tiger sharks hover without sinking?",o:["They have a swim bladder like other fish","They gulp air and hold it in their stomach","They never stop swimming","They rest on the bottom"],a:1,w:"They swallow air at the surface to stay buoyant."},
+ {q:"What happens to sand tiger shark babies before birth?",o:["They hatch from eggs on the sea floor","The biggest eat their smaller siblings","Their mother feeds them seaweed","They are born in pairs"],a:1,w:"Usually only one or two survive to be born."},
+ {q:"Why must the arapaima swim to the surface regularly?",o:["To catch insects","It breathes air","To warm up in the sun","To clean its scales"],a:1,w:"It gulps air every 10 to 20 minutes."},
+ {q:"The giant guitarfish is actually a...",o:["Shark","Ray","Whale","Dolphin"],a:1,w:"Its gills are underneath its body, like other rays."},
+ {q:"How can you tell a sea lion from a seal?",o:["Sea lions have ear flaps and can walk on their flippers","Seals are always bigger","Sea lions have no whiskers","Seals can't swim"],a:0,w:"Seals have ear holes and wriggle on their bellies."},
+ {q:"What do haenyeo dive without?",o:["Swimsuits","Oxygen tanks","Goggles","Baskets"],a:1,w:"They hold their breath, often for a minute or two."},
+ {q:"What happened to the whale shark that survived at Aqua Planet?",o:["It moved to Seoul","It was tagged and released into the sea","It still lives in the main tank","It went to a zoo in Japan"],a:1,w:"It was released after public debate about keeping such big animals."}
+];
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?"Perfect score. You could work there.":score>=5?"Great job. You were watching the tanks closely.":"Read the cards again and have another go.";
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
