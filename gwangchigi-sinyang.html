@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Gwangchigi & Sinyang</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to the two beaches beside Seongsan: black lava rock, sea-moss green, sunrise orange, calm-bay blue. */
+
+:root{
+  --bg:#eef1f1; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e1e7e7;
+  --acc:#2f7d6a; --t1:#2f7d6a; --t2:#33363b; --t3:#2f73a8; --t4:#e8a94a; --mis:#e8a94a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#5fcdb3; --t1:#4fb59d; --t2:#5c6068; --t3:#6faee0; --t4:#f2c06b; --mis:#f2c06b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#5fcdb3; --t1:#4fb59d; --t2:#5c6068; --t3:#6faee0; --t4:#f2c06b; --mis:#f2c06b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of Gwangchigi Beach at low tide: black rocks covered in green sea moss, with Seongsan Ilchulbong rising behind">
+    <rect x="0" y="0" width="700" height="220" style="fill:#f3d7b4"/>
+    <circle cx="560" cy="80" r="34" style="fill:#e8a94a"/>
+    <path d="M300 130 L360 70 Q372 52 392 58 L404 46 L418 58 L432 44 L446 58 L460 46 L474 60 Q500 64 512 90 L570 130 Z" style="fill:#5a5653"/>
+    <rect x="0" y="124" width="700" height="30" style="fill:#5b9cc4"/>
+    <path d="M0 150 L700 150 L700 220 L0 220 Z" style="fill:#3d3b3a"/>
+    <g style="fill:#4f9a5a"><ellipse cx="80" cy="168" rx="50" ry="12"/><ellipse cx="210" cy="186" rx="64" ry="14"/><ellipse cx="360" cy="170" rx="44" ry="10"/><ellipse cx="480" cy="192" rx="70" ry="14"/><ellipse cx="630" cy="172" rx="48" ry="11"/></g>
+    <g style="fill:#8fd0e6" opacity=".8"><ellipse cx="150" cy="160" rx="22" ry="5"/><ellipse cx="300" cy="200" rx="28" ry="6"/><ellipse cx="570" cy="206" rx="26" ry="5"/></g>
+  </svg>
+  <span class="kicker">Day 3 · planned · beside Seongsan Ilchulbong</span>
+  <h1>Gwangchigi &amp; Sinyang<span class="ko">광치기해변 · 신양해변</span></h1>
+  <p>Two very different beaches either side of Seopjikoji: Gwangchigi, black lava rock with the best view of Seongsan, and Sinyang, a calm curved bay. Pick by the tide and the wind.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Low tide</b><span>best time for Gwangchigi</span></div><div class="stat"><b>Black</b><span>lava rock and sand</span></div><div class="stat"><b>Sheltered</b><span>Sinyang bay</span></div><div class="stat"><b>~17:45</b><span>sunset</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Gwangchigi</h2></div>
+<div class="cards"><div class="card"><span class="tag t2">Volcanic</span><h3>A beach made of lava</h3><p>Gwangchigi is a wide stretch of black volcanic rock and dark sand, the remains of lava flows meeting the sea. At high tide much of it is underwater. At low tide a whole landscape of rock, channels and pools appears.</p><div class="look"><b>Check:</b> tide times before you go. Low tide is when it’s at its best.</div></div>
+<div class="card"><span class="tag t1">Famous photo</span><h3>The green moss rocks</h3><p>At low tide, many of the rocks are covered in bright green sea moss, with Seongsan Ilchulbong rising behind. It's one of the most famous photos on Jeju. The moss is greenest in spring and early summer, but the view of the peak is great all year.</p></div>
+<div class="card"><span class="tag t4">Sunrise</span><h3>One of the first places to see the sun</h3><p>Gwangchigi is near Jeju's eastern edge, so it's one of the island's best sunrise spots, watching the sun come up beside the peak. It's also on the Jeju Olle walking trail.</p></div>
+<div class="card"><span class="tag t2">Safety</span><h3>After a typhoon</h3><p>With a spring tide and leftover swell from Typhoon Champi, waves can suddenly wash over the low rocks. Stay well back from the water's edge, wear shoes with grip, and keep off rocks that are wet and dark.</p></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>Sinyang Beach</h2></div>
+<div class="cards"><div class="card"><span class="tag t3">Calm bay</span><h3>A curved, sheltered bay</h3><p>Sinyang Beach curves around a bay just south of Seopjikoji, and the headland shelters it from much of the wind and swell. That makes it one of the calmer beaches in this area, and a good choice the day after a storm.</p></div>
+<div class="card"><span class="tag t3">Sport</span><h3>Windsurfing beach</h3><p>The shallow, sheltered water makes Sinyang a popular spot for windsurfing and kitesurfing. On a breezy day, look for colourful sails out on the bay.</p></div>
+<div class="card"><span class="tag t1">Combine</span><h3>Seopjikoji next door</h3><p>The grassy headland of Seopjikoji, with its lighthouse and cliffs, is a short walk away. If the weather is good, walk the clifftop loop and look back at Seongsan Ilchulbong across the water.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Beach detectives</h3><ol><li>Find out whether it’s high or low tide when we arrive.</li><li>Take the classic photo: rocks in front, Seongsan Ilchulbong behind.</li><li>Find a rock pool and look for a crab, a snail or a tiny fish.</li><li>Journal: compare Gwangchigi with Hamdeok. Black or white sand?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What is Gwangchigi Beach mostly made of?", "o": ["White coral sand", "Black volcanic rock and sand", "Pebbles from rivers", "Concrete"], "a": 1, "w": "Old lava flows meeting the sea."}, {"q": "When is the best time to visit Gwangchigi?", "o": ["High tide", "Low tide", "Midnight", "During a typhoon"], "a": 1, "w": "The rocks and pools appear at low tide."}, {"q": "What makes the rocks green?", "o": ["Paint", "Sea moss", "Copper", "Grass seeds"], "a": 1, "w": "Greenest in spring and early summer."}, {"q": "Which famous peak rises behind Gwangchigi?", "o": ["Hallasan", "Seongsan Ilchulbong", "Sanbangsan", "Seoubong"], "a": 1, "w": "The classic Jeju photo."}, {"q": "Why is Sinyang Beach calmer?", "o": ["It is indoors", "Seopjikoji headland shelters it", "It has a wall", "It is a lake"], "a": 1, "w": "The headland blocks much of the wind and swell."}, {"q": "What sport is Sinyang known for?", "o": ["Skiing", "Windsurfing", "Golf", "Rock climbing"], "a": 1, "w": "Shallow sheltered water is ideal."}];
+var END=["Perfect score. Beach expert.", "Nice work. Check the tides!", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Korean Café Culture</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Culture Notes no. 2, tuned to a sea-view café: espresso brown, milk foam, hallabong orange, window-sea blue. */
+
+:root{
+  --bg:#f2eee9; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e9e2da;
+  --acc:#8a5a36; --t1:#8a5a36; --t2:#e0701f; --t3:#2f73a8; --t4:#e9b949; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#d39a6a; --t1:#b07a50; --t2:#f08a3a; --t3:#6faee0; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#d39a6a; --t1:#b07a50; --t2:#f08a3a; --t3:#6faee0; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a café window looking out to sea, with an iced Americano and a latte on the table">
+    <rect x="0" y="0" width="700" height="220" style="fill:#d9c7b2"/>
+    <rect x="40" y="20" width="620" height="130" rx="6" style="fill:#5a3e2b"/>
+    <rect x="52" y="30" width="290" height="110" style="fill:#a9d3e3"/><rect x="358" y="30" width="290" height="110" style="fill:#a9d3e3"/>
+    <rect x="52" y="96" width="290" height="44" style="fill:#2a8fb0"/><rect x="358" y="96" width="290" height="44" style="fill:#2a8fb0"/>
+    <path d="M52 100 Q120 92 200 100 T342 98 M358 100 Q430 92 500 100 T648 98" style="stroke:#ffffff" stroke-width="3" fill="none" opacity=".7"/>
+    <rect x="0" y="150" width="700" height="70" style="fill:#a5774f"/>
+    <path d="M230 88 L280 88 L272 176 L238 176 Z" style="fill:#ffffff" opacity=".55"/>
+    <path d="M234 110 L276 110 L272 176 L238 176 Z" style="fill:#4a2c1c"/>
+    <rect x="242" y="118" width="12" height="12" rx="2" style="fill:#eaf6fb" opacity=".8"/><rect x="256" y="132" width="12" height="12" rx="2" style="fill:#eaf6fb" opacity=".8"/>
+    <path d="M262 60 L262 120" style="stroke:#2b2c30" stroke-width="4"/>
+    <ellipse cx="430" cy="176" rx="56" ry="8" style="fill:#efe7dc"/>
+    <path d="M394 134 L466 134 L460 172 Q430 182 400 172 Z" style="fill:#f7f2ea"/>
+    <ellipse cx="430" cy="134" rx="36" ry="8" style="fill:#c99568"/>
+    <path d="M422 132 q8 -6 16 0 q-8 6 -16 0" style="fill:#f7f2ea"/>
+    <path d="M466 142 q18 2 14 16 q-4 10 -18 8" style="stroke:#f7f2ea" stroke-width="6" fill="none"/>
+  </svg>
+  <span class="kicker">Culture Notes · no. 2</span>
+  <h1>Korean Café Culture<span class="ko">카페 문화</span></h1>
+  <p>Korea is one of the most café-crazy countries on Earth, and Jeju's sea-view cafés are famous across the country. Here's how coffee arrived, and why Koreans spend so much time in cafés.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>~400</b><span>cups of coffee a year per adult</span></div><div class="stat"><b>100,000+</b><span>cafés in Korea</span></div><div class="stat"><b>1976</b><span>the coffee-mix stick is invented</span></div><div class="stat"><b>Iced</b><span>even in winter</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>How coffee came to Korea</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">History</span><h3>The king who loved coffee</h3><p>Coffee arrived in Korea in the late 1800s. King Gojong is said to have grown fond of it while sheltering at the Russian legation in Seoul in 1896. Later he had a Western-style pavilion, Jeonggwanheon, built at Deoksugung Palace, where he is said to have enjoyed coffee with guests.</p><div class="look"><b>On our trip:</b> Deoksugung is on the "if there’s time" list in Seoul.</div></div>
+<div class="card"><span class="tag t1">History</span><h3>Dabang: the old tea rooms</h3><p>From the 1920s to the 1970s, Koreans met in <i>dabang</i>, tea and coffee rooms where writers, artists and students gathered. Later dabang often had a DJ booth playing records, and they served sweet, milky coffee.</p></div>
+<div class="card"><span class="tag t2">Invention</span><h3>The coffee-mix stick</h3><p>In 1976, a Korean company created the "coffee mix": instant coffee, creamer and sugar in one paper stick. Just add hot water. It's still in nearly every Korean office, home and hiking-trail rest stop.</p><div class="look"><b>Look for:</b> yellow coffee-mix sticks in convenience stores and at your accommodation.</div></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>Why cafés are everywhere</h2></div>
+<div class="cards"><div class="card"><span class="tag t3">Everyday life</span><h3>The living room you rent by the hour</h3><p>Many Koreans live in small apartments with family, so cafés became the place to meet friends, go on dates, work or study. Students even have a word for studying in cafés: <i>kagong</i>, short for "café study."</p></div>
+<div class="card"><span class="tag t2">Slang</span><h3>"Iced Americano, even if I freeze"</h3><p>Koreans drink iced Americanos all year round, even in winter. There's a slang word for it, <i>eoljuka</i>, short for "even if I freeze to death, iced Americano."</p><div class="look"><b>Count:</b> how many people carry iced drinks on a cold day.</div></div>
+<div class="card"><span class="tag t3">Jeju</span><h3>View cafés</h3><p>Jeju is famous for "view cafés": cafés with huge windows facing the sea, oreums or tangerine orchards, often in converted stone houses, warehouses or old hotels. People travel to Jeju partly to hop between them.</p></div>
+<div class="card ours"><span class="tag t3">Our visit</span><h3>Seogwipo Bakery, in the typhoon</h3><p>On Sun 25 Oct we sheltered from Typhoon Champi at Seogwipo Bakery, a lovely café by the beach. Watching the storm waves through the window was the view-café experience, Jeju style.</p><div class="look"><b>Journal:</b> what did everyone order, and what was the best thing on the menu?</div></div>
+<div class="card"><span class="tag t4">Jeju menu</span><h3>Only-in-Jeju drinks</h3><p>Look for drinks made from island ingredients: <i>hallabong ade</i> (fizzy citrus), Jeju green tea lattes from the tea fields near Osulloc, and peanut lattes or ice cream made with peanuts from Udo, the cow-shaped island near Seongsan.</p></div>
+<div class="card"><span class="tag t4">Viral</span><h3>Dalgona coffee</h3><p>In 2020, whipped "dalgona coffee" went viral around the world. It's named after <i>dalgona</i>, the crunchy honeycomb candy that later appeared in <i>Squid Game</i>, because the foam looks and tastes a bit like it.</p></div>
+<div class="card"><span class="tag t1">How it works</span><h3>Café manners</h3><p>Order and pay at the counter, then wait for your buzzer to flash. Many cafés serve dine-in drinks in mugs or glasses and keep paper cups for takeaway. People happily leave laptops and phones on tables to save seats, because theft is rare.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Café hunters</h3><ol><li>Try one only-in-Jeju drink before we leave the island.</li><li>Find a view café with an oreum, orchard or sea view.</li><li>Spot a coffee-mix stick and try one (grown-ups decide who).</li><li>Rate every café in the journal for view, drinks and cake.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "Which Korean king is said to have loved coffee?", "o": ["Sejong", "Gojong", "Injo", "Taejo"], "a": 1, "w": "He reportedly took to it in 1896."}, {"q": "What were dabang?", "o": ["Old tea and coffee rooms", "Kimchi jars", "Palace gates", "Fishing boats"], "a": 0, "w": "Meeting places for writers, artists and students."}, {"q": "What is in a Korean \"coffee mix\" stick?", "o": ["Only coffee beans", "Instant coffee, creamer and sugar", "Green tea and honey", "Ginseng"], "a": 1, "w": "Invented in Korea in 1976."}, {"q": "What does eoljuka mean?", "o": ["Hot coffee only", "Iced Americano even if I freeze", "Coffee with cake", "Café study"], "a": 1, "w": "Koreans drink iced Americanos even in winter."}, {"q": "What is kagong?", "o": ["Studying in a café", "A coffee bean", "A Jeju drink", "A café dog"], "a": 0, "w": "Short for \"café study.\""}, {"q": "Where do the peanuts in Jeju peanut lattes come from?", "o": ["Udo island", "Hallasan", "Seoul", "Busan"], "a": 0, "w": "Udo, the cow-shaped island near Seongsan."}, {"q": "Dalgona coffee is named after...", "o": ["A singer", "A honeycomb candy", "A café in Seoul", "A mountain"], "a": 1, "w": "The candy later seen in Squid Game."}];
+var END=["Perfect score. You’re a café connoisseur.", "Great job. Time for a hallabong ade.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

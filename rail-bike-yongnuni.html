@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Rail Bike & Yongnuni</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to the east Jeju countryside: silver-grass gold, oreum green, rail grey, wind-turbine white on sky blue. */
+
+:root{
+  --bg:#eff2ec; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e3e8dd;
+  --acc:#4e8a3d; --t1:#4e8a3d; --t2:#b8892a; --t3:#3f6f9e; --t4:#e9c35a; --mis:#e9c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#7fc46a; --t1:#6fb85e; --t2:#e0b04a; --t3:#78aee0; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#7fc46a; --t1:#6fb85e; --t2:#e0b04a; --t3:#78aee0; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a two-seat rail bike on a track through grassland, with green oreum hills, wind turbines and Seongsan Ilchulbong in the distance">
+    <rect x="0" y="0" width="700" height="220" style="fill:#bcd9ea"/>
+    <path d="M560 120 L590 92 L600 98 L612 90 L624 98 L640 92 L660 120 Z" style="fill:#6e6a66"/>
+    <path d="M0 130 Q120 70 240 120 Q330 80 420 124 Q500 96 700 128 L700 220 L0 220 Z" style="fill:#6fa35a"/>
+    <path d="M160 96 q30 -18 60 0" style="stroke:#4e8a3d" stroke-width="4" fill="none"/>
+    <g style="stroke:#ffffff" stroke-width="3"><path d="M470 120 L470 52"/><path d="M520 118 L520 62"/></g>
+    <g style="fill:#ffffff"><path d="M470 52 l-22 -10 l22 6 Z M470 52 l18 -16 l-14 18 Z M470 52 l4 24 l-6 -22 Z"/><path d="M520 62 l-18 -8 l18 5 Z M520 62 l15 -13 l-12 15 Z M520 62 l3 20 l-5 -18 Z"/></g>
+    <path d="M0 160 Q350 150 700 162 L700 220 L0 220 Z" style="fill:#d9c27a"/>
+    <path d="M0 178 L700 172 M0 192 L700 186" style="stroke:#6b6b70" stroke-width="4"/>
+    <path d="M40 182 l0 12 M100 181 l0 12 M160 181 l0 12 M220 180 l0 12 M280 180 l0 12 M340 179 l0 12 M400 178 l0 12 M460 178 l0 12 M520 177 l0 12 M580 176 l0 12 M640 176 l0 12" style="stroke:#8a6a4a" stroke-width="5"/>
+    <rect x="240" y="150" width="90" height="26" rx="6" style="fill:#d0412f"/>
+    <path d="M250 150 L262 126 M318 150 L306 126" style="stroke:#33363b" stroke-width="4"/>
+    <rect x="256" y="120" width="56" height="8" rx="3" style="fill:#33363b"/>
+    <circle cx="258" cy="180" r="9" style="fill:#33363b"/><circle cx="312" cy="179" r="9" style="fill:#33363b"/>
+    <g style="stroke:#f2e3a8" stroke-width="2" opacity=".9"><path d="M20 168 q4 -14 8 -20 M60 168 q2 -12 -2 -22 M380 166 q4 -14 8 -20 M600 164 q-2 -14 2 -22 M660 164 q4 -12 8 -18"/></g>
+  </svg>
+  <span class="kicker">Day 3 · planned · Jongdal-ri, east Jeju</span>
+  <h1>Rail Bike &amp; Yongnuni<span class="ko">제주레일바이크 · 용눈이오름</span></h1>
+  <p>Pedal along a track through old ranch land, with oreums, wind turbines, Udo and Seongsan Ilchulbong all around. Yongnuni Oreum, one of the most photographed hills on Jeju, is right next door.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>~4 km</b><span>track loop</span></div><div class="stat"><b>~30 min</b><span>ride</span></div><div class="stat"><b>2 seats</b><span>per bike</span></div><div class="stat"><b>09:30–17:00</b><span>usual hours</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>The rail bike</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">How it works</span><h3>A bike on train tracks</h3><p>A rail bike is a pedal car that runs on rails, so there's no steering, just pedalling and the view. The track loops through open countryside on what used to be farm and ranch land, so it's quiet, with few buildings or cars.</p><div class="look"><b>Plan:</b> it may pause in heavy rain or strong wind, so check before driving over.</div></div>
+<div class="card"><span class="tag t3">Spot them</span><h3>Four famous views</h3><p>From the track you can see Yongnuni Oreum, Udo (the cow-shaped island), Seongsan Ilchulbong and rows of wind turbines. How many can you spot in one photo?</p></div>
+<div class="card"><span class="tag t3">Science</span><h3>Why so many wind turbines?</h3><p>East Jeju is one of the windiest places in Korea, which is why the stone walls have gaps and the roofs were tied down. Today that wind powers turbines on land and at sea. Jeju has set itself the goal of becoming a carbon-free island, powered by clean energy.</p><div class="look"><b>Remember:</b> the turbines off Woljeongri Beach.</div></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>Yongnuni Oreum</h2></div>
+<div class="cards"><div class="card"><span class="tag t2">Name</span><h3>"Dragon's eye" hill</h3><p><i>Yongnuni</i> means something like "dragon's eye." The hill has several craters side by side, and from above, people said it looked like a dragon lying down, or like the hollow of a dragon's eye.</p></div>
+<div class="card"><span class="tag t2">Autumn</span><h3>Silver grass season</h3><p>In late October the oreum is covered in <i>eoksae</i>, silver grass, which glows gold and silver when the sun is low. That's why photographers love it at this time of year.</p><div class="look"><b>Try:</b> a photo looking back at the grass with the light behind it.</div></div>
+<div class="card"><span class="tag t1">Nature</span><h3>One of Jeju's 360 oreums</h3><p>An oreum is a small volcanic cone that grew on the side of the bigger Hallasan volcano. Jeju has around 360 of them. Yongnuni is gentle, with soft grassy slopes rather than rock. Some trails close from time to time to let the grass recover, so follow the signs.</p></div>
+<div class="card"><span class="tag t4">Photo history</span><h3>The photographer's hill</h3><p>Photographer Kim Young-gap spent years photographing Jeju's oreums, and Yongnuni was one of his favourites. His gallery, Dumoak, in an old school in the east of Jeju, shows his wind-swept pictures of the island.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Track and hill challenge</h3><ol><li>Spot Udo, Seongsan Ilchulbong and a wind turbine from the rail bike.</li><li>Count the craters on Yongnuni.</li><li>Take one photo through the silver grass with the light behind it.</li><li>Journal: who pedalled harder, front seat or back?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What makes a rail bike different from a normal bike?", "o": ["It runs on rails, so there is no steering", "It has no pedals", "It floats on water", "It is pulled by horses"], "a": 0, "w": "You just pedal and enjoy the view."}, {"q": "What does Yongnuni roughly mean?", "o": ["Dragon’s eye", "Silver hill", "Windy peak", "Horse field"], "a": 0, "w": "People thought it looked like a dragon or a dragon’s eye."}, {"q": "What covers Yongnuni in late October?", "o": ["Snow", "Silver grass", "Canola flowers", "Tangerine trees"], "a": 1, "w": "Eoksae, silver grass."}, {"q": "Why are there so many wind turbines in east Jeju?", "o": ["It is very windy", "They are decorations", "They pump water", "They scare birds away"], "a": 0, "w": "Jeju wants to run on clean energy."}, {"q": "Which island can you see from the rail bike?", "o": ["Udo", "Nami Island", "Gapado", "Dokdo"], "a": 0, "w": "Udo, the cow-shaped island."}, {"q": "About how many oreums does Jeju have?", "o": ["36", "360", "3,600", "6"], "a": 1, "w": "Around 360."}];
+var END=["Perfect score. Full speed ahead.", "Nice work. Enjoy the ride.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
