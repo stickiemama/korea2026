@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Borom Wat</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to a windy flower farm: buckwheat white, muhly pink, cosmos orange, field green, chocolate brown. */
+
+:root{
+  --bg:#f4f0ef; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ece4e3;
+  --acc:#c2557a; --t1:#c2557a; --t2:#4e8a3d; --t3:#6b4a32; --t4:#e9a94a; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f08ab0; --t1:#e0729a; --t2:#72c160; --t3:#b08a6a; --t4:#f2c06b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f08ab0; --t1:#e0729a; --t2:#72c160; --t3:#b08a6a; --t4:#f2c06b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a flower farm with stripes of white buckwheat, pink grass and orange cosmos under a windy sky, and a little tin-can train">
+    <rect x="0" y="0" width="700" height="220" style="fill:#c7deef"/>
+    <path d="M40 40 q30 -10 60 0 M160 28 q30 -10 60 0 M520 44 q30 -10 60 0" style="stroke:#ffffff" stroke-width="4" fill="none" opacity=".8"/>
+    <path d="M0 90 Q350 70 700 92 L700 120 Q350 100 0 118 Z" style="fill:#7c9f5a"/>
+    <path d="M0 118 Q350 100 700 120 L700 150 Q350 130 0 148 Z" style="fill:#f4f2ea"/>
+    <path d="M0 148 Q350 130 700 150 L700 180 Q350 162 0 178 Z" style="fill:#e8a3c0"/>
+    <path d="M0 178 Q350 162 700 180 L700 220 L0 220 Z" style="fill:#e9a94a"/>
+    <g style="fill:#ffffff" opacity=".9"><circle cx="60" cy="132" r="3"/><circle cx="140" cy="126" r="3"/><circle cx="260" cy="124" r="3"/><circle cx="400" cy="124" r="3"/><circle cx="540" cy="128" r="3"/><circle cx="640" cy="134" r="3"/></g>
+    <g style="fill:#d9473a"><rect x="300" y="150" width="34" height="20" rx="6"/><rect x="340" y="150" width="34" height="20" rx="6"/><rect x="380" y="150" width="40" height="22" rx="6"/></g>
+    <g style="fill:#33363b"><circle cx="308" cy="172" r="5"/><circle cx="326" cy="172" r="5"/><circle cx="348" cy="172" r="5"/><circle cx="366" cy="172" r="5"/><circle cx="390" cy="174" r="5"/><circle cx="410" cy="174" r="5"/></g>
+  </svg>
+  <span class="kicker">Day 4 · Tue 27 Oct · Pyoseon, Seogwipo</span>
+  <h1>Borom Wat<span class="ko">보롬왓</span></h1>
+  <p>A farm of flower fields, a tin-can train and a chocolate shop, where we warmed up after two windy oreums. Its name fits the day perfectly.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>"Field of wind"</b><span>in Jeju dialect</span></div><div class="stat"><b>~7 min</b><span>tin-can train loop</span></div><div class="stat"><b>No. 1</b><span>Jeju in Korean buckwheat</span></div><div class="stat"><b>1</b><span>macadamia nut to crack</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Our visit</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t3">Our visit</span><h3>Chocolate and flowers</h3><p>After Ttarabi and Bulgeun Oreum on Tue 27 Oct, we stopped at Borom Wat for lovely chocolate and views across the flower fields, on the same afternoon as the strong wind warning.</p><div class="look"><b>Journal:</b> which chocolate was the best, and which field was the prettiest?</div></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>The cards</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Jeju dialect</span><h3>"Field of wind"</h3><p>In Jeju dialect, <i>borom</i> means wind (standard Korean <i>baram</i>) and <i>wat</i> means field (standard <i>bat</i>). Jeju's dialect is so different from standard Korean that mainland Koreans often can't understand older speakers, and UNESCO lists it as a critically endangered language.</p><div class="look"><b>Spot:</b> other Jeju words on signs, like <i>olle</i>.</div></div>
+<div class="card"><span class="tag t2">Crops</span><h3>Buckwheat island</h3><p>Jeju grows more buckwheat than anywhere else in South Korea. The volcanic soil drains fast and suits it, and it grows quickly. In autumn the fields are covered in tiny white flowers, and the seeds become noodles and the bingtteok crepes on our food page.</p></div>
+<div class="card"><span class="tag t1">Flowers</span><h3>A different field every season</h3><p>Borom Wat plants new flowers each season: tulips and canola in spring, lavender and hydrangeas in summer, and buckwheat, pink muhly grass and cosmos in autumn. In late October the pink muhly grass is fading, but the white buckwheat is in bloom.</p></div>
+<div class="card"><span class="tag t4">Fun</span><h3>Tin cans and macadamias</h3><p>Entry usually includes a ride on a little tin-can train that loops around the fields in about seven minutes, and a macadamia nut you crack open yourself. Macadamias have one of the hardest shells of any nut.</p></div>
+<div class="card"><span class="tag t3">Sweet</span><h3>Watching chocolate being made</h3><p>The shop lets visitors watch chocolate being made and try samples. Chocolate comes from cacao beans grown in hot countries near the equator, so it's made here from imported beans, often flavoured with Jeju ingredients like hallabong or green tea.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Field notes</h3><ol><li>Learn one Jeju dialect word and use it today.</li><li>Find the buckwheat field and look closely at one tiny flower.</li><li>Crack the macadamia nut. Who did it fastest?</li><li>Rate the chocolate out of 10 in the journal.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What does \"Borom Wat\" mean in Jeju dialect?", "o": ["Field of wind", "Chocolate house", "Flower hill", "Red forest"], "a": 0, "w": "Borom = wind, wat = field."}, {"q": "Which crop does Jeju grow more of than anywhere else in Korea?", "o": ["Buckwheat", "Rice", "Apples", "Cacao"], "a": 0, "w": "The volcanic soil suits it."}, {"q": "How does UNESCO describe the Jeju language?", "o": ["Critically endangered", "Extinct", "The most spoken in Asia", "The same as standard Korean"], "a": 0, "w": "Mainly older people still speak it fluently."}, {"q": "Where do cacao beans for chocolate grow?", "o": ["Hot countries near the equator", "On Hallasan", "In Seoul", "Under the sea"], "a": 0, "w": "So Jeju chocolate uses imported beans."}, {"q": "What colour are buckwheat flowers?", "o": ["White", "Blue", "Black", "Red"], "a": 0, "w": "Tiny white flowers in autumn."}];
+var END=["Perfect score. Sweet!", "Nice work. Time for more chocolate.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Hanwoo Korean Beef</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Food Notes no. 4, tuned to a Korean BBQ table: charcoal black, marbled beef red and cream, lettuce green, ember orange. */
+
+:root{
+  --bg:#f3eeec; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ebe2df;
+  --acc:#a8323a; --t1:#a8323a; --t2:#3a3a3f; --t3:#4e8a3d; --t4:#e9a94a; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f06a72; --t1:#d9505a; --t2:#6a6a72; --t3:#72c160; --t4:#f2c06b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f06a72; --t1:#d9505a; --t2:#6a6a72; --t3:#72c160; --t4:#f2c06b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of marbled beef slices on a round grill, with lettuce leaves, garlic and a pair of scissors and tongs">
+    <rect x="0" y="0" width="700" height="220" style="fill:#3a2f2a"/>
+    <circle cx="260" cy="110" r="96" style="fill:#1b1b1d"/>
+    <circle cx="260" cy="110" r="84" style="fill:#2a2a2e"/>
+    <g style="stroke:#e9a94a" stroke-width="2" opacity=".5"><path d="M190 80 L330 80 M182 104 L338 104 M184 128 L336 128 M196 152 L324 152"/></g>
+    <g><rect x="200" y="70" width="70" height="34" rx="8" style="fill:#b8434a"/><rect x="262" y="112" width="70" height="34" rx="8" style="fill:#b8434a"/></g>
+    <path d="M206 80 q12 6 24 0 q12 -6 26 2 M214 94 q14 -6 30 2 M268 122 q14 6 28 -2 q10 -4 24 2 M276 136 q12 -6 30 2" style="stroke:#f5e6d8" stroke-width="3" fill="none"/>
+    <g style="fill:#5aa04a"><path d="M430 60 q60 -20 110 10 q-30 40 -110 -10 Z"/><path d="M450 100 q60 -14 100 18 q-40 30 -100 -18 Z"/></g>
+    <g style="fill:#f5efe2"><circle cx="600" cy="80" r="9"/><circle cx="620" cy="96" r="8"/><circle cx="596" cy="104" r="7"/></g>
+    <path d="M430 170 L560 150 M432 180 L562 160" style="stroke:#c9c9cf" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="420" cy="172" r="9" fill="none" style="stroke:#c9c9cf" stroke-width="4"/><circle cx="422" cy="186" r="9" fill="none" style="stroke:#c9c9cf" stroke-width="4"/>
+  </svg>
+  <span class="kicker">Food Notes · no. 4 · our Day 4 dinner</span>
+  <h1>Hanwoo Korean Beef<span class="ko">한우</span></h1>
+  <p>Our Day 4 dinner was grilled Korean sirloin at a butcher's restaurant, and it came close to the Aussie wagyu we love at home. Here's what makes Korean beef special.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>2,000+</b><span>years of the Hanwoo breed</span></div><div class="stat"><b>1++</b><span>top grade</span></div><div class="stat"><b>120</b><span>retail cuts in Korea</span></div><div class="stat"><b>Scissors</b><span>to cut meat at the table</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Our dinner</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our dinner</span><h3>Sirloin at Baengnok Butcher Restaurant</h3><p>On Tue 27 Oct, near our second Jeju home, we grilled Korean sirloin (<i>deungsim</i>) at Baengnok Butcher Restaurant. The verdict: very close in quality to the Australian wagyu we enjoy at home.</p><div class="look"><b>Name spotting:</b> <i>Baengnok</i> means "white deer." Hallasan’s crater lake, Baengnokdam, means "white deer lake," from a legend of heavenly beings who came down riding white deer to drink there.</div></div>
+<div class="card"><span class="tag t2">How it works</span><h3>The butcher's restaurant</h3><p>At a <i>jeongyuk-sikdang</i> (butcher's restaurant) you often choose your meat at a butcher's counter and pay by weight, then pay a small table charge for the grill, side dishes and sauces. It's usually cheaper than a regular BBQ restaurant for the same quality.</p></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>The cards</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">The breed</span><h3>What is Hanwoo?</h3><p>Hanwoo is Korea's native breed of cattle, with reddish-brown coats, which has lived on the peninsula for over 2,000 years. It's Korea's most prized beef: well marbled, with a rich, beefy flavour, and expensive because there's little farmland to raise it.</p></div>
+<div class="card"><span class="tag t2">History</span><h3>From farm worker to feast</h3><p>Until the 1960s, Korea was mainly a farming country, and cows were precious workers that pulled ploughs and carts. A family's cow was its savings account, sold only when money was badly needed. Eating beef was a luxury, which is why Hanwoo still means celebration and is a popular holiday gift.</p></div>
+<div class="card"><span class="tag t4">Grading</span><h3>What 1++ means</h3><p>Korean beef is graded on marbling (the white flecks of fat), meat colour, fat colour, firmness and maturity. The top grades are 1++, 1+ and 1. The very best is 1++ with the highest marbling score, the top few percent of all cattle.</p><div class="look"><b>Look for:</b> the grade on the label or menu at the butcher’s counter.</div></div>
+<div class="card"><span class="tag t1">Compare</span><h3>Hanwoo vs wagyu</h3><p>Japanese wagyu is famous for extremely heavy marbling that melts in your mouth. Hanwoo usually has a little less fat and a stronger beef flavour. Australian wagyu comes from Japanese wagyu genetics, often crossed with other breeds, which is partly why it tasted so familiar.</p></div>
+<div class="card"><span class="tag t3">Jeju</span><h3>Jeju's black cattle</h3><p>Jeju also has its own rare native black cattle, <i>heugu</i>, as black as the island's black pigs. There are so few that the breed is protected, and you may occasionally see heugu beef on Jeju menus at a high price.</p></div>
+<div class="card"><span class="tag t3">How to eat</span><h3>Scissors and lettuce wraps</h3><p>Korean BBQ comes with scissors for cutting meat on the grill. Wrap a piece in lettuce or perilla leaf with garlic, a dab of <i>ssamjang</i> and a little rice, then eat it in one bite. That's <i>ssam</i>, a wrap.</p></div>
+<div class="card"><span class="tag t4">Saying</span><h3>"One cow, a hundred flavours"</h3><p>Koreans have a saying, <i>il du baek mi</i>: "one cow, a hundred flavours," because every part of the animal is used. Korea has around 120 named retail cuts of beef, far more than most Western countries.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>BBQ challenge</h3><ol><li>Make a perfect ssam: lettuce, meat, garlic, ssamjang, one bite.</li><li>Find the beef grade on a menu or label.</li><li>Look for heugu on a Jeju menu.</li><li>Journal: Hanwoo vs Aussie wagyu. Write the verdict in one sentence.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What is Hanwoo?", "o": ["Korea’s native breed of cattle", "A type of pork", "A Jeju fish", "A cooking sauce"], "a": 0, "w": "It has lived on the peninsula for over 2,000 years."}, {"q": "What is the top Korean beef grade?", "o": ["1++", "A5", "Gold", "10"], "a": 0, "w": "Then 1+ and 1."}, {"q": "What did cows mainly do in Korea before the 1960s?", "o": ["Pulled ploughs and carts on farms", "Gave rides to tourists", "Guarded houses", "Raced"], "a": 0, "w": "A cow was a family’s most valuable possession."}, {"q": "What does Baengnok mean?", "o": ["White deer", "Red cow", "Black pig", "Silver fish"], "a": 0, "w": "As in Baengnokdam, the white deer lake on Hallasan."}, {"q": "What is used to cut meat at a Korean BBQ?", "o": ["Scissors", "A sword", "Chopsticks only", "A spoon"], "a": 0, "w": "Scissors and tongs are standard."}, {"q": "What does \"il du baek mi\" mean?", "o": ["One cow, a hundred flavours", "One bite, one wrap", "More rice please", "Fight heat with heat"], "a": 0, "w": "Every part of the cow is used."}];
+var END=["Perfect score. Grill master.", "Great job. Pass the scissors.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

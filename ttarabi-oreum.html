@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Ttarabi Oreum</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to an oreum in silver-grass season: grass silver and gold, hillside olive, autumn sky blue, wind-turbine white. */
+
+:root{
+  --bg:#f1f0ea; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e7e5da;
+  --acc:#8a7a2e; --t1:#8a7a2e; --t2:#5f7f3a; --t3:#3f6f9e; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#d8c56a; --t1:#c2ad4e; --t2:#8fbf62; --t3:#78aee0; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#d8c56a; --t1:#c2ad4e; --t2:#8fbf62; --t3:#78aee0; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a rounded oreum with several crater dips along its ridge, covered in silver grass, with wind turbines on a hill behind">
+    <rect x="0" y="0" width="700" height="220" style="fill:#bcd6ea"/>
+    <path d="M0 150 Q150 120 300 140 Q480 110 700 136 L700 220 L0 220 Z" style="fill:#9fb07a"/>
+    <g style="stroke:#ffffff" stroke-width="3"><path d="M560 128 L560 70"/><path d="M620 126 L620 80"/><path d="M80 140 L80 92"/></g>
+    <g style="fill:#ffffff"><path d="M560 70 l-18 -8 l18 5 Z M560 70 l15 -13 l-12 15 Z M560 70 l3 20 l-5 -18 Z"/><path d="M620 80 l-15 -7 l15 4 Z M620 80 l12 -11 l-10 13 Z M620 80 l3 16 l-5 -14 Z"/><path d="M80 92 l-15 -7 l15 4 Z M80 92 l12 -11 l-10 13 Z M80 92 l3 16 l-5 -14 Z"/></g>
+    <path d="M130 200 Q170 80 240 74 Q270 96 300 76 Q330 98 360 72 Q390 96 420 78 Q490 84 540 200 Z" style="fill:#7c8f4a"/>
+    <path d="M150 200 Q190 100 240 92 Q270 112 300 94 Q330 114 360 90 Q390 112 420 96 Q480 104 520 200 Z" style="fill:#c8bb7a"/>
+    <g style="stroke:#f4efd8" stroke-width="2.4" stroke-linecap="round" opacity=".95">
+      <path d="M200 170 q4 -18 12 -28 M230 150 q2 -16 -4 -26 M260 140 q6 -16 14 -22 M300 128 q2 -16 -2 -26 M340 132 q6 -14 14 -22 M380 128 q0 -16 -6 -24 M420 140 q6 -16 14 -22 M450 158 q2 -16 -4 -24 M480 176 q6 -14 12 -22"/>
+      <path d="M215 188 q4 -18 12 -28 M280 176 q2 -16 -4 -26 M350 170 q6 -16 14 -22 M410 180 q2 -16 -2 -26 M470 196 q6 -14 14 -22"/>
+    </g>
+  </svg>
+  <span class="kicker">Day 4 · Tue 27 Oct · Gasi-ri, Pyoseon</span>
+  <h1>Ttarabi Oreum<span class="ko">따라비오름</span></h1>
+  <p>Locals call it the queen of the oreums. In late October its ridges turn into a silver wave of grass, and we went at exactly the right time.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Queen</b><span>of the oreums</span></div><div class="stat"><b>~1 hr</b><span>up, around and down</span></div><div class="stat"><b>Late Oct</b><span>silver grass peak</span></div><div class="stat"><b>Several</b><span>craters in a row</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Our morning</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t4">Our visit</span><h3>Silver grass sword fights</h3><p>On Tue 27 Oct the boys "sword fought" their way up the trail with stalks of silver grass. From the top we took a steeper, unmarked path straight down the hillside. Gorgeous and fun, and the best oreum of the trip so far.</p></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>The cards</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Famous</span><h3>Queen of the oreums</h3><p>Ttarabi is one of Jeju's most loved oreums because of its shape: several craters sit side by side, with soft curving ridges between them. From the top, the ridges look like waves, especially when they're covered in silver grass.</p></div>
+<div class="card"><span class="tag t2">Legend</span><h3>A family of hills</h3><p>One local story says the name comes from an old Jeju word for a grandfather or father-in-law figure. The smaller oreums nearby have family names too, such as Moji Oreum ("mother") and Jangja Oreum ("eldest son"), as if Ttarabi were the head of the family.</p><div class="look"><b>From the top:</b> try to pick out the rest of the family.</div></div>
+<div class="card"><span class="tag t1">Nature</span><h3>Silver grass, not reeds</h3><p>The tall grass is <i>eoksae</i>, silver grass. People often mix it up with reeds (<i>galdae</i>), but reeds grow in wet places by rivers and look brownish, while silver grass grows on dry hillsides and glows silvery-white. Each fluffy head is full of tiny seeds that drift away on the wind.</p></div>
+<div class="card"><span class="tag t4">Careful</span><h3>Swords with an edge</h3><p>Silver grass leaves contain silica, the same mineral as sand and glass, and their edges are finely toothed. Run a finger the wrong way along a leaf and it can give you a paper cut. Good for sword fights, as long as you hold the stalk, not the leaf.</p></div>
+<div class="card"><span class="tag t3">Jeju life</span><h3>Horse country and wind</h3><p>The Gasi-ri area has long been grazing land, and Jeju horses still roam the pastures around the oreums. Today the windy uplands are also home to rows of wind turbines, part of Jeju's plan to run on clean energy.</p></div>
+<div class="card"><span class="tag t2">Looking after oreums</span><h3>Why some oreums need a rest</h3><p>Oreums are made of loose volcanic soil, and so many visitors now climb them that some paths have worn into deep scars. Jeju closes some oreums for a few years at a time to let the grass grow back. Yongnuni, near the rail bike, was one of them. Sticking to the main paths helps keep oreums like Ttarabi open.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Oreum challenge</h3><ol><li>Count how many craters you could see from the ridge.</li><li>Find a reed and a silver grass stalk and compare them.</li><li>Pick the best "silver wave" photo of the day for the journal.</li><li>Rank all the oreums so far: Seoubong, Seongsan Ilchulbong, Ttarabi. Which wins?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What do locals call Ttarabi?", "o": ["The queen of the oreums", "The dragon’s eye", "Sunrise Peak", "The black dragon"], "a": 0, "w": "For its curving ridges and silver grass."}, {"q": "What is eoksae?", "o": ["Silver grass", "A reed", "A wind turbine", "A Jeju horse"], "a": 0, "w": "It grows on dry hillsides and glows silvery-white."}, {"q": "Where do reeds usually grow?", "o": ["In wet places by water", "On dry hilltops", "Inside lava tubes", "On rooftops"], "a": 0, "w": "Silver grass prefers dry hillsides."}, {"q": "Why can silver grass leaves cut your skin?", "o": ["They contain silica and have toothed edges", "They are poisonous", "They are made of metal", "They have thorns"], "a": 0, "w": "Like a paper cut."}, {"q": "How does silver grass spread its seeds?", "o": ["On the wind", "Birds carry the stalks", "Horses eat them", "Rain washes them"], "a": 0, "w": "Each fluffy head releases tiny seeds that drift away."}, {"q": "Why are some oreums closed for a few years?", "o": ["To let worn paths and grass recover", "For filming dramas", "Because of volcanoes", "For horse races"], "a": 0, "w": "Too many footsteps wear scars into the soil."}];
+var END=["Perfect score. Queen of the quiz.", "Great job. Swords down, well done.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
