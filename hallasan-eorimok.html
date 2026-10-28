@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Hallasan, Eorimok Trail</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to the mountain: highland shrub green, autumn rust, basalt grey, cold sky blue, Milky Way violet. */
+
+:root{
+  --bg:#eef0f1; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e1e5e7;
+  --acc:#3f6e8f; --t1:#3f6e8f; --t2:#4f7a3a; --t3:#a8562e; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#7fb0d8; --t1:#6a9cc4; --t2:#7fb86a; --t3:#e08a5a; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#7fb0d8; --t1:#6a9cc4; --t2:#7fb86a; --t3:#e08a5a; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of Hallasan's broad summit dome above a highland plateau, with a dotted trail, a small viewpoint deck and a starry sky band">
+    <rect x="0" y="0" width="700" height="220" style="fill:#b9d3e6"/>
+    <path d="M0 40 Q350 0 700 30" style="stroke:#ffffff" stroke-width="18" fill="none" opacity=".35"/>
+    <g style="fill:#ffffff" opacity=".8"><circle cx="120" cy="28" r="2"/><circle cx="260" cy="16" r="2"/><circle cx="420" cy="14" r="2"/><circle cx="560" cy="22" r="2"/></g>
+    <path d="M180 120 Q250 54 350 50 Q450 54 520 120 Z" style="fill:#6b6460"/>
+    <path d="M300 64 Q350 56 400 64 L392 74 Q350 68 308 74 Z" style="fill:#4a4542"/>
+    <path d="M0 150 Q160 110 300 122 Q460 100 700 128 L700 220 L0 220 Z" style="fill:#8a9a5a"/>
+    <path d="M0 170 Q180 140 330 150 Q500 134 700 158 L700 220 L0 220 Z" style="fill:#a8562e" opacity=".55"/>
+    <path d="M60 210 Q160 180 230 170 Q300 160 330 150 Q360 140 400 132" style="stroke:#f4efe0" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round" fill="none"/>
+    <rect x="390" y="118" width="40" height="6" style="fill:#7a5236"/><path d="M394 124 L394 134 M426 124 L426 134" style="stroke:#7a5236" stroke-width="3"/>
+    <g style="fill:#2f5a35"><path d="M20 200 L36 160 L52 200 Z"/><path d="M600 200 L616 156 L632 200 Z"/><path d="M640 204 L654 170 L668 204 Z"/></g>
+  </svg>
+  <span class="kicker">Day 5 · Wed 28 Oct · Hallasan National Park</span>
+  <h1>Hallasan, Eorimok Trail<span class="ko">한라산 · 어리목</span></h1>
+  <p>South Korea's highest mountain, a volcano that is the whole of Jeju. We climbed the Eorimok trail on the coldest morning of the trip so far.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>7.24 km</b><span>our distance</span></div><div class="stat"><b>620 m</b><span>our climb</span></div><div class="stat"><b>3h 35m</b><span>up and back</span></div><div class="stat"><b>1,947 m</b><span>Hallasan summit</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Our hike</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our hike</span><h3>Up to Manse Hill and back</h3><p>On Wed 28 Oct we climbed from Eorimok through the forest and out onto the open highlands as far as Manse Hill, then came back down the same way: 7.24 km, 620 m of climbing, 3 hours 35 minutes. A steep climb, and the long wooden steps down were hard on the knees!</p><div class="look"><b>Fuel:</b> onigiri on the way up. Korea’s version is <i>samgak gimbap</i>, the triangle rice balls in every convenience store.</div></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>The cards</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Name</span><h3>The mountain that pulls down the Milky Way</h3><p><i>Hallasan</i> is usually explained as "a mountain so high it can pull down the Milky Way." At 1,947 m it's the highest point in South Korea.</p></div>
+<div class="card"><span class="tag t3">Volcano</span><h3>The whole island is the volcano</h3><p>Hallasan is a shield volcano: runny lava spread out in all directions over a very long time and built the gentle cone that is Jeju itself. The oreums we've climbed are smaller vents on its sides, and the lava tube was one of its underground rivers.</p></div>
+<div class="card"><span class="tag t1">Legend</span><h3>The white deer lake</h3><p>At the very top is a crater lake called Baengnokdam, "white deer lake." Legend says heavenly beings came down riding white deer to drink there. It's the same <i>baengnok</i> as the butcher's restaurant where we had dinner on Day 4.</p></div>
+<div class="card"><span class="tag t2">Climate zones</span><h3>Coast to cold in one climb</h3><p>Climbing Hallasan is like travelling north. Near the coast it's warm enough for subtropical plants, then come broadleaf forests, then conifers, and finally windswept alpine shrubs near the top. That's why we walked out of the trees onto a bare, windy plateau.</p></div>
+<div class="card"><span class="tag t2">Endangered</span><h3>Korea's own fir tree</h3><p>The Korean fir grows naturally only in Korea, and Hallasan has one of its biggest forests. Many of the trees on the upper slopes are dying, and scientists link it to warmer winters and stronger typhoons. Look for grey, bare trunks among the green.</p></div>
+<div class="card"><span class="tag t3">Weird but true</span><h3>The bamboo takeover</h3><p>The knee-high green bamboo carpeting the highlands is Jeju dwarf bamboo. Since grazing horses and cattle were moved off the mountain, it has spread so fast that it is crowding out rarer alpine flowers.</p></div>
+<div class="card"><span class="tag t4">Protected</span><h3>A triple-crowned mountain</h3><p>Hallasan is a UNESCO Biosphere Reserve, part of the Jeju Volcanic Island and Lava Tubes World Heritage site, and part of the Jeju Global Geopark, a rare triple recognition.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Mountain challenge</h3><ol><li>Name the four "climate zones" we walked through, from forest to plateau.</li><li>Find a photo of the Korean fir and compare it with what you saw.</li><li>Compare our hike with Ttarabi: which was harder, which had the better view?</li><li>Journal: what did the summit dome look like from Manse Hill?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "How high is Hallasan?", "o": ["1,947 m", "947 m", "3,776 m", "182 m"], "a": 0, "w": "The highest point in South Korea. 3,776 m is Mount Fuji."}, {"q": "What is Hallasan’s name usually said to mean?", "o": ["A mountain that can pull down the Milky Way", "White deer mountain", "Fire mountain", "Mountain of 500 generals"], "a": 0, "w": "So high it can reach the stars."}, {"q": "What kind of volcano is Hallasan?", "o": ["A shield volcano", "A mud volcano", "An underwater volcano only", "Not a volcano"], "a": 0, "w": "Runny lava built a broad, gentle cone: Jeju itself."}, {"q": "What is Baengnokdam?", "o": ["The crater lake at the summit", "A waterfall", "A temple", "A shelter"], "a": 0, "w": "\"White deer lake.\""}, {"q": "Why is the Korean fir in danger on Hallasan?", "o": ["Warmer winters and stronger typhoons", "Too many deer", "Logging for houses", "Volcanic eruptions"], "a": 0, "w": "Scientists link the die-off to climate change."}, {"q": "What is spreading over Hallasan’s highlands?", "o": ["Jeju dwarf bamboo", "Tangerine trees", "Silver grass", "Cactus"], "a": 0, "w": "It spread after grazing animals were removed."}];
+var END=["Perfect score. Summit-level knowledge.", "Great job. Well climbed!", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

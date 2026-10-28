@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Jungmun Saekdal Beach</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to a sunset surf beach: sunset orange, surf blue, sand gold, cliff basalt. */
+
+:root{
+  --bg:#f3efe9; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ebe3d8;
+  --acc:#d9622b; --t1:#d9622b; --t2:#2a6fa8; --t3:#3a3a3f; --t4:#e9b949; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff8a52; --t1:#f0773d; --t2:#6faee0; --t3:#6a6a72; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff8a52; --t1:#f0773d; --t2:#6faee0; --t3:#6a6a72; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a sunset over a beach with waves, dark cliffs on each side and a spiral shell on the sand">
+    <rect x="0" y="0" width="700" height="220" style="fill:#f6c08a"/>
+    <rect x="0" y="0" width="700" height="60" style="fill:#e98a5a"/>
+    <circle cx="360" cy="110" r="38" style="fill:#f7e2a2"/>
+    <rect x="0" y="110" width="700" height="50" style="fill:#2a6fa8"/>
+    <path d="M0 140 Q60 130 120 140 T240 140 T360 140 T480 140 T600 140 T720 140" style="stroke:#ffffff" stroke-width="4" fill="none" opacity=".8"/>
+    <path d="M0 160 Q350 146 700 162 L700 220 L0 220 Z" style="fill:#e8cf9a"/>
+    <path d="M0 60 L0 170 L90 160 L120 100 L70 60 Z" style="fill:#2b2b30"/>
+    <path d="M700 60 L700 170 L600 158 L580 96 L630 60 Z" style="fill:#2b2b30"/>
+    <path d="M420 196 q30 -30 50 -6 q12 16 -8 22 q-18 4 -24 -8 q-4 -10 8 -12" style="fill:#d4a27a;stroke:#8a5a3a" stroke-width="2.5"/>
+    <path d="M450 178 l6 -10 M462 182 l10 -6" style="stroke:#8a5a3a" stroke-width="2.5"/>
+  </svg>
+  <span class="kicker">Day 5 · Wed 28 Oct · Jungmun, Seogwipo</span>
+  <h1>Jungmun Saekdal Beach<span class="ko">중문색달해수욕장</span></h1>
+  <p>The main beach of the Jungmun resort area, framed by dark cliffs and loved by surfers. We came for the sunset and stayed for the creatures.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Surf</b><span>one of Jeju’s top surf beaches</span></div><div class="stat"><b>Cliffs</b><span>at both ends</span></div><div class="stat"><b>1</b><span>live conch found</span></div><div class="stat"><b>~17:40</b><span>sunset</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Our evening</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our visit</span><h3>A conch and the usual crabs</h3><p>We ended Wed 28 Oct at Jungmun Saekdal Beach. The boys found a sizeable live conch and, as usual, did some harmless crab catching.</p></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>The cards</h2></div>
+<div class="cards"><div class="card"><span class="tag t2">Surf</span><h3>Jeju's surf beach</h3><p>Jungmun faces south into the open sea, so it catches bigger waves than most Jeju beaches. It's one of the best-known surf spots in Korea, with surf schools along the shore.</p></div>
+<div class="card"><span class="tag t4">Shells</span><h3>What was the conch?</h3><p>A large spiral shell on a Jeju beach is very likely a <i>sora</i>, the horned turban snail. It's one of the main shellfish the haenyeo dive for, and you'll see it grilled or raw in seafood restaurants. Turban snails graze on seaweed with a tongue covered in tiny teeth.</p><div class="look"><b>Good to know:</b> in Jeju, the haenyeo of each village look after the shellfish on their stretch of coast, so shells you find alive are best put back where you found them.</div></div>
+<div class="card"><span class="tag t3">Name</span><h3>Two names in one</h3><p><i>Jungmun</i> is the resort area and <i>Saekdal</i> is the old village neighbourhood the beach belongs to, so locals use both names together.</p></div>
+<div class="card"><span class="tag t1">Nearby</span><h3>Lava columns next door</h3><p>Just along the coast are the hexagonal lava columns of Jusangjeolli Cliff, on our list for Friday. The dark cliffs around this beach are part of the same lava flows.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Shoreline challenge</h3><ol><li>Look up a picture of a horned turban snail. Was ours the same?</li><li>Count the surfers in one photo.</li><li>Rank the beaches so far: Hamdeok, Gwangchigi, Sinyang, Jungmun.</li><li>Journal: what was the best creature found today?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "Why does Jungmun get bigger waves?", "o": ["It faces south into the open sea", "A machine makes them", "It is in a lake", "It has no cliffs"], "a": 0, "w": "Which makes it a popular surf beach."}, {"q": "What is a sora?", "o": ["A horned turban snail", "A crab", "A seaweed", "A surfboard"], "a": 0, "w": "The haenyeo dive for them."}, {"q": "How do turban snails eat seaweed?", "o": ["With a tongue covered in tiny teeth", "With claws", "They swallow it whole", "They don’t eat seaweed"], "a": 0, "w": "The tongue scrapes like a file."}, {"q": "Which famous lava columns are nearby?", "o": ["Jusangjeolli Cliff", "Seongsan Ilchulbong", "Manjanggul", "Ttarabi"], "a": 0, "w": "On the list for Friday."}];
+var END=["Perfect score. Beachcomber supreme.", "Nice work. Surf’s up!", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

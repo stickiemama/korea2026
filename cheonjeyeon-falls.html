@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Cheonjeyeon Falls</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to a forest gorge: pool jade, waterfall white, basalt grey, warm-forest green, bridge vermilion. */
+
+:root{
+  --bg:#edf2f0; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e0e8e4;
+  --acc:#1f7f73; --t1:#1f7f73; --t2:#c0452f; --t3:#3f6e44; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#4fc4b4; --t1:#3fae9f; --t2:#ef6e55; --t3:#6fb276; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#4fc4b4; --t1:#3fae9f; --t2:#ef6e55; --t3:#6fb276; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a waterfall dropping from a basalt cliff into a jade pool, with an arched red bridge above">
+    <rect x="0" y="0" width="700" height="220" style="fill:#cfe3da"/>
+    <path d="M0 220 L0 70 Q80 60 160 74 L230 60 L250 150 L0 220 Z" style="fill:#4a4744"/>
+    <path d="M700 220 L700 70 Q620 60 540 74 L470 60 L450 150 L700 220 Z" style="fill:#4a4744"/>
+    <g style="fill:#3f6e44"><circle cx="40" cy="62" r="26"/><circle cx="110" cy="54" r="30"/><circle cx="600" cy="56" r="30"/><circle cx="670" cy="64" r="26"/></g>
+    <path d="M300 74 L400 74 L410 170 L290 170 Z" style="fill:#ffffff" opacity=".85"/>
+    <path d="M318 80 L316 168 M340 80 L342 168 M362 80 L360 168 M384 80 L386 168" style="stroke:#bfe3e0" stroke-width="3"/>
+    <path d="M230 60 L300 74 L400 74 L470 60" style="stroke:#4a4744" stroke-width="16" fill="none"/>
+    <ellipse cx="350" cy="190" rx="200" ry="30" style="fill:#2f9a8c"/>
+    <ellipse cx="350" cy="184" rx="70" ry="10" style="fill:#ffffff" opacity=".5"/>
+    <path d="M190 40 Q350 -10 510 40" style="stroke:#c0452f" stroke-width="10" fill="none"/>
+    <path d="M220 34 L220 46 M260 22 L260 34 M300 14 L300 26 M350 12 L350 24 M400 14 L400 26 M440 22 L440 34 M480 34 L480 46" style="stroke:#c0452f" stroke-width="4"/>
+  </svg>
+  <span class="kicker">Day 5 · Wed 28 Oct · Jungmun, Seogwipo</span>
+  <h1>Cheonjeyeon Falls<span class="ko">천제연폭포</span></h1>
+  <p>Three tiers of waterfalls in a forest gorge, crossed by an arched bridge carved with heavenly nymphs. A gentle afternoon after a morning on Hallasan.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>3</b><span>tiers of falls</span></div><div class="stat"><b>22 m</b><span>first fall</span></div><div class="stat"><b>21 m</b><span>deep pool</span></div><div class="stat"><b>7</b><span>nymphs on the bridge</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Our visit</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our visit</span><h3>All three falls and the bridge</h3><p>On the afternoon of Wed 28 Oct, with legs still sore from Eorimok, we walked down to all three falls and crossed the pretty arched bridge.</p></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>The cards</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Name</span><h3>The Pond of the Emperor of Heaven</h3><p><i>Cheonjeyeon</i> means "Pond of the Emperor of Heaven." It's one of Jeju's three famous waterfalls, along with Cheonjiyeon and Jeongbang, which are both on our list for Friday.</p></div>
+<div class="card"><span class="tag t2">Legend</span><h3>Seven nymphs at night</h3><p>Legend says seven nymphs came down from heaven at night to bathe in the pond. The arched Seonimgyo Bridge above the falls is decorated with them. People also believed that standing under the falls on the 15th day of the seventh lunar month could cure illness. Swimming is not allowed today.</p><div class="look"><b>Remember:</b> the seven nymphs carved on the bridge.</div></div>
+<div class="card"><span class="tag t1">Weird but true</span><h3>The waterfall that needs rain</h3><p>The first fall drops 22 m into a pool 21 m deep, as deep as a seven-storey building is tall. But it only flows after heavy rain. Most of the time water seeps through the volcanic rock instead. Thanks to Typhoon Champi, we may have seen it at its best.</p></div>
+<div class="card"><span class="tag t3">Protected</span><h3>A rare warm forest</h3><p>The gorge is a pocket of warm-climate forest, protected as a Natural Monument since 1993. Rare plants grow in its rock cracks, including the whisk fern, a strange leafless plant whose relatives have existed for hundreds of millions of years.</p></div>
+<div class="card"><span class="tag t4">Volcano</span><h3>Why Jeju has waterfalls by the sea</h3><p>Jeju's lava is full of cracks, so rain usually sinks straight underground. It reappears near the coast, where it hits harder rock layers and pours over the cliffs. That's why Jeju's big waterfalls are close to the sea, not up on the mountain.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Waterfall challenge</h3><ol><li>Was the first fall flowing when we visited? Check the photos.</li><li>Count the nymphs on the bridge. Were there really seven?</li><li>Compare with Friday’s falls: which waterfall is the most impressive?</li><li>Journal: describe the sound of the falls in one sentence.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What does Cheonjeyeon mean?", "o": ["Pond of the Emperor of Heaven", "Waterfall of 500 generals", "Silver river", "Dragon’s eye pool"], "a": 0, "w": "One of Jeju’s three famous waterfalls."}, {"q": "Who were said to bathe in the pond at night?", "o": ["Seven nymphs from heaven", "Haenyeo divers", "White deer", "Dragons"], "a": 0, "w": "They decorate the Seonimgyo Bridge."}, {"q": "When does the first fall flow?", "o": ["Only after heavy rain", "All year", "Only in winter", "Only at night"], "a": 0, "w": "The rest of the time water seeps through the rock."}, {"q": "How deep is the first pool?", "o": ["About 21 m", "About 2 m", "About 200 m", "About 50 cm"], "a": 0, "w": "As deep as a seven-storey building is tall."}, {"q": "Why are Jeju’s big waterfalls near the coast?", "o": ["Rainwater sinks into cracked lava and comes out lower down", "People built them there", "The sea pushes water up", "Glaciers carved them"], "a": 0, "w": "Underground water reappears near the sea."}];
+var END=["Perfect score. Heavenly!", "Nice work. Count those nymphs!", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
