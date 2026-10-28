@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Yongmeori & Sanbangsan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to layered sandstone cliffs under a lava dome: sandstone ochre bands, sea teal, dome grey, temple red. */
+
+:root{
+  --bg:#f3efe8; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ebe3d6;
+  --acc:#b07a2e; --t1:#b07a2e; --t2:#2a7f86; --t3:#5a5450; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#e0a856; --t1:#d39a48; --t2:#5fc0c6; --t3:#9a928c; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#e0a856; --t1:#d39a48; --t2:#5fc0c6; --t3:#9a928c; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of the bell-shaped Sanbangsan mountain behind layered sandstone sea cliffs with waves">
+    <rect x="0" y="0" width="700" height="220" style="fill:#d9e7ec"/>
+    <path d="M300 130 Q300 40 400 30 Q500 40 500 130 Z" style="fill:#6a645f"/>
+    <circle cx="420" cy="92" r="7" style="fill:#c0452f"/>
+    <rect x="0" y="150" width="700" height="70" style="fill:#2a7f86"/>
+    <path d="M0 150 Q60 146 120 150 T240 150 T360 150 T480 150 T600 150 T720 150" style="stroke:#ffffff" stroke-width="3" fill="none" opacity=".7"/>
+    <path d="M40 160 Q60 100 140 96 Q230 94 260 150 Q250 176 200 180 L60 180 Z" style="fill:#c79a5a"/>
+    <path d="M60 110 Q150 100 240 118 M52 126 Q150 116 252 134 M50 142 Q150 132 256 150 M56 158 Q150 150 248 166" style="stroke:#9a6f36" stroke-width="3" fill="none"/>
+    <path d="M520 166 Q540 120 600 118 Q660 118 680 166 Z" style="fill:#c79a5a"/>
+    <path d="M532 140 Q600 130 672 144 M526 154 Q600 146 678 158" style="stroke:#9a6f36" stroke-width="3" fill="none"/>
+  </svg>
+  <span class="kicker">Day 6 · Thu 29 Oct · planned · Sagye-ri, Andeok</span>
+  <h1>Yongmeori &amp; Sanbangsan<span class="ko">용머리해안 · 산방산</span></h1>
+  <p>A coastline of layered sandstone shaped like a dragon's head, beneath a bell-shaped mountain with a temple in a cave. Two of Jeju's oldest landforms side by side.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>1 million+</b><span>years old (Yongmeori)</span></div><div class="stat"><b>395 m</b><span>Sanbangsan</span></div><div class="stat"><b>1653</b><span>Dutch shipwreck</span></div><div class="stat"><b>Low tide</b><span>to walk the coast</span></div></div>
+
+<div class="sh"><span class="num">The cards</span><h2>Before you go</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Rock history</span><h3>Layers like a cake</h3><p>Yongmeori is one of the oldest volcanic landforms on Jeju, over a million years old. Wave after wave of ash from eruptions in the sea settled into layers, and the ocean has since carved them into curves, ledges and caves. Each stripe is a page of the eruption's story.</p><div class="look"><b>Look for:</b> how the layers tilt and curve. Which way was the volcano?</div></div>
+<div class="card"><span class="tag t2">Name</span><h3>The dragon's head</h3><p><i>Yongmeori</i> means "dragon's head." From above, the headland looks like a dragon diving into the sea. One legend says a Chinese emperor sent a geomancer to cut the dragon's back, to stop a great ruler from ever being born on Jeju.</p></div>
+<div class="card"><span class="tag t2">Safety</span><h3>Only open at the right tide</h3><p>The path runs along the bottom of the cliffs, right at the waterline, so it closes at high tide and in strong wind or big waves. Check at the ticket booth, or tide times, before you go.</p></div>
+<div class="card"><span class="tag t3">Legend</span><h3>The mountain that was thrown</h3><p>Remember the Hallasan legend? A hunter poked the sky god with his bow, the god tore off Hallasan's peak and threw it here, and it became Sanbangsan. Scientists say it's a lava dome: thick, sticky lava that piled up instead of flowing away, which is why it's shaped like a bell.</p></div>
+<div class="card"><span class="tag t1">Temple</span><h3>A temple in a cave</h3><p>Sanbanggulsa is a Buddhist temple in a cave high up on Sanbangsan's side. Water drips from the cave ceiling into a small pool, and visitors sip it. One legend says the drops are the tears of a goddess who lives in the mountain.</p><div class="look"><b>Bring:</b> legs for the steps up, and a camera for the view over the coast.</div></div>
+<div class="card"><span class="tag t3">History</span><h3>Shipwrecked for 13 years</h3><p>In 1653 a Dutch trading ship wrecked on this coast. The survivors weren't allowed to leave Korea, and one of them, Hendrick Hamel, escaped 13 years later and wrote the first detailed European book about Korea. Look for the Hamel memorial nearby.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Coast detectives</h3><ol><li>Count the layers in one section of the Yongmeori cliff.</li><li>Find a cave or arch carved by the waves.</li><li>Climb to Sanbanggulsa and taste (or touch) the dripping water.</li><li>Find something about Hendrick Hamel.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What does Yongmeori mean?", "o": ["Dragon’s head", "Sunrise peak", "White deer", "Black stone"], "a": 0, "w": "The headland looks like a diving dragon."}, {"q": "How did Yongmeori’s layers form?", "o": ["Ash from eruptions settled in layers", "People built them", "Sand blown by wind only", "Ice"], "a": 0, "w": "Then the waves carved them."}, {"q": "Why does Yongmeori sometimes close?", "o": ["High tide, strong wind or big waves", "Lunch break", "Too many birds", "Night only"], "a": 0, "w": "The path is right at the waterline."}, {"q": "What kind of volcano is Sanbangsan?", "o": ["A lava dome", "A lava tube", "A tuff cone in the sea", "Not a volcano"], "a": 0, "w": "Thick lava piled up into a bell shape."}, {"q": "Who was shipwrecked near here in 1653?", "o": ["Hendrick Hamel", "Marco Polo", "Xu Fu", "Kublai Khan"], "a": 0, "w": "He wrote the first detailed European book about Korea."}];
+var END=["Perfect score. Dragon-level!", "Great job. Check those tides!", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

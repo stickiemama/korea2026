@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sagye Coast Rock Pools</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to a low-tide rock shelf: black lava, pool turquoise, anemone red, crab orange, sand pale. */
+
+:root{
+  --bg:#eef2f2; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e1e8e8;
+  --acc:#d0602a; --t1:#d0602a; --t2:#1f7f86; --t3:#3a3a3f; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff8a52; --t1:#f0773d; --t2:#4fc0c6; --t3:#6a6a72; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff8a52; --t1:#f0773d; --t2:#4fc0c6; --t3:#6a6a72; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a rock pool among black rocks with a crab, sea anemones, a snail and a small fish">
+    <rect x="0" y="0" width="700" height="220" style="fill:#2f3034"/>
+    <path d="M90 60 Q350 20 610 60 Q660 120 600 180 Q350 210 100 180 Q40 120 90 60 Z" style="fill:#3fb3b8"/>
+    <path d="M120 80 Q350 50 580 80 Q620 120 576 164 Q350 190 124 164 Q80 120 120 80 Z" style="fill:#5fcdd0"/>
+    <g style="fill:#c8434a"><circle cx="200" cy="150" r="14"/><circle cx="480" cy="90" r="12"/></g>
+    <g style="stroke:#e86a70" stroke-width="3" stroke-linecap="round"><path d="M190 140 l-6 -10 M200 136 l0 -12 M210 140 l6 -10 M472 82 l-6 -9 M480 78 l0 -11 M488 82 l6 -9"/></g>
+    <ellipse cx="350" cy="128" rx="34" ry="22" style="fill:#d0602a"/>
+    <path d="M318 124 l-26 -14 l6 -8 M382 124 l26 -14 l-6 -8 M326 140 l-18 14 M336 146 l-10 16 M374 140 l18 14 M364 146 l10 16" style="stroke:#d0602a" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <circle cx="340" cy="112" r="3" style="fill:#16171a"/><circle cx="360" cy="112" r="3" style="fill:#16171a"/>
+    <path d="M520 150 q16 -20 34 -4 q8 12 -6 16 q-14 2 -16 -8" style="fill:#c9a37a"/>
+    <path d="M240 96 q14 -8 28 0 q-14 8 -28 0 Z M268 96 l10 -6 l0 12 Z" style="fill:#f2d27a"/>
+  </svg>
+  <span class="kicker">Day 6 · Thu 29 Oct · planned · beside Sanbangsan</span>
+  <h1>Sagye Coast Rock Pools<span class="ko">사계해안</span></h1>
+  <p>Our pick for crab hunting and rock pooling on the south-west coast: a free, open shoreline right next to Yongmeori and Sanbangsan, where low tide uncovers rocks, sand and pools.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Free</b><span>no ticket</span></div><div class="stat"><b>Low tide</b><span>go ±1 hr either side</span></div><div class="stat"><b>5 min</b><span>from Yongmeori</span></div><div class="stat"><b>Look</b><span>then put back</span></div></div>
+
+<div class="sh"><span class="num">The plan</span><h2>Why Sagye</h2></div>
+<div class="cards"><div class="card"><span class="tag t2">Our pick</span><h3>Best for crabs and pools</h3><p>Sagye Coast is right next to Yongmeori and Sanbangsan, so it fits tomorrow perfectly. Around low tide the sea pulls back to show rock shelves, sandy patches and pools, with views of Sanbangsan behind and the little Hyeongjeseom ("Brother Islands") offshore.</p><div class="look"><b>Check the tide:</b> search "사계항 물때" (Sagye Port tide) on Naver, or use the Badatime app, and aim for an hour either side of low tide.</div></div>
+<div class="card"><span class="tag t4">Backup</span><h3>If the tide is high</h3><p>Hwasun Geummorae Beach, on the other side of Sanbangsan, has golden sand to dig in and rocks at its edges, a good backup for crab spotting if the pools at Sagye are underwater.</p></div>
+<div class="card"><span class="tag t3">Ancient</span><h3>Footprints from the past</h3><p>Near Sagye, scientists found fossil footprints of ancient people and animals pressed into old volcanic sediment, thousands of years old. The site is protected, so it's look-don't-walk, but it's amazing to think people walked this same shore so long ago.</p></div></div>
+<div class="sh"><span class="num">Field guide</span><h2>Who you might meet</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Crabs</span><h3>Shore crabs</h3><p>Small crabs hide under rocks and in cracks. The Asian shore crab often has red or purple spots and bands, like the one at Gwangchigi. Crabs walk sideways because their legs bend best that way.</p></div>
+<div class="card"><span class="tag t1">Weird but true</span><h3>Sea slaters</h3><p>Those fast, many-legged creatures scuttling over the dry rocks are sea slaters, related to woodlice, not insects. Koreans nickname them "sea cockroaches," but they're harmless clean-up crew.</p></div>
+<div class="card"><span class="tag t2">Pools</span><h3>Anemones and snails</h3><p>Sea anemones look like blobs of red jelly when the tide is out, then open their tentacles underwater to catch food. Turban snails and periwinkles graze on the algae. Tiny fish like gobies dart between rocks.</p></div>
+<div class="card"><span class="tag t3">Rock pool rules</span><h3>Be a good explorer</h3><p>Wet your hands before touching creatures, lift rocks gently and put them back the same way up, return every creature where you found it, and leave the shellfish: the local haenyeo look after them. Keep off slippery green rocks, and always keep an eye on the sea.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Rock pool bingo</h3><ol><li>Find a crab, an anemone, a snail and a fish. Bingo!</li><li>Spot a sea slater racing over the rocks.</li><li>Photograph Sanbangsan from the rock pools.</li><li>Journal: the strangest creature of the day, and where you put it back.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "When is the best time to explore rock pools?", "o": ["Around low tide", "At high tide", "At midnight", "During a typhoon"], "a": 0, "w": "The sea pulls back and uncovers the pools."}, {"q": "What are sea slaters related to?", "o": ["Woodlice", "Cockroaches", "Spiders", "Crabs only"], "a": 0, "w": "Despite the nickname \"sea cockroach.\""}, {"q": "What should you do with a rock you lift?", "o": ["Put it back the same way up", "Take it home", "Throw it in the sea", "Stack it"], "a": 0, "w": "It’s someone’s roof."}, {"q": "Why leave the shellfish alone?", "o": ["The local haenyeo look after them", "They are poisonous", "They bite", "They are plastic"], "a": 0, "w": "Each village’s divers care for their stretch of coast."}, {"q": "What do sea anemones look like at low tide?", "o": ["Blobs of jelly", "Flowers in bloom", "Stones with eyes", "Seaweed"], "a": 0, "w": "They open their tentacles underwater."}];
+var END=["Perfect score. Rock pool ranger!", "Great job. Bingo time!", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

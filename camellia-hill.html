@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Camellia Hill</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to a camellia garden in autumn: camellia red, glossy leaf green, pink muhly haze, stone grey. */
+
+:root{
+  --bg:#f4eff0; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ebe2e4;
+  --acc:#c2304a; --t1:#c2304a; --t2:#2f6b45; --t3:#d27aa8; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f06a80; --t1:#e04b64; --t2:#6fb684; --t3:#f0a0c8; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f06a80; --t1:#e04b64; --t2:#6fb684; --t3:#f0a0c8; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of glossy camellia bushes with red flowers in front of a hazy field of pink grass">
+    <rect x="0" y="0" width="700" height="220" style="fill:#f3e6ea"/>
+    <path d="M0 110 Q180 70 360 96 Q540 70 700 100 L700 160 L0 160 Z" style="fill:#e7a6c8" opacity=".85"/>
+    <g style="stroke:#f6d3e5" stroke-width="2" opacity=".9"><path d="M40 110 l4 -20 M90 104 l-2 -22 M150 100 l4 -20 M420 94 l3 -20 M480 92 l-3 -22 M560 92 l4 -20 M630 96 l-2 -22"/></g>
+    <path d="M0 150 Q350 130 700 152 L700 220 L0 220 Z" style="fill:#2f6b45"/>
+    <g style="fill:#24563a"><ellipse cx="120" cy="160" rx="110" ry="50"/><ellipse cx="350" cy="166" rx="120" ry="48"/><ellipse cx="590" cy="160" rx="110" ry="50"/></g>
+    <g style="fill:#c2304a"><circle cx="80" cy="140" r="12"/><circle cx="150" cy="160" r="11"/><circle cx="300" cy="150" r="12"/><circle cx="380" cy="172" r="11"/><circle cx="420" cy="144" r="10"/><circle cx="560" cy="148" r="12"/><circle cx="630" cy="168" r="11"/></g>
+    <g style="fill:#f2d27a"><circle cx="80" cy="140" r="4"/><circle cx="150" cy="160" r="4"/><circle cx="300" cy="150" r="4"/><circle cx="380" cy="172" r="4"/><circle cx="420" cy="144" r="3.5"/><circle cx="560" cy="148" r="4"/><circle cx="630" cy="168" r="4"/></g>
+  </svg>
+  <span class="kicker">Day 6 · Thu 29 Oct · planned · Andeok, Seogwipo</span>
+  <h1>Camellia Hill<span class="ko">카멜리아힐</span></h1>
+  <p>A huge garden of camellias, Jeju's winter flower, with pink muhly grass and autumn gardens to explore before the camellia season begins.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Winter</b><span>main camellia season</span></div><div class="stat"><b>Pink</b><span>muhly grass in autumn</span></div><div class="stat"><b>Dongbaek</b><span>Korean for camellia</span></div><div class="stat"><b>~1–1.5 hr</b><span>to explore</span></div></div>
+
+<div class="sh"><span class="num">The cards</span><h2>Before you go</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Flower</span><h3>A flower that blooms in winter</h3><p>Camellias, <i>dongbaek</i> in Korean, flower in the cold months, from late autumn into early spring, when almost nothing else blooms. In late October you may spot the first early varieties opening. Their glossy, waxy leaves stay green all year.</p></div>
+<div class="card"><span class="tag t2">Surprise</span><h3>Tea is a camellia!</h3><p>The tea plant at Osulloc is <i>Camellia sinensis</i>, a close cousin of these garden camellias. Green tea, black tea and oolong all come from its leaves. Compare the leaves here with the tea bushes at Osulloc.</p></div>
+<div class="card"><span class="tag t3">Autumn</span><h3>Pink clouds of grass</h3><p>The fluffy pink haze is <i>pink muhly grass</i>, originally from North America. In autumn its tiny flower heads turn pink and purple, and with the sun behind it the whole field seems to glow.</p><div class="look"><b>Photo tip:</b> stand so the light comes through the grass from behind.</div></div>
+<div class="card"><span class="tag t1">Remembering</span><h3>A flower that falls whole</h3><p>Most flowers drop their petals one by one, but a camellia falls as a whole flower, still bright red. In Jeju, the red camellia has become the symbol for remembering the people who died during the 4.3 events of 1948–49. You may see camellia badges and pictures around the island.</p></div>
+<div class="card"><span class="tag t4">Old Korea</span><h3>Camellia oil</h3><p>In the past, Korean women pressed camellia seeds for oil to smooth and shine their hair. Camellia oil is still used in Korean skincare today, so check the Olive Young haul.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Garden detectives</h3><ol><li>Find a camellia flower already open. What colour is it?</li><li>Feel a camellia leaf. Is it waxy? Compare it with a tea leaf at Osulloc.</li><li>Take a glowing pink-grass photo with the sun behind it.</li><li>Find a fallen camellia flower lying whole on the ground.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "When do camellias mainly bloom?", "o": ["Winter", "Summer", "Only in spring", "Never"], "a": 0, "w": "From late autumn into early spring."}, {"q": "Which plant is a cousin of the camellia?", "o": ["The tea plant", "The tangerine tree", "Silver grass", "Bamboo"], "a": 0, "w": "Camellia sinensis, at Osulloc."}, {"q": "What is the Korean word for camellia?", "o": ["Dongbaek", "Gamgyul", "Eoksae", "Hallabong"], "a": 0, "w": "Dongbaek."}, {"q": "How does a camellia flower fall?", "o": ["Whole, all at once", "Petal by petal", "It never falls", "It turns into fruit first"], "a": 0, "w": "Which is why it became a symbol of remembrance in Jeju."}, {"q": "What was camellia oil traditionally used for?", "o": ["Smoothing hair", "Cooking rice", "Lamps only", "Painting"], "a": 0, "w": "It is still used in skincare."}];
+var END=["Perfect score. Blooming brilliant.", "Nice work. Go find a camellia!", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

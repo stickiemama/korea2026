@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Jeju Aerospace Museum</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to flight and space: jet grey, sky blue, rocket orange, night-sky navy. */
+
+:root{
+  --bg:#eef1f5; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e1e6ee;
+  --acc:#2f5fa8; --t1:#2f5fa8; --t2:#e0611f; --t3:#4a4f5a; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#7aa6f0; --t1:#5f8fe0; --t2:#ff8a4c; --t3:#8a909c; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#7aa6f0; --t1:#5f8fe0; --t2:#ff8a4c; --t3:#8a909c; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a grey fighter jet flying across a blue sky, with a rocket rising into a starry night on the right">
+    <rect x="0" y="0" width="460" height="220" style="fill:#b7d3ef"/>
+    <rect x="460" y="0" width="240" height="220" style="fill:#1b2440"/>
+    <g style="fill:#ffffff"><circle cx="520" cy="40" r="2"/><circle cx="600" cy="26" r="2"/><circle cx="660" cy="70" r="2"/><circle cx="560" cy="110" r="1.6"/><circle cx="640" cy="140" r="1.6"/></g>
+    <path d="M60 130 L300 108 L360 112 L300 118 L60 136 Z" style="fill:#7a808c"/>
+    <path d="M180 116 L240 70 L262 70 L230 118 Z M180 128 L240 172 L262 172 L230 124 Z" style="fill:#5f6570"/>
+    <path d="M70 128 L60 100 L80 100 L100 126 Z" style="fill:#5f6570"/>
+    <path d="M300 110 Q330 108 350 112" style="stroke:#2f5fa8" stroke-width="5" fill="none"/>
+    <path d="M30 132 L60 131" style="stroke:#e0611f" stroke-width="6"/>
+    <path d="M580 60 L596 90 L596 160 L564 160 L564 90 Z" style="fill:#e8ecf2"/>
+    <path d="M564 140 L548 168 L564 160 Z M596 140 L612 168 L596 160 Z" style="fill:#e0611f"/>
+    <path d="M568 160 Q580 210 592 160 Z" style="fill:#f2b23a"/>
+    <circle cx="580" cy="110" r="7" style="fill:#2f5fa8"/>
+  </svg>
+  <span class="kicker">Day 6 · Thu 29 Oct · planned · Andeok, Seogwipo</span>
+  <h1>Jeju Aerospace Museum<span class="ko">제주항공우주박물관</span></h1>
+  <p>Called Asia's largest aerospace museum when it opened in 2014, with real fighter jets in a giant hall and a whole zone about space.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>2014</b><span>opened</span></div><div class="stat"><b>20+</b><span>real aircraft on show</span></div><div class="stat"><b>2022</b><span>Korea’s first moon mission</span></div><div class="stat"><b>2008</b><span>first Korean in space</span></div></div>
+
+<div class="sh"><span class="num">The cards</span><h2>Before you go</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Hall of planes</span><h3>Real aircraft, not models</h3><p>The main hall holds real military and civilian aircraft, many flown by Korea's air force. Look for the F-4 Phantom II, the F-86 Sabre from the Korean War era, the F-5, and even a Soviet-designed MiG-19, plus a replica of the Wright brothers' first plane.</p><div class="look"><b>Spot:</b> the oldest and the newest aircraft in the hall.</div></div>
+<div class="card"><span class="tag t3">History</span><h3>The jets of the Korean War</h3><p>The Korean War (1950–53) saw some of the first big battles between jet fighters, American F-86 Sabres against Soviet-built MiGs. You'll find both types in the museum. Link it to our Korea, China &amp; Japan page.</p></div>
+<div class="card"><span class="tag t2">Space</span><h3>Korea goes to space</h3><p>In 2008 Yi So-yeon became the first Korean in space, taking specially made space kimchi with her. In 2022 Korea's own Nuri rocket reached orbit, and its first lunar orbiter, Danuri, set off for the Moon.</p></div>
+<div class="card"><span class="tag t3">Nearby history</span><h3>An old airfield in the fields</h3><p>About 20 minutes away near Moseulpo, the Japanese navy built Alddreu Airfield in the 1930s. Concrete aircraft hangars from World War II still stand in the farmland there.</p></div>
+<div class="card"><span class="tag t4">Science</span><h3>Why planes fly</h3><p>A wing is shaped and angled so that air flowing over it pushes it upward. That's lift. Engines provide thrust to push forward, while gravity and air resistance pull the other way. Flying means balancing all four forces.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Flight crew challenge</h3><ol><li>Find the F-86 Sabre and the MiG-19, enemies in the Korean War.</li><li>Name the four forces of flight.</li><li>Find something about Korea’s Moon mission in the space zone.</li><li>Journal: if you could fly any aircraft in the hall, which one?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "When did the Jeju Aerospace Museum open?", "o": ["2014", "1950", "1988", "2022"], "a": 0, "w": "Called Asia’s largest aerospace museum at the time."}, {"q": "Who was the first Korean in space?", "o": ["Yi So-yeon", "King Sejong", "Admiral Yi", "Hendrick Hamel"], "a": 0, "w": "In 2008, with space kimchi."}, {"q": "What is Korea’s lunar orbiter called?", "o": ["Danuri", "Nuri", "Hallabong", "Seonim"], "a": 0, "w": "Launched in 2022. Nuri is the rocket."}, {"q": "Which two jets fought each other in the Korean War?", "o": ["F-86 Sabre and MiG", "Wright Flyer and Phantom", "Boeing 747 and Airbus", "Spitfire and Zero"], "a": 0, "w": "Some of the first jet-versus-jet battles."}, {"q": "What is lift?", "o": ["The upward push on a wing from moving air", "The engine’s push forward", "Gravity", "Air resistance"], "a": 0, "w": "One of the four forces of flight."}];
+var END=["Perfect score. Cleared for take-off!", "Great job, pilot.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
