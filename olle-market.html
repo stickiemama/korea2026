@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Seogwipo Olle Market</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to an evening market arcade: lantern yellow, grill-flame orange, hallabong, night navy. */
+
+:root{
+  --bg:#f4efe6; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ebe3d5;
+  --acc:#d9622b; --t1:#d9622b; --t2:#2b3a5a; --t3:#4e8a3d; --t4:#e9b949; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff8a52; --t1:#f0773d; --t2:#7f9ad0; --t3:#72c160; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff8a52; --t1:#f0773d; --t2:#7f9ad0; --t3:#72c160; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a covered market street at night with glowing lanterns, food stalls and a flame from a torch over a lobster">
+    <rect x="0" y="0" width="700" height="220" style="fill:#2b3a5a"/>
+    <path d="M0 30 Q350 -10 700 30 L700 50 Q350 10 0 50 Z" style="fill:#1e2a42"/>
+    <g style="fill:#f2cd6b"><circle cx="100" cy="66" r="12"/><circle cx="220" cy="58" r="12"/><circle cx="350" cy="54" r="12"/><circle cx="480" cy="58" r="12"/><circle cx="600" cy="66" r="12"/></g>
+    <g style="fill:#d9622b"><rect x="40" y="120" width="180" height="70" rx="6"/><rect x="260" y="120" width="180" height="70" rx="6"/><rect x="480" y="120" width="180" height="70" rx="6"/></g>
+    <g style="fill:#f4efe6"><rect x="40" y="110" width="180" height="16" rx="4"/><rect x="260" y="110" width="180" height="16" rx="4"/><rect x="480" y="110" width="180" height="16" rx="4"/></g>
+    <path d="M300 150 q20 -16 46 -10 q16 4 26 0 l6 8 q-12 8 -32 8 q-26 0 -46 -6 Z" style="fill:#e0483b"/>
+    <path d="M360 140 q10 -26 2 -40 q16 14 8 40" style="fill:#f2b23a"/>
+    <g style="fill:#e8d6a6"><circle cx="90" cy="152" r="16"/><circle cx="130" cy="156" r="16"/><circle cx="170" cy="152" r="16"/></g>
+    <g style="fill:#f2cd6b"><rect x="510" y="140" width="34" height="24" rx="6"/><rect x="556" y="140" width="34" height="24" rx="6"/><rect x="602" y="140" width="34" height="24" rx="6"/></g>
+    <g style="fill:#ffffff"><circle cx="527" cy="150" r="5"/><circle cx="573" cy="150" r="5"/><circle cx="619" cy="150" r="5"/></g>
+  </svg>
+  <span class="kicker">Day 6 · Thu 29 Oct · Seogwipo</span>
+  <h1>Seogwipo Olle Market<span class="ko">서귀포매일올레시장</span></h1>
+  <p>Seogwipo's covered daily market, packed with street food. We came at dinner time and ate our way through cheese lobster, black pork buns and egg buns.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>Daily</b><span>open every day</span></div><div class="stat"><b>Covered</b><span>arcade, rain or shine</span></div><div class="stat"><b>3</b><span>snacks we tried</span></div><div class="stat"><b>Olle 6</b><span>trail passes nearby</span></div></div>
+
+<div class="sh"><span class="num">Our evening</span><h2>What we ate</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our visit</span><h3>A street-food dinner</h3><p>We arrived around 6.30pm on Thu 29 Oct and tried cheese and garlic lobster, black pork buns and egg buns, then picked up seafood and poultry at the supermarket to cook at home.</p></div></div>
+<div class="sh"><span class="num">The cards</span><h2>About the market</h2></div>
+<div class="cards"><div class="card"><span class="tag t2">Name</span><h3>A market every day</h3><p><i>Maeil</i> means "every day." Many traditional Korean markets are <i>five-day markets</i> (<i>ojang</i>), held only on days ending in certain numbers, like 2 and 7. This one is open daily. "Olle" was added to its name because the Jeju Olle walking trail passes close by.</p></div>
+<div class="card"><span class="tag t1">Street food</span><h3>Lobster with a blowtorch</h3><p>Grilled lobster topped with cheese, then blasted with a blowtorch until it bubbles, is one of the market's most famous (and most photographed) snacks. Jeju is surrounded by sea, so seafood stalls are everywhere.</p></div>
+<div class="card"><span class="tag t4">Snack</span><h3>Egg buns</h3><p><i>Gyeran-ppang</i>, "egg bread," is a small, sweet, fluffy bun baked with a whole egg on top. It's a favourite winter street snack across Korea, best eaten hot.</p></div>
+<div class="card"><span class="tag t3">Jeju</span><h3>Black pork everything</h3><p>Jeju's famous black pork turns up in buns, skewers and dumplings at the market, a quick way to try it without a full BBQ dinner. See Jeju on a Plate for the black pork story.</p></div>
+<div class="card"><span class="tag t2">Tip</span><h3>How to shop</h3><p>Many stalls let you try a sample, and some sellers will give a little extra if you buy several. Have some cash handy, although most stalls also take cards.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Market challenge</h3><ol><li>Rank the three snacks: lobster, black pork bun, egg bun.</li><li>Find a hallabong treat.</li><li>Spot a stall using a blowtorch.</li><li>Journal: what would you try next time?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What does \"maeil\" mean?", "o": ["Every day", "Five days", "Night", "Seafood"], "a": 0, "w": "The market opens daily."}, {"q": "What is an ojang?", "o": ["A five-day market", "A type of bun", "A fish", "A trail"], "a": 0, "w": "Held only on certain days of the month."}, {"q": "What is gyeran-ppang?", "o": ["Egg bread", "Fish cake", "Rice cake", "Pork bun"], "a": 0, "w": "A sweet bun baked with a whole egg on top."}, {"q": "How is the cheese on the market lobster melted?", "o": ["With a blowtorch", "In a microwave", "In the sun", "With hot water"], "a": 0, "w": "Bubbling and golden."}];
+var END=["Perfect score. Market master!", "Nice work. Still hungry?", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
