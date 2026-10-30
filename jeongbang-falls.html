@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Jeongbang Falls</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to a waterfall on the shore: spray white, sea blue, cliff basalt, boulder grey. */
+
+:root{
+  --bg:#edf1f3; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e0e7ea;
+  --acc:#2a6fa8; --t1:#2a6fa8; --t2:#4a4744; --t3:#3f6e44; --t4:#e2c35a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#6faee0; --t1:#5a9ad0; --t2:#8a8580; --t3:#6fb276; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#6faee0; --t1:#5a9ad0; --t2:#8a8580; --t3:#6fb276; --t4:#f2d27a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a waterfall pouring off a dark cliff straight onto a boulder shore beside the sea">
+    <rect x="0" y="0" width="700" height="220" style="fill:#cfe3ef"/>
+    <path d="M0 0 L380 0 L380 170 L0 170 Z" style="fill:#4a4744"/>
+    <g style="fill:#3f6e44"><circle cx="60" cy="10" r="30"/><circle cx="160" cy="4" r="34"/><circle cx="300" cy="8" r="30"/></g>
+    <path d="M220 20 L300 20 L310 176 L210 176 Z" style="fill:#ffffff" opacity=".9"/>
+    <path d="M236 24 L232 172 M256 24 L258 172 M280 24 L284 172" style="stroke:#bfe0f0" stroke-width="3"/>
+    <rect x="380" y="120" width="320" height="100" style="fill:#2a6fa8"/>
+    <path d="M380 140 Q440 132 500 140 T620 140 T740 140" style="stroke:#ffffff" stroke-width="3" fill="none" opacity=".7"/>
+    <g style="fill:#6a6560"><ellipse cx="160" cy="196" rx="60" ry="22"/><ellipse cx="300" cy="200" rx="50" ry="18"/><ellipse cx="420" cy="196" rx="40" ry="16"/><ellipse cx="60" cy="204" rx="50" ry="16"/></g>
+  </svg>
+  <span class="kicker">Day 7 · Fri 30 Oct · Seogwipo</span>
+  <h1>Jeongbang Falls<span class="ko">정방폭포</span></h1>
+  <p>One of the few waterfalls in Asia that lands right on the seashore, with a legend about the search for eternal youth carved into the cliff.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>23 m</b><span>tall</span></div><div class="stat"><b>Shore</b><span>falls onto the coast</span></div><div class="stat"><b>3</b><span>famous Jeju falls, now all seen</span></div><div class="stat"><b>Seobul</b><span>the legend</span></div></div>
+
+<div class="sh"><span class="num">Our visit</span><h2>Our afternoon</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our visit</span><h3>Boulder scrambling</h3><p>After lunch on Fri 30 Oct we visited Jeongbang Falls, and the boys clambered over the big boulders on the shore below the cliffs.</p></div></div>
+<div class="sh"><span class="num">The cards</span><h2>About the falls</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Rare</span><h3>A waterfall by the sea</h3><p>Jeongbang drops 23 m off a cliff onto a rocky shore just steps from the sea. Waterfalls that land so close to the ocean are rare, which makes it one of Jeju's most famous sights.</p></div>
+<div class="card"><span class="tag t2">Legend</span><h3>Seobul was here</h3><p>China's first emperor, Qin Shi Huang, wanted to live forever. Legend says he sent a servant, Seobul (Xu Fu in Chinese), to find the herb of eternal youth on Hallasan. On his way home, Seobul carved "Seobul was here" on the cliff by the falls. The name Seogwipo is said to mean the harbour where he "went back west."</p></div>
+<div class="card"><span class="tag t3">Collection complete</span><h3>All three famous falls</h3><p>Jeju's three famous waterfalls are Cheonjiyeon, Cheonjeyeon and Jeongbang. With Cheonjeyeon on Day 5, how many have we seen? Which was the best?</p></div>
+<div class="card"><span class="tag t4">Volcano link</span><h3>Columns of lava</h3><p>Look at the cliff: like Jusangjeolli, its dark rock formed from lava that cracked into columns as it cooled.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Waterfall challenge</h3><ol><li>Feel the spray from the boulders.</li><li>Rank the waterfalls of the trip.</li><li>Spot the columns in the cliff.</li><li>Journal: what did the falls sound like?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "How tall is Jeongbang Falls?", "o": ["About 23 m", "About 3 m", "About 230 m", "About 1 km"], "a": 0, "w": "It lands on the shore by the sea."}, {"q": "What was Seobul looking for?", "o": ["The herb of eternal youth", "Gold", "A lost ship", "Tangerines"], "a": 0, "w": "For China’s first emperor."}, {"q": "What did Seobul carve on the cliff?", "o": ["\"Seobul was here\"", "A dragon", "A map", "His shoe size"], "a": 0, "w": "According to legend."}, {"q": "What makes Jeongbang rare?", "o": ["It falls right onto the seashore", "It flows upward", "It is frozen", "It is indoors"], "a": 0, "w": "Very few waterfalls land so close to the sea."}];
+var END=["Perfect score!", "Nice work.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
