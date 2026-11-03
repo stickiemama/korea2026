@@ -35,6 +35,7 @@ h1 .ko{display:block;font-size:.48em;color:var(--red);margin-top:6px}
 .day{position:relative;display:grid;gap:12px}
 .day::before{content:"";position:absolute;left:-35px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--line)}
 .day.done::before{background:var(--jeju)}
+.chapter + .trail .day.done::before{}
 .dlabel{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
 .dlabel b{font-family:var(--display);font-weight:400;font-size:1.35rem}
 .dlabel span{font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
@@ -272,9 +273,85 @@ footer{margin-top:44px;color:var(--muted);font-size:13px;text-align:center}
       </div>
     </section>
 
+  </div>
+
+  <div class="chapter"><h2 style="color:#3f5fa8">Seoul</h2><span>서울</span></div>
+  <div class="trail">
+    <section class="day done" aria-label="Day 8">
+      <div class="dlabel"><b>Day 8 · Sat 31 Oct</b><span>Jeju to Seoul, a first evening in Dongdaemun</span></div>
+      <div class="grid">
+        <a class="card" href="ddp-dongdaemun.html">
+          <span class="tag" style="background:#3f5fa8">Architecture</span>
+          <h3>DDP &amp; Dongdaemun</h3>
+          <p>A spaceship-shaped building on top of the old city wall, the Great East Gate, and a market that never sleeps.</p>
+          <span class="go">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="day done" aria-label="Day 9">
+      <div class="dlabel"><b>Day 9 · Sun 1 Nov</b><span>A palace, hanok lanes and street food in the rain</span></div>
+      <div class="grid">
+        <a class="card" href="gyeongbokgung-palace.html">
+          <span class="tag" style="background:#b8322a">Palace</span>
+          <h3>Gyeongbokgung Palace</h3>
+          <p>The palace that kept coming back, painted dancheong, and the roof guardians from Journey to the West.</p>
+          <span class="go">Open →</span>
+        </a>
+        <a class="card" href="bukchon-hanok-village.html">
+          <span class="tag" style="background:#8a5a36">Village</span>
+          <h3>Bukchon Hanok Village</h3>
+          <p>The north village of nobles, how a hanok works, and roofs that smile.</p>
+          <span class="go">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="day done" aria-label="Day 10">
+      <div class="dlabel"><b>Day 10 · Mon 2 Nov</b><span>A cable car, a windy picnic and 3 hours on bikes</span></div>
+      <div class="grid">
+        <a class="card" href="namsan-seoul-tower.html">
+          <span class="tag" style="background:#2f6a4a">Mountain</span>
+          <h3>Namsan and N Seoul Tower</h3>
+          <p>The south mountain, beacon fires that sent messages, and a fence of padlocks.</p>
+          <span class="go">Open →</span>
+        </a>
+        <a class="card" href="han-river-seoul-forest.html">
+          <span class="tag" style="background:#2a6aa8">Bike ride</span>
+          <h3>Han River and Seoul Forest</h3>
+          <p>The Miracle on the Han River, ding-ding bikes, and deer in the city.</p>
+          <span class="go">Open →</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="day done" aria-label="Day 11">
+      <div class="dlabel"><b>Day 11 · Tue 3 Nov</b><span>A garden, Nami Island and a rail bike ride</span></div>
+      <div class="grid">
+        <a class="card" href="garden-of-morning-calm.html">
+          <span class="tag" style="background:#b8423a">Garden</span>
+          <h3>Garden of Morning Calm</h3>
+          <p>Korea’s old nickname, a garden shaped like Korea, and why maples turn red.</p>
+          <span class="go">Open →</span>
+        </a>
+        <a class="card" href="nami-island.html">
+          <span class="tag" style="background:#c99a12">Island</span>
+          <h3>Nami Island</h3>
+          <p>The young general, an island made by a dam, its own pretend country, and the living-fossil ginkgo.</p>
+          <span class="go">Open →</span>
+        </a>
+        <a class="card" href="gimyujeong-rail-park.html">
+          <span class="tag" style="background:#c0392b">Rail bike</span>
+          <h3>Gimyujeong Rail Park</h3>
+          <p>A retired railway, party tunnels, a station named after a writer, and why rail bikes roll so easily.</p>
+          <span class="go">Open →</span>
+        </a>
+      </div>
+    </section>
+
     <section class="day" aria-label="Coming up">
       <div class="dlabel"><b>Coming up</b><span>More pages as we go</span></div>
-      <div class="soon"><h3>Next: Seoul</h3><p>Palaces, markets, mountains and the Han River from Sat 31 Oct.</p></div>
+      <div class="soon"><h3>Palaces, mountains, Nami Island and the Han River</h3><p>New Seoul pages will appear here after each day.</p></div>
     </section>
   </div>
 
@@ -302,6 +379,18 @@ footer{margin-top:44px;color:var(--muted);font-size:13px;text-align:center}
       <span class="tag" style="background:#a8323a">Food Notes 4</span>
       <h3>Hanwoo Korean Beef</h3>
       <p>Our butcher's-restaurant sirloin, what 1++ means, Hanwoo vs wagyu, and how to build a perfect ssam.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="seoul-street-food.html">
+      <span class="tag" style="background:#e0701f">Food Notes 5</span>
+      <h3>Seoul Street Food</h3>
+      <p>Egg bread, potato bread in disguise, fish-shaped pastries with no fish, and the orange-tent stalls.</p>
+      <span class="go">Open →</span>
+    </a>
+    <a class="card" href="dakgalbi.html">
+      <span class="tag" style="background:#c0302a">Food Notes 6</span>
+      <h3>Dakgalbi</h3>
+      <p>Chicken "ribs" with no ribs, the commoner’s galbi of Chuncheon, and fried rice to finish.</p>
       <span class="go">Open →</span>
     </a>
   </div>

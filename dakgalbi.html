@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Dakgalbi</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Food Notes no. 6, tuned to a dakgalbi pan: gochujang red, cast-iron black, cabbage green, sweet-potato orange. */
+
+:root{
+  --bg:#f5eeea; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ece0da;
+  --acc:#c0302a; --t1:#c0302a; --t2:#2b2b30; --t3:#4e8a3d; --t4:#e08a2a; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f06a5a; --t1:#e0504a; --t2:#7a7a82; --t3:#72c160; --t4:#f2a85a; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#f06a5a; --t1:#e0504a; --t2:#7a7a82; --t3:#72c160; --t4:#f2a85a; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a large round iron pan of spicy red stir-fried chicken with cabbage, rice cakes and sweet potato">
+    <rect x="0" y="0" width="700" height="220" style="fill:#3a2f2a"/>
+    <circle cx="350" cy="110" r="100" style="fill:#1b1b1d"/>
+    <circle cx="350" cy="110" r="86" style="fill:#c0302a"/>
+    <g style="fill:#f4e6c8"><rect x="300" y="80" width="30" height="10" rx="5"/><rect x="370" y="130" width="30" height="10" rx="5"/><rect x="320" y="140" width="30" height="10" rx="5"/></g>
+    <g style="fill:#8ab86a"><path d="M290 110 q20 -14 40 0 q-20 10 -40 0 Z"/><path d="M380 90 q20 -14 40 0 q-20 10 -40 0 Z"/></g>
+    <g style="fill:#e08a2a"><circle cx="350" cy="100" r="8"/><circle cx="400" cy="110" r="7"/><circle cx="300" cy="135" r="7"/></g>
+    <g style="fill:#e9b49a"><circle cx="330" cy="120" r="10"/><circle cx="380" cy="150" r="9"/><circle cx="360" cy="70" r="9"/></g>
+    <path d="M520 60 L600 30 M524 72 L604 42" style="stroke:#c9a46a" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <span class="kicker">Food Notes · no. 6 · Seoul Day 4</span>
+  <h1>Dakgalbi<span class="ko">닭갈비</span></h1>
+  <p>Spicy chicken stir-fried on a giant iron pan at the table: our lunch at the Nami wharf, and the pride of nearby Chuncheon.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>1960s</b><span>invented</span></div><div class="stat"><b>Chuncheon</b><span>hometown</span></div><div class="stat"><b>1 pan</b><span>shared</span></div><div class="stat"><b>Fried rice</b><span>to finish</span></div></div>
+
+<div class="sh"><span class="num">What we ate</span><h2>Our lunch</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our lunch</span><h3>Stir-fry at the wharf</h3><p>On Tue 3 Nov we had stir-fried chicken at the Nami wharf before catching the ferry to the island.</p></div></div>
+<div class="sh"><span class="num">The cards</span><h2>Pan stories</h2></div>
+<div class="cards"><div class="card"><span class="tag t1">Name</span><h3>Chicken "ribs" with no ribs</h3><p><i>Dak</i> means chicken and <i>galbi</i> means ribs, but dakgalbi is made from boneless chicken, usually thigh. It's a joke on the name of expensive beef and pork galbi.</p></div>
+<div class="card"><span class="tag t2">History</span><h3>The commoner’s galbi</h3><p>Dakgalbi began in Chuncheon taverns in the 1960s as a cheap alternative to beef and pork galbi, popular with students and soldiers. It was so cheap and filling that people called it "commoner's galbi." Chuncheon now has whole streets of dakgalbi restaurants.</p><div class="look"><b>Map it:</b> Nami Island is officially part of Chuncheon.</div></div>
+<div class="card"><span class="tag t3">In the pan</span><h3>What goes in</h3><p>Chicken marinated in gochujang (red chilli paste), garlic and soy sauce, stir-fried with cabbage, sweet potato, rice cakes (<i>tteok</i>), onion and perilla leaves. Staff often cook it at your table, because it's easy to burn.</p></div>
+<div class="card"><span class="tag t4">Best part?</span><h3>Save room for fried rice</h3><p>When most of the chicken is gone, ask for <i>bokkeumbap</i>: rice, seaweed and sauce fried in the leftover juices and pressed flat so it crisps on the bottom. Many Koreans say this is the best part.</p></div>
+<div class="card"><span class="tag t3">Local partner</span><h3>Chuncheon makguksu</h3><p>Chuncheon's other famous dish is <i>makguksu</i>, cold buckwheat noodles. Spicy hot dakgalbi followed by cool noodles is the classic Chuncheon meal.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Pan challenge</h3><ol><li>Name every ingredient you can spot in the pan.</li><li>Order the fried rice at the end, or wish you had!</li><li>Compare dakgalbi with Singapore chilli chicken dishes.</li><li>Journal: give dakgalbi a spice rating out of 5.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What does dakgalbi mean?", "o": ["Chicken ribs", "Fried rice", "Spicy soup", "Island food"], "a": 0, "w": "But it has no bones!"}, {"q": "Which city is famous for dakgalbi?", "o": ["Chuncheon", "Busan", "Jeju", "Tokyo"], "a": 0, "w": "It began there in the 1960s."}, {"q": "What is the red paste in the marinade?", "o": ["Gochujang", "Ketchup", "Wasabi", "Curry"], "a": 0, "w": "Red chilli paste."}, {"q": "How do you finish a dakgalbi meal?", "o": ["Fried rice in the pan", "Ice cream", "Soup", "Nothing"], "a": 0, "w": "<i>Bokkeumbap</i>."}];
+var END=["Perfect score. Pan master!", "Nice work.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Seoul Street Food</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Food Notes no. 5, tuned to a street stall in the rain: stall-tent orange, griddle black, egg-bun yellow, umbrella blue. */
+
+:root{
+  --bg:#f4efe6; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#ebe3d5;
+  --acc:#e0701f; --t1:#e0701f; --t2:#2a5fa8; --t3:#8a5a36; --t4:#e9b949; --mis:#e9b949; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff9a4d; --t1:#f08a3a; --t2:#6f9ff0; --t3:#c09060; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#ff9a4d; --t1:#f08a3a; --t2:#6f9ff0; --t3:#c09060; --t4:#f2cd6b; --mis:#f2cd6b; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a street food stall with egg buns, fish-shaped pastries and potato breads, under an umbrella in the rain">
+    <rect x="0" y="0" width="700" height="220" style="fill:#c9d3dc"/>
+    <path d="M120 70 Q350 0 580 70 Z" style="fill:#2a5fa8"/>
+    <path d="M350 40 L350 120" style="stroke:#3a3f48" stroke-width="4"/>
+    <rect x="80" y="120" width="540" height="100" rx="8" style="fill:#e0701f"/>
+    <rect x="100" y="134" width="500" height="40" rx="6" style="fill:#2b2b30"/>
+    <g style="fill:#e9c76a"><ellipse cx="150" cy="154" rx="26" ry="12"/><ellipse cx="210" cy="154" rx="26" ry="12"/></g>
+    <g style="fill:#ffffff"><circle cx="150" cy="150" r="6"/><circle cx="210" cy="150" r="6"/></g>
+    <g style="fill:#c98a3a"><path d="M280 154 q20 -14 50 0 q-20 14 -50 0 Z M330 154 l12 -8 l0 16 Z"/><path d="M360 154 q20 -14 50 0 q-20 14 -50 0 Z M410 154 l12 -8 l0 16 Z"/></g>
+    <g style="fill:#d9b98a"><ellipse cx="480" cy="154" rx="18" ry="14"/><ellipse cx="540" cy="154" rx="18" ry="14"/></g>
+    <g style="fill:#8a6a46"><circle cx="474" cy="150" r="2"/><circle cx="486" cy="158" r="2"/><circle cx="534" cy="152" r="2"/><circle cx="546" cy="158" r="2"/></g>
+    <g style="stroke:#ffffff" stroke-width="1.5" opacity=".7"><path d="M30 20 l-6 14 M60 90 l-6 14 M640 30 l-6 14 M670 100 l-6 14"/></g>
+  </svg>
+  <span class="kicker">Food Notes · no. 5 · Seoul Day 2</span>
+  <h1>Seoul Street Food<span class="ko">길거리 음식</span></h1>
+  <p>Snacking our way through a rainy afternoon: egg buns, Nutella crispies, potato cheese bread, and the stories behind Korea's favourite street snacks.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>3</b><span>snacks we tried</span></div><div class="stat"><b>Gyeran-ppang</b><span>egg bread</span></div><div class="stat"><b>Gamja-ppang</b><span>potato bread</span></div><div class="stat"><b>Bungeoppang</b><span>fish-shaped, no fish</span></div></div>
+
+<div class="sh"><span class="num">What we ate</span><h2>Our snacks</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our snacks</span><h3>An afternoon of nibbling</h3><p>On Sun 1 Nov we roamed and window-shopped in the rain, trying egg buns, Nutella crispies and potato cheese bread, after a lunch of famous ginseng chicken soup at Tosokchon Samgyetang.</p><div class="look"><b>See also:</b> Korean Chicken Soups for the samgyetang story.</div></div></div>
+<div class="sh"><span class="num">The cards</span><h2>Snack stories</h2></div>
+<div class="cards"><div class="card"><span class="tag t4">Egg bread</span><h3>Gyeran-ppang</h3><p>A small, sweet, fluffy bun baked with a whole egg on top, sometimes with cheese or ham. It's a classic cold-weather snack, best eaten piping hot.</p></div>
+<div class="card"><span class="tag t3">Weird but true</span><h3>Bread disguised as a potato</h3><p><i>Gamja-ppang</i> is made to look exactly like a small potato, dusted with cocoa or grain powder for the "skin." Inside it's chewy and often filled with cheese or mashed potato. It's a famous snack from Gangwon province, Korea's potato-growing region.</p></div>
+<div class="card"><span class="tag t1">Winter favourite</span><h3>Fish without fish</h3><p>Did you spot the fish-shaped pastries? That's <i>bungeoppang</i>, "carp bread," filled with sweet red bean or custard, but no fish. It came to Korea from a similar Japanese snack in the 20th century. Koreans love debating whether to eat the head or the tail first.</p></div>
+<div class="card"><span class="tag t2">Street culture</span><h3>Pojangmacha</h3><p>Street stalls under orange tents are called <i>pojangmacha</i>, "covered wagons." After the Korean War, cheap food from carts and tents fed a hungry, busy city, and the tradition lives on in markets and shopping streets.</p></div>
+<div class="card"><span class="tag t3">Fusion</span><h3>Old snacks, new flavours</h3><p>Seoul stalls constantly invent new twists, like Nutella-filled crispy pastries or cheese-stuffed breads. Trends spread fast through social media, so the snack of the season can change from one year to the next.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Snack challenge</h3><ol><li>Head or tail first? Survey the family on bungeoppang.</li><li>Find a pojangmacha.</li><li>Rank every street snack of the trip so far.</li><li>Journal: invent a new street snack and name it.</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What is on top of gyeran-ppang?", "o": ["A whole egg", "A fish", "Chocolate", "Kimchi"], "a": 0, "w": "Egg bread."}, {"q": "Why does gamja-ppang look like a potato?", "o": ["It’s shaped and dusted to look like one", "It is a real potato", "It grew that way", "By accident"], "a": 0, "w": "Often filled with cheese."}, {"q": "What is inside bungeoppang?", "o": ["Sweet red bean or custard", "Fish", "Rice", "Seaweed"], "a": 0, "w": "\"Carp bread\" with no carp."}, {"q": "What is a pojangmacha?", "o": ["A covered street stall", "A palace gate", "A hanok roof", "A bus"], "a": 0, "w": "Often under an orange tent."}];
+var END=["Perfect score. Snack master!", "Nice work. Still hungry?", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
