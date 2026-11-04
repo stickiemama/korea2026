@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>National Aviation Museum</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to the airfield: Black Eagles black and gold, sky blue, runway grey, taxiway yellow. */
+
+:root{
+  --bg:#eef1f5; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e0e6ee;
+  --acc:#1f4a8a; --t1:#1f4a8a; --t2:#2b2b30; --t3:#c9971a; --t4:#5a6270; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#6f9fe8; --t1:#5a8fd8; --t2:#8a8a92; --t3:#f2c24a; --t4:#9aa2b0; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#6f9fe8; --t1:#5a8fd8; --t2:#8a8a92; --t3:#f2c24a; --t4:#9aa2b0; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a black and gold jet trainer climbing over a runway, trailing white smoke, with a control tower">
+    <rect x="0" y="0" width="700" height="220" style="fill:#c4d8ee"/>
+    <rect x="0" y="170" width="700" height="50" style="fill:#5a6270"/>
+    <g style="fill:#e2c35a"><rect x="40" y="192" width="50" height="5"/><rect x="160" y="192" width="50" height="5"/><rect x="280" y="192" width="50" height="5"/><rect x="400" y="192" width="50" height="5"/><rect x="520" y="192" width="50" height="5"/></g>
+    <rect x="600" y="90" width="18" height="80" style="fill:#e8e8ec"/><rect x="586" y="74" width="46" height="20" rx="4" style="fill:#2b2b30"/><rect x="590" y="78" width="38" height="10" style="fill:#8ab0d8"/>
+    <path d="M40 150 Q180 120 300 96" style="stroke:#ffffff" stroke-width="10" fill="none" opacity=".8" stroke-linecap="round"/>
+    <g transform="rotate(-18 360 80)">
+      <path d="M300 80 L420 74 L436 80 L420 86 Z" style="fill:#2b2b30"/>
+      <path d="M350 80 L384 52 L396 52 L380 80 Z" style="fill:#2b2b30"/><path d="M350 80 L384 108 L396 108 L380 80 Z" style="fill:#2b2b30"/>
+      <path d="M302 80 L312 64 L322 64 L318 80 Z" style="fill:#2b2b30"/>
+      <path d="M330 80 L420 77" style="stroke:#c9971a" stroke-width="3"/>
+      <ellipse cx="404" cy="76" rx="10" ry="4" style="fill:#8ab0d8"/>
+    </g>
+  </svg>
+  <span class="kicker">Seoul Day 5 · Wed 4 Nov · Gimpo Airport</span>
+  <h1>National Aviation Museum<span class="ko">국립항공박물관</span></h1>
+  <p>A whole museum about flight, right next to Gimpo Airport's runways, with Korean jets hanging from the ceiling. Our afternoon after the DMZ.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b>2020</b><span>opened</span></div><div class="stat"><b>1922</b><span>first Korean flight over Seoul</span></div><div class="stat"><b>Mach 1.5</b><span>T-50 top speed</span></div><div class="stat"><b>Free</b><span>entry</span></div></div>
+
+<div class="sh"><span class="num">Our visit</span><h2>Our afternoon</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our visit</span><h3>From the border to the runway</h3><p>On Wed 4 Nov, after our morning at the DMZ, we visited the National Aviation Museum of Korea at Gimpo Airport.</p><div class="look"><b>Compare:</b> the Jeju Aerospace Museum. Which had the better jets?</div></div></div>
+<div class="sh"><span class="num">The cards</span><h2>About the museum</h2></div>
+<div class="cards"><div class="card"><span class="tag t3">Pioneers</span><h3>Korea’s first pilots</h3><p>In 1922, Ahn Chang-nam became the first Korean to fly over Seoul, while Korea was under Japanese rule. Crowds of around 50,000 came to watch, and he became a hero.</p><p>Kwon Ki-ok became Korea's first woman pilot in the 1920s. She trained in China and flew for the independence movement, hoping one day to bomb the Japanese governor's office.</p></div>
+<div class="card"><span class="tag t1">History</span><h3>A flight school in California</h3><p>In 1920 Korea's government-in-exile opened a flight school in Willows, California, funded by Korean farmers living in America. Its students trained on biplanes like the Standard J-1 to become pilots for a free Korea.</p><div class="look"><b>Look for:</b> the Standard J-1 biplane in the museum.</div></div>
+<div class="card"><span class="tag t2">Korean War</span><h3>The first jet fighters</h3><p>The F-86 Sabre hanging in the museum was one of the jets that fought in the Korean War (1950–1953), in the world's first big jet-versus-jet air battles, mostly against Soviet-built MiG-15s over the north. That links straight back to this morning at the DMZ.</p></div>
+<div class="card"><span class="tag t3">Made in Korea</span><h3>The T-50 Golden Eagle</h3><p>The T-50 is Korea's own supersonic jet trainer, built by Korea Aerospace Industries and first flown in 2002. It can fly at about one and a half times the speed of sound. The Black Eagles, Korea's air force display team, fly a version of it, painted black and gold.</p><div class="look"><b>Fun fact:</b> Korea now sells jets from the T-50 family to air forces in Indonesia, the Philippines, Thailand and Poland.</div></div>
+<div class="card"><span class="tag t4">Big jet</span><h3>A jumbo jet, sliced open</h3><p>The museum has a cross-section of a real Boeing 747, so you can see the layers inside: passenger deck, cargo hold, and the cables and pipes hidden in between.</p></div>
+<div class="card"><span class="tag t2">Try it</span><h3>Jobs at the airport</h3><p>The experience zones let visitors try jobs in aviation: flying a Black Eagles simulator, directing planes from a mock control tower, or training as cabin crew, including the evacuation slide. Most need booking and cost extra; entry to the museum is free.</p></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Flight crew mission</h3><ol><li>Find the oldest and the newest aircraft in the museum.</li><li>Spot the F-86 Sabre and the T-50.</li><li>Watch a real plane take off from Gimpo.</li><li>Journal: which aviation job would you choose, and why?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "Who was the first Korean to fly over Seoul, in 1922?", "o": ["Ahn Chang-nam", "Kim Yu-jeong", "King Sejong", "General Nam I"], "a": 0, "w": "About 50,000 people came to watch."}, {"q": "Who was Kwon Ki-ok?", "o": ["Korea’s first woman pilot", "A K-pop star", "A palace guard", "A writer"], "a": 0, "w": "She flew for the independence movement."}, {"q": "Where did Korea’s government-in-exile open a flight school in 1920?", "o": ["California", "Jeju", "Tokyo", "London"], "a": 0, "w": "In Willows, funded by Korean farmers."}, {"q": "Which jet fought in the Korean War?", "o": ["F-86 Sabre", "T-50", "Boeing 747", "KC-100"], "a": 0, "w": "Against MiG-15s."}, {"q": "Which team flies the T-50?", "o": ["The Black Eagles", "The Red Arrows", "The Blue Angels", "The Golden Tigers"], "a": 0, "w": "Painted black and gold."}];
+var END=["Perfect score. Cleared for take-off!", "Nice work.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
