@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Miracle on the Han River</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@400;600;800&display=swap">
+<style>
+/* Layout: same chunky field-card system as the other trip pages: drawn hero, numbers strip, card sections, mission, quiz. Tuned to Korea’s rise: war-rubble grey rising to steel blue, factory orange, chip silver, gold. */
+
+:root{
+  --bg:#eef1f5; --card:#ffffff; --ink:#16171a; --muted:#585c63; --line:#16171a; --soft:#e0e6ee;
+  --acc:#2a5fa8; --t1:#2a5fa8; --t2:#e07a24; --t3:#5a6270; --t4:#c9971a; --mis:#e2c35a; --ok:#2f7d4f; --bad:#d0412f;
+  --display:"Black Han Sans","Gothic A1",Impact,system-ui,sans-serif; --body:"Gothic A1",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#6f9ff0; --t1:#5a8fe0; --t2:#f2a052; --t3:#9aa2b0; --t4:#f2c24a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131416; --card:#1e1f23; --ink:#f1f1ef; --muted:#aaacb0; --line:#f1f1ef; --soft:#2a2b30;
+  --acc:#6f9ff0; --t1:#5a8fe0; --t2:#f2a052; --t3:#9aa2b0; --t4:#f2c24a; --mis:#f2d27a; --ok:#6fcb8f; --bad:#ff8070; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.55}
+.wrap{max-width:700px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.hero{display:grid;gap:12px}
+.art{width:100%;max-width:100%;height:auto;display:block;border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line)}
+.kicker{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(2.3rem,10vw,4.1rem)}
+.hero h1 .ko{display:block;font-size:.48em;color:var(--acc);margin-top:6px}
+.hero p{margin:0;max-width:56ch;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat b{display:block;font-family:var(--display);font-weight:400;font-size:1.6rem;line-height:1.1;color:var(--acc);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+.sh{margin-top:40px;display:grid;gap:6px}
+.sh .num{font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sh h2{font-size:2rem}
+.sh p{margin:0;color:var(--muted);max-width:60ch}
+.cards{display:grid;gap:16px;margin-top:16px}
+.card{background:var(--card);border:2.5px solid var(--line);border-radius:14px;box-shadow:5px 5px 0 var(--line);padding:16px 18px;display:grid;gap:8px}
+.card h3{font-size:1.4rem}
+.card p{margin:0}
+.card.ours{border-style:dashed}
+.tag{justify-self:start;font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;color:#fff}
+.t1{background:var(--t1)} .t2{background:var(--t2)} .t3{background:var(--t3)} .t4{background:var(--t4);color:#16171a}
+.look{font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px}
+.look b{font-weight:800}
+.mission{background:var(--mis);color:#16171a;border-color:#16171a;box-shadow:5px 5px 0 #16171a}
+.mission ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.mission .tag{background:#16171a;color:#fff}
+.q{display:grid;gap:10px}
+.qn{font-weight:800;font-size:12px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.q h3{font-size:1.3rem}
+.opts{display:grid;gap:8px}
+.opts button{font:600 15px var(--body);text-align:left;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:10px 12px}
+.opts button.right{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opts button.wrong{background:var(--bad);color:#fff;border-color:var(--bad)}
+.opts button:disabled{cursor:default}
+.why{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{font:800 14px var(--body);cursor:pointer;border:2.5px solid var(--line);border-radius:999px;background:var(--ink);color:var(--bg);padding:8px 18px}
+.score{font-family:var(--display);font-size:2.4rem;color:var(--acc)}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+footer{margin-top:44px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="hero">
+  <svg class="art" viewBox="0 0 700 220" role="img" aria-label="Drawing of a rising line chart over a city skyline that grows from low rubble on the left to tall towers and a ship and microchip on the right, beside a river">
+    <rect x="0" y="0" width="700" height="220" style="fill:#dfe7f0"/>
+    <rect x="0" y="190" width="700" height="30" style="fill:#2a5fa8"/>
+    <g style="fill:#9aa2b0"><rect x="20" y="176" width="40" height="14"/><rect x="70" y="170" width="30" height="20"/></g>
+    <g style="fill:#7a8290"><rect x="140" y="150" width="34" height="40"/><rect x="184" y="140" width="30" height="50"/></g>
+    <g style="fill:#5a6270"><rect x="260" y="120" width="36" height="70"/><rect x="306" y="104" width="30" height="86"/></g>
+    <g style="fill:#3f4a6a"><rect x="400" y="80" width="40" height="110"/><rect x="450" y="60" width="34" height="130"/><rect x="494" y="90" width="30" height="100"/></g>
+    <g style="fill:#2b2b48"><rect x="570" y="40" width="40" height="150"/><rect x="620" y="24" width="36" height="166"/></g>
+    <path d="M20 170 Q200 160 330 110 T680 20" style="stroke:#e07a24" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M660 14 L684 18 L672 38 Z" style="fill:#e07a24"/>
+    <rect x="370" y="10" width="34" height="34" rx="4" style="fill:#c9c9cf"/><g style="stroke:#8a8a92" stroke-width="3"><path d="M376 6 L376 10 M387 6 L387 10 M398 6 L398 10 M376 44 L376 48 M387 44 L387 48 M398 44 L398 48"/></g>
+    <rect x="378" y="18" width="18" height="18" style="fill:#c9971a"/>
+  </svg>
+  <span class="kicker">Field Notes · history · economy</span>
+  <h1>Miracle on the Han River<span class="ko">한강의 기적</span></h1>
+  <p>How one of the world's poorest countries became one of its richest in about 40 years: wigs to warships to microchips.</p>
+</header>
+
+<div class="stats" aria-label="In numbers"><div class="stat"><b><$100</b><span>income per person in the 1950s</span></div><div class="stat"><b>$30,000+</b><span>today</span></div><div class="stat"><b>3.5 m</b><span>people gave their gold</span></div><div class="stat"><b>4</b><span>Asian Tigers</span></div></div>
+
+<div class="sh"><span class="num">Part 1</span><h2>Our question</h2></div>
+<div class="cards"><div class="card ours"><span class="tag t1">Our question</span><h3>How did Korea get rich so fast?</h3><p>After our DMZ tour and the War Memorial, we wondered: if Korea was so poor after the war, how did it build all this wealth in such a short time? Here is the story, decade by decade.</p><div class="look"><b>Trip link:</b> the Han River page, where this "miracle" got its name.</div></div></div>
+<div class="sh"><span class="num">Part 2</span><h2>Decade by decade</h2></div>
+<div class="cards"><div class="card"><span class="tag t3">1950s</span><h3>Starting from rubble</h3><p>When the Korean War ended in 1953, Seoul was in ruins, the industrial north was cut off, and income was under about US$100 per person a year, poorer than many countries in Africa. American aid kept people fed.</p><p>Two things quietly prepared the ground: <b>land reform</b>, which gave farmland to the farmers who worked it, and a hunger for <b>education</b>. Parents sacrificed almost anything so their children could study.</p></div>
+<div class="card"><span class="tag t2">1960s</span><h3>Wigs, shirts and shoes</h3><p>From 1961, the government under Park Chung-hee ran the economy with five-year plans and one big goal: <b>export</b>. Factories made cheap goods for the world, with young workers, many of them teenage girls, working very long hours. Wigs made from human hair were among Korea's top exports in the 1960s!</p><p>Thousands of Korean nurses and coal miners also went to work in West Germany and sent their wages home.</p></div>
+<div class="card"><span class="tag t4">1970s</span><h3>Steel and ships</h3><p>Next came heavy industry: steel, ships, cars and chemicals. The POSCO steelworks was partly paid for with money from Japan, after the two countries restored relations in 1965.</p><p>Hyundai's founder, Chung Ju-yung, wanted to build giant ships but had no shipyard. He went to British bankers with a photo of an empty beach and a 500-won banknote showing Admiral Yi's turtle ship, as proof that Koreans had built great ships before. He won a Greek order for two huge tankers, then built the shipyard and the ships at the same time.</p><div class="look"><b>Trip link:</b> the turtle ship at the War Memorial.</div></div>
+<div class="card"><span class="tag t1">1980s–90s</span><h3>Chips, democracy and the Olympics</h3><p>Korea moved into electronics and computer memory chips, and Samsung became one of the world's biggest chipmakers. In 1987, huge protests won full democracy, and in 1988 Seoul hosted the Olympics, showing the world a modern country.</p></div>
+<div class="card"><span class="tag t4">1997–98</span><h3>The gold campaign</h3><p>In the 1997 Asian financial crisis, Korea ran short of foreign money and needed an IMF bailout. In early 1998, about 3.5 million people queued to donate their gold rings, necklaces and medals, about 225 tonnes in all, to help repay the debt. Korea paid back the IMF years ahead of schedule.</p></div>
+<div class="card"><span class="tag t2">Today</span><h3>From receiving aid to giving it</h3><p>In 2010 Korea joined the club of major aid-giving countries, often described as the first country to go from receiving aid to giving it. Today Korean phones, cars, ships, chips, K-pop and K-dramas are known around the world.</p></div></div>
+<div class="sh"><span class="num">Part 3</span><h2>Thinking it through</h2></div>
+<div class="cards"><div class="card"><span class="tag t3">The costs</span><h3>Not a miracle for everyone</h3><p>The growth came under military-led governments. Unions and protests were suppressed, workers faced dangerous conditions, and full democracy came only in 1987. Koreans still argue about how to judge Park Chung-hee: some credit him with ending poverty, others stress the repression.</p><p>The big family firms (<i>chaebol</i>) became very powerful, and today Korea faces fierce school competition, long working hours and one of the world's lowest birth rates.</p></div>
+<div class="card"><span class="tag t1">Singapore link</span><h3>The Four Asian Tigers</h3><p>South Korea, Taiwan, Hong Kong and Singapore were called the "Four Asian Tigers." All four grew rich fast in the same decades by exporting, saving, and investing heavily in education, often with strong governments steering the way.</p><div class="look"><b>Discuss:</b> what was the same in Singapore’s story, and what was different?</div></div></div>
+
+<div class="cards"><div class="card mission"><span class="tag">Mission</span><h3>Economy detective</h3><ol><li>Count the Korean brands you can find at home in Singapore.</li><li>Find a 500-won coin or note design and see what’s on it today.</li><li>Ask a grandparent what Singapore was like in the 1960s.</li><li>Journal: what would you have donated in the gold campaign?</li></ol></div></div>
+
+<div class="sh" id="quiz"><span class="num">Quiz</span><h2>How much do you remember?</h2></div>
+<div class="card q" id="quizbox" style="margin-top:16px"></div>
+
+<footer><a href="index.html" style="font-weight:800;color:inherit">← All trip pages</a><br>Made for our Jeju &amp; Seoul trip, 2026.</footer>
+</div>
+
+<script>
+var Q=[{"q": "What was one of Korea’s top exports in the 1960s?", "o": ["Wigs", "Microchips", "Cars", "K-dramas"], "a": 0, "w": "Made from human hair."}, {"q": "What did Chung Ju-yung show bankers to win support for his shipyard?", "o": ["A banknote with a turtle ship", "A model car", "A gold crown", "A K-pop album"], "a": 0, "w": "Plus a photo of an empty beach."}, {"q": "What did 3.5 million Koreans donate in 1998?", "o": ["Gold", "Rice", "Blood", "Bicycles"], "a": 0, "w": "About 225 tonnes, to help repay debt."}, {"q": "When did South Korea become a full democracy?", "o": ["1987", "1953", "1961", "2010"], "a": 0, "w": "After huge protests, the year before the Seoul Olympics."}, {"q": "Which of these was NOT one of the Four Asian Tigers?", "o": ["Japan", "Singapore", "Taiwan", "Hong Kong"], "a": 0, "w": "The fourth Tiger was South Korea."}, {"q": "What helped prepare Korea for growth in the 1950s?", "o": ["Land reform and education", "Oil discoveries", "Gold mines", "Tourism"], "a": 0, "w": "Korea has few natural resources."}];
+var END=["Perfect score. Economic tiger!", "Nice work.", "Read the cards again and have another go."];
+
+Q.forEach(function(x){var c=x.o[x.a];for(var i=x.o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=x.o[i];x.o[i]=x.o[j];x.o[j]=t;}x.a=x.o.indexOf(c);});
+var qi=0,score=0,box=document.getElementById("quizbox");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function show(){
+  if(qi>=Q.length){
+    var msg=score===Q.length?END[0]:score>=Math.ceil(Q.length*0.6)?END[1]:END[2];
+    box.innerHTML='<span class="qn">Done</span><div class="score">'+score+' / '+Q.length+'</div><p class="why">'+msg+'</p><div><button type="button" class="btn" id="again">Try again</button></div>';return;
+  }
+  var x=Q[qi];
+  box.innerHTML='<span class="qn">Question '+(qi+1)+' of '+Q.length+'</span><h3>'+esc(x.q)+'</h3><div class="opts">'+x.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+esc(o)+'</button>'}).join("")+'</div><p class="why" id="why" aria-live="polite"></p><div class="qnav"><span class="why">Score: '+score+'</span><button type="button" class="btn" id="next" hidden>'+(qi===Q.length-1?"See score":"Next")+'</button></div>';
+}
+box.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b)return;
+  if(b.id==="next"){qi++;show();return}
+  if(b.id==="again"){qi=0;score=0;show();return}
+  if(b.dataset.i==null)return;
+  var x=Q[qi],i=+b.dataset.i,all=box.querySelectorAll(".opts button");
+  all.forEach(function(o){o.disabled=true});
+  all[x.a].classList.add("right");
+  if(i===x.a){score++;document.getElementById("why").textContent="Correct. "+x.w}
+  else{b.classList.add("wrong");document.getElementById("why").textContent="Not quite. "+x.w}
+  document.getElementById("next").hidden=false;
+});
+show();
+</script>
+
+</body>
+</html>
